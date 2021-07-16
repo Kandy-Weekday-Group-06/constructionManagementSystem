@@ -1,0 +1,4 @@
+.AdminPannel__mainButton {
+  display: flex;
+  justify-content: space-around;
+}
