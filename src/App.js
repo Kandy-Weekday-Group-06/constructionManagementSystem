@@ -1,4 +1,5 @@
 import ClientManager from './component/ClientManager';
+import SubcontractManager from './component/SubcontractManager';
 import Home from './component/Home/Home';
 import Header from './component/Header/Header';
 import AdminPannel from './component/AdminPannel/AdminPannel';
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path='/ClientManager' exact component={ClientManager}>
             <ClientManager/>
+          </Route>
+          <Route path='/SubcontractManager' exact component={SubcontractManager}>
+            <SubcontractManager/>
           </Route>
           
 
