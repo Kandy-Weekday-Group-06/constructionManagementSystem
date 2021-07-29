@@ -1,59 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function EditClient(props) {
+function AddClient() {
   const [clientName, setClientName] = useState("");
   const [representativeName, setRepresentativeName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+
   const db = firebase.firestore();
-  const [clientId, setClientId] = useState(props.id);
 
-  useEffect(() => {
-    db.collection("clients")
-      .doc(clientId.toString())
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-          setClientName(doc.data().clientName);
-          setRepresentativeName(doc.data().representativeName);
-          setPhone(doc.data().phone);
-          setEmail(doc.data().email);
-          setAddress(doc.data().address);
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      })
-      .catch(function (error) {
-        console.log("Error getting document:", error);
-      });
-  }, [db, clientId]);
-
-  function editdata(e) {
+  function sendData(e) {
     e.preventDefault();
-    alert("editdone");
-    const updatedClient = {
+    alert("Done!");
+    const newClient = {
       clientName,
       representativeName,
       phone,
       email,
       address,
     };
-    console.log(updatedClient);
+    console.log(newClient);
 
-    db.collection("clients").doc(clientId).update(updatedClient);
+    db.collection("clients")
+      .doc()
+      .set(newClient)
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
+
+    setClientName("");
+    setRepresentativeName("");
+    setPhone("");
+    setEmail("");
+    setAddress("");
   }
 
   return (
     <div className="container">
-      <h1>Edit client:{clientId}</h1>
-
-      <Form onSubmit={editdata}>
+      <center>
+        <h4>Add New Client</h4>
+      </center>
+      <Form onSubmit={sendData}>
         <Form.Group controlId="formBasicName">
           <Form.Label>Individual's Full Name/ Organization's Name</Form.Label>
           <Form.Control
@@ -114,6 +107,7 @@ function EditClient(props) {
             }}
           />
         </Form.Group>
+
         <Button variant="primary" type="submit">
           Submit
         </Button>
@@ -122,4 +116,4 @@ function EditClient(props) {
   );
 }
 
-export default EditClient;
+export default AddClient;
