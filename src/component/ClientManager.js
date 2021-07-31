@@ -6,6 +6,7 @@ import AddPayment from "./ClientManager/AddPayment";
 import React, { useState } from "react";
 import DisplayPayments from "./ClientManager/DisplayPayments";
 import EditPayment from "./ClientManager/EditPayment";
+// comment for commit
 
 function ClientManager() {
   const [editingClient, setEditingClient] = useState("");
