@@ -22,13 +22,15 @@ function AdminPannel() {
                         </Card.Body>
                     </Card>
                 </Link>
-                <Link to='/adminPannel'  className="nav-link" >
+
+                <Link to='/ProjectManagement'  className="nav-link" >
                     <Card  className="text-center" bg={'Warning'.toLowerCase()} text={'white'} style={{ width: '10rem', height:'6rem' , color:'#111111' }}>
                         <Card.Body>
                             <Card.Title>Project Manager</Card.Title>
                         </Card.Body>
                     </Card>
                 </Link>
+                
                 <Link to='/SubcontractManager'  className="nav-link" >
                     <Card  className="text-center" bg={'Warning'.toLowerCase()} text={'white'} style={{ width: '10rem', height:'6rem' , color:'#111111' }}>
                         <Card.Body>

@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import RetrieveDesignations from './component/DesignationManager/RetrieveDesignations';
 import AddDesignation from './component/DesignationManager/AddDesignation';
 import EditDesignation from './component/DesignationManager/EditDesignations';
+import ProjectManager from './component/ProjectManagement/ProjectUI';
 
 function App() {
   
@@ -60,6 +61,12 @@ function App() {
             <AddDesignation></AddDesignation>
           </Route>
           
+
+          <Route path='/ProjectManagement' exact component={ProjectManager}>
+            <ProjectManager/>
+          </Route>
+
+
         </Switch>
       
     
