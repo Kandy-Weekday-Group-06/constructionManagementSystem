@@ -48,7 +48,7 @@ body {
 }
 .arrivingSearchResults {
   width: 80%;
-  height: 5.8rem;
+
   background: white;
   outline: none;
   border-color: rgb(255, 208, 1);
@@ -56,4 +56,13 @@ body {
   border-radius: 10.625rem;
   padding: 0 3.5rem 0 1.5rem;
   font-size: 1rem;
+}
+
+.MarkArriving__arrvingMarkButton {
+  border-radius: 10.625rem;
+  width: 150px;
+}
+.MarkArriving__align-me-v-center {
+  display: flex;
+  align-items: center;
 }

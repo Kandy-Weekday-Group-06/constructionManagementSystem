@@ -13,7 +13,7 @@ function Home() {
         <div classNameName="App">
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div className="container">
-                <a className="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+                <a className="navbar-brand" href="#page-top"><img src="assets/img/7a67f2976c750a4c9055d4bf1dc646aa.png" alt="..." /></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i className="fa fa-bars ms-1"></i>
@@ -33,7 +33,7 @@ function Home() {
             {/*<!-- Masthead-->*/}
             <header className="masthead">
                 <div className="container">
-                <div className="masthead-subheading">Welcome To ABC Construtions!</div>
+                <div className="masthead-subheading">Welcome To Kuruduwaththa Construtions!</div>
                 <div className="masthead-heading text-uppercase">It's Nice To Meet You</div>
                 <a className="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
                 </div>

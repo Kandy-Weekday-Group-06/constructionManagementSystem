@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { func } from "prop-types";
+
 import React, { useState, useEffect } from 'react';
 import firebase from "../../firebase";
-import Table from 'react-bootstrap/Table';
-import { Route, Switch, NavLink, Link } from 'react-router-dom'
+
+import { Link } from 'react-router-dom'
 
 const db = firebase.firestore();
 
