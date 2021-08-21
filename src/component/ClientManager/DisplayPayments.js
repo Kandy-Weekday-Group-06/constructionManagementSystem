@@ -4,25 +4,25 @@ import { Link } from "react-router-dom";
 import { Table, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function DisplayClients(props) {
-  const [clients, setClients] = useState([]);
+function DisplayPayments(props) {
+  const [payments, setPayments] = useState([]);
   const db = firebase.firestore();
-  const [editingClient, seteditingClient] = useState(props);
+  const [editingPayment, seteditingPayment] = useState(props);
 
   useEffect(() => {
-    db.collection("clients").onSnapshot((snapshot) => {
+    db.collection("payments").onSnapshot((snapshot) => {
       const arr = snapshot.docs.map((doc) => ({
         ID: doc.id,
         data: doc.data(),
       }));
 
       console.log(arr);
-      setClients(arr);
+      setPayments(arr);
     });
   }, [db]);
 
-  function deleteClient(ID) {
-    db.collection("clients")
+  function deletePayment(ID) {
+    db.collection("payments")
       .doc(ID)
       .delete()
       .then(() => {
@@ -33,52 +33,50 @@ function DisplayClients(props) {
       });
   }
 
-  function editClient(id) {
-    alert("edit cli", id);
-    editingClient.editClientHandler(id);
+  function editPayment(id) {
+    alert("edit pay", id);
+    editingPayment.editPaymentHandler(id);
   }
 
   return (
     <div>
-      <Link to="/ClientManager/AddClient">
-        <Button variant="link">Add New Client</Button>
+      <Link to="/ClientManager/AddPayment">
+        <Button variant="link">Add New Payment</Button>
       </Link>
 
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>Document ID</th>
-            <th>Individual's Full Name/ Organization's Name</th>
-            <th>Representative's Full Name</th>
-            <th>Individual's/ Representative's Contact Number</th>
-            <th>Individual's/ Representative's Email Address</th>
-            <th>Individual's/ Organization's Physical Address</th>
+            <th>ClientId</th>
+            <th>ProjectId</th>
+            <th>Date</th>
+            <th>Amount</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {clients.map((client) => (
+          {payments.map((payment) => (
             <tr>
-              <td>{client.ID}</td>
-              <td>{client.data.clientName}</td>
-              <td>{client.data.representativeName}</td>
-              <td>{client.data.phone}</td>
-              <td>{client.data.email}</td>
-              <td>{client.data.address}</td>
+              <td>{payment.ID}</td>
+              <td>{payment.data.clientId}</td>
+              <td>{payment.data.projectId}</td>
+              <td>{payment.data.date}</td>
+              <td>{payment.data.amount}</td>
               <td>
                 <Button
                   variant="link"
                   onClick={() => {
-                    deleteClient(client.ID);
+                    deletePayment(payment.ID);
                   }}
                 >
                   Delete
                 </Button>
-                <Link to="/ClientManager/EditClient">
+                <Link to="/ClientManager/EditPayment">
                   <Button
                     variant="link"
                     onClick={() => {
-                      editClient(client.ID);
+                      editPayment(payment.ID);
                     }}
                   >
                     Edit
@@ -93,4 +91,4 @@ function DisplayClients(props) {
   );
 }
 
-export default DisplayClients;
+export default DisplayPayments;

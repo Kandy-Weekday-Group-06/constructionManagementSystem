@@ -7,6 +7,8 @@ import AttendanceManager from './component/AttendanceManager/AttendanceManager';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
+import ProjectManager from './component/ProjectManagement/ProjectUI';
+
 function App() {
   
   //edit part of the designation manager
@@ -37,6 +39,12 @@ function App() {
 
           
           
+
+          <Route path='/ProjectManagement' exact component={ProjectManager}>
+            <ProjectManager/>
+          </Route>
+
+
         </Switch>
       
     
