@@ -1,10 +1,10 @@
 body {
-  background-color: #f5f6fa;
+  background-color: #f5f6fa !important;
 }
 .attendanceManager__mainButton {
-  margin: 10px;
-  width: 400px;
+  margin: 10px !important;
+  width: 400px !important;
 }
 .width500px {
-  width: 500px;
+  width: 500px !important;
 }
