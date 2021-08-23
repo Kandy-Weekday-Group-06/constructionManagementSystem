@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react';
 import firebase from "../../firebase";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Container, Row, Col, Image, Card} from 'react-bootstrap';
 
 const db = firebase.firestore();
 
@@ -45,21 +46,29 @@ function EditDesignation(props) {
 
     return (
         <div>
-            <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Designation</Form.Label>
-                    <Form.Control value={designation} onChange={(e)=>{setDesignation(e.target.value)}} type="email" placeholder="Enter the designation" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Basic Salary</Form.Label>
-                    <Form.Control value={basicSalary} onChange={(e)=>{setBasicSalary(e.target.value)}} type="email" placeholder="Enter the designation" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control value={description} onChange={(e)=>{setDescription(e.target.value)}} as="textarea" rows={3} />
-                </Form.Group>
-                <Button onClick={UpdateDesignation} variant="primary" type="submit"> Update</Button>
-            </Form>
+            <Container>
+                <Row>
+                    <Col>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Designation</Form.Label>
+                                <Form.Control value={designation} onChange={(e)=>{setDesignation(e.target.value)}} type="email" placeholder="Enter the designation" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Basic Salary</Form.Label>
+                                <Form.Control value={basicSalary} onChange={(e)=>{setBasicSalary(e.target.value)}} type="email" placeholder="Enter the designation" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                <Form.Label>Description</Form.Label>
+                                <Form.Control value={description} onChange={(e)=>{setDescription(e.target.value)}} as="textarea" rows={3} />
+                            </Form.Group>
+                            <Button onClick={UpdateDesignation} variant="primary" type="submit"> Update</Button>
+                        </Form>
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }

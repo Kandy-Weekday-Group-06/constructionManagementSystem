@@ -38,10 +38,10 @@ function AdminPannel() {
                         </Card.Body>
                     </Card>
                 </Link>
-                <Link to='/adminPannel'  className="nav-link" >
+                <Link to='/adminPannel/DesignationManager'  className="nav-link" >
                     <Card  className="text-center" bg={'Warning'.toLowerCase()} text={'white'} style={{ width: '10rem', height:'6rem' , color:'#111111' }}>
                         <Card.Body>
-                            <Card.Title>Hardware manager</Card.Title>
+                            <Card.Title>Designation Manager</Card.Title>
                         </Card.Body>
                     </Card>
                 </Link>

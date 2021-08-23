@@ -6,8 +6,8 @@ import AdminPannel from './component/AdminPannel/AdminPannel';
 import AttendanceManager from './component/AttendanceManager/AttendanceManager';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-
 import ProjectManager from './component/ProjectManagement/ProjectUI';
+import DesignationManager from './component/DesignationManager/DesignationManager';
 
 function App() {
   
@@ -37,7 +37,9 @@ function App() {
           </Route>
           
 
-          
+          <Route path='/adminPannel/DesignationManager' component={DesignationManager}>
+            <DesignationManager/>
+          </Route>
           
 
           <Route path='/ProjectManagement' exact component={ProjectManager}>
