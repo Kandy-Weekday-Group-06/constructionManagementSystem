@@ -14,6 +14,7 @@ function MarkArriving(props) {
     const [editingAttendance, setEditingAttendance] = useState(props);
     const [ProjectTitles, SetProjectTitles] = useState([]);
     const [ProjectTitle, SetProjectTitle] = useState("");
+    const [searchVal, setSearchVal] = useState("");
 
     function makeTime() {
         var d = new Date();
@@ -31,7 +32,33 @@ function MarkArriving(props) {
         })
         return formattedNumber;
     }
+    /*$(document).ready(function(){
+        $("#searchQueryInput").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#myTable Row").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });*/
 
+      //for search but did not worked
+      function myFunction(e) {
+        
+        setSearchVal(e.target.value);
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("searchQueryInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myTable");
+        li = ul.getElementsByTagName("Row");
+        for (i = 0; i < li.length; i++) {
+            txtValue =li[i].textContent || li[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
     
 
 
@@ -102,7 +129,7 @@ function MarkArriving(props) {
             
             <Row className="justify-content-center mt-3" >
                 <div className="searchBar" styles="width:100px">
-                    <input id="searchQueryInput" maxwidth="100px" type="text" name="searchQueryInput" placeholder="Search" value="" />
+                    <input id="searchQueryInput" maxwidth="100px" type="text" name="searchQueryInput" placeholder="Search" value={searchVal} onChange={(e)=>{myFunction(e);}} />
                     <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                         <Search/>
                         
@@ -110,7 +137,7 @@ function MarkArriving(props) {
                 </div>
             </Row>
            
-            
+            <div id="myTable">
             {employees.map((employee) => (
             <Row className="justify-content-center mt-2 ">
                 <div className="arrivingSearchResults border pl-5 py-3">
@@ -127,7 +154,7 @@ function MarkArriving(props) {
                     <Col xs lg="2">
 
                         <Button variant="success" className="m-1 MarkArriving__arrvingMarkButton">Mark as arrived</Button><br/>
-                        <Button variant="danger" className="m-1 MarkArriving__arrvingMarkButton">Mark as left</Button>
+                        <Button variant="danger" className="m-1 MarkArriving__arrvingMarkButton">Unmark</Button>
                     </Col>
                     <Col xs lg="1" className="MarkArriving__align-me-v-center">
                         <Link to='/adminPannel/attendanceManager/EditAttendance'  className="nav-link" >
@@ -141,7 +168,7 @@ function MarkArriving(props) {
                 
                  
           ))}
-            
+          </div>  
                 
             
         </div>

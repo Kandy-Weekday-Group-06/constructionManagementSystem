@@ -27,7 +27,7 @@ function AttendanceManager() {
                 <MarkArriving editAttendaceHandler={editAttendaceHandler}/>
             </Route>
             <Route path='/adminPannel/attendanceManager/markLeaving' component={MarkLeaving}>
-                <MarkLeaving/>
+                <MarkLeaving employeeID={editingAttendanceEmpID} editingAttendanceDate={editingAttendanceDate}/>
             </Route> 
             <Route path='/adminPannel/attendanceManager/EditAttendance' component={EditAttendance}>
                 <EditAttendance employeeID={editingAttendanceEmpID} editingAttendanceDate={editingAttendanceDate}/>

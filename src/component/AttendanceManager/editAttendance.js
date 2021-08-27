@@ -90,24 +90,21 @@ function EditAttendance(props) {
 
     return (
         <div>
-            <Row className="justify-content-center mt-5 border">
+            <Row className="justify-content-center mt-5">
                 <h1 className="text-center text-warning">Edit attendace</h1>
             </Row>
-            <Row className="justify-content-center mt-3">
-                <h6 className="text-center">EmployeeID: {employeeID}  </h6>
-                
-            </Row>
-            <Row className="justify-content-center mt-3">
-                <h6 className="text-center">Name: {employeeName} </h6>
-            </Row>
-            <Row className="justify-content-center mt-3">
-                <h6 className="text-center">Position: {position}</h6>
+            
+            <Row className="d-flex justify-content-center mt-3 bg-warning text-white">
+                    <Col xs lg="3" className="justify-content-center py-2"><h6 className="text-center">EmployeeID: {employeeID} </h6></Col>
+                    <Col xs lg="3" className="justify-content-center py-2"><h6 className="text-center">Name: {employeeName} </h6></Col>
+                    <Col xs lg="3" className="justify-content-center py-2"><h6 className="text-center" >Position: {position}</h6></Col>
+                    
             </Row>
             <Row className="justify-content-center border ">
                 <Form className="w-75 justify-content-center mb-5"  onSubmit={editdata}>
                     
                     <Row className="justify-content-center mt-3">
-                        <Col xs lg="1" className="editAttendance__align-me-v-center"><h6 className="text-center" >Date : </h6></Col>
+                        <Col xs lg="1" className="editAttendance__align-me-v-center border"><h6 className="text-right" >Date :</h6></Col>
                         <Col xs lg="3"><Form.Control type="date" value={date} onChange={(e)=>{setDate(e.target.value);}} /></Col>
                          
                     </Row>    
@@ -149,7 +146,7 @@ function EditAttendance(props) {
                         </Col>
                         <Col xs lg="3">
                             <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>Day type</Form.Label>
+                                <Form.Label>Project</Form.Label>
                                 <Form.Control as="select" value={ProjectTitle} onChange={(e)=>{SetProjectTitle(e.target.value);}}>
                                     <option value="">select a project Title</option>
                                     {ProjectTitles.map(Title=>(
@@ -165,7 +162,7 @@ function EditAttendance(props) {
                     </Row> 
                     <Row className="justify-content-center mt-1 w-100">
                         <Col xs lg="3" className=" d-flex justify-content-center">
-                            <Button variant="primary" type="submit" className="">
+                            <Button variant="warning" type="submit" className="">
                                 Submit
                             </Button>
                         </Col>

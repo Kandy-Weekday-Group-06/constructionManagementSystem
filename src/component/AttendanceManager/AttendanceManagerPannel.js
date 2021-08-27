@@ -19,7 +19,7 @@ function AttendanceManagerPannel() {
 
     const checkInitializationForall=()=>{
 
-        const datee = "2021-08-21";
+        const datee = "2021-08-27";
         employees.forEach(async (item,index)=>{
           
         await db.collection("attendance").where("employeeID", "==",item).where("date", "==",datee).get()
