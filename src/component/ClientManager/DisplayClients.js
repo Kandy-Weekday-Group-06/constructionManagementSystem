@@ -7,7 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function DisplayClients(props) {
   const [clients, setClients] = useState([]);
   const db = firebase.firestore();
-  const [editingClient, seteditingClient] = useState(props);
+  const [editingClient, setEditingClient] = useState(props);
+  const [viewingClient, setViewingClient] = useState(props);
 
   useEffect(() => {
     db.collection("clients").onSnapshot((snapshot) => {
@@ -16,7 +17,6 @@ function DisplayClients(props) {
         data: doc.data(),
       }));
 
-      console.log(arr);
       setClients(arr);
     });
   }, [db]);
@@ -38,6 +38,11 @@ function DisplayClients(props) {
     editingClient.editClientHandler(id);
   }
 
+  function viewClient(id) {
+    //alert("view cli", id);
+    viewingClient.viewClientHandler(id);
+  }
+
   return (
     <div>
       <Link to="/ClientManager/AddClient">
@@ -47,7 +52,7 @@ function DisplayClients(props) {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Document ID</th>
+            <th style={{ display: "none" }}>Document ID</th>
             <th>Individual's Full Name/ Organization's Name</th>
             <th>Representative's Full Name</th>
             <th>Individual's/ Representative's Contact Number</th>
@@ -59,7 +64,7 @@ function DisplayClients(props) {
         <tbody>
           {clients.map((client) => (
             <tr>
-              <td>{client.ID}</td>
+              <td style={{ display: "none" }}>{client.ID}</td>
               <td>{client.data.clientName}</td>
               <td>{client.data.representativeName}</td>
               <td>{client.data.phone}</td>
@@ -82,6 +87,16 @@ function DisplayClients(props) {
                     }}
                   >
                     Edit
+                  </Button>
+                </Link>
+                <Link to="/ClientManager/ViewClient">
+                  <Button
+                    variant="link"
+                    onClick={() => {
+                      viewClient(client.ID);
+                    }}
+                  >
+                    Generate Payment Report
                   </Button>
                 </Link>
               </td>

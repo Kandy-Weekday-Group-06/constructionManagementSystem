@@ -6,34 +6,38 @@ import AddPayment from "./ClientManager/AddPayment";
 import React, { useState } from "react";
 import DisplayPayments from "./ClientManager/DisplayPayments";
 import EditPayment from "./ClientManager/EditPayment";
-// comment for commit
+import ViewClient from "./ClientManager/ViewClient";
 
 function ClientManager() {
   const [editingClient, setEditingClient] = useState("");
   const [editingPayment, setEditingPayment] = useState("");
+  const [viewingClient, setViewingClient] = useState("");
 
   function editClientHandler(CliID) {
-    console.log("CliID in clientmanager.js>>>>>>>>>", CliID);
     setEditingClient(CliID);
   }
-  console.log("OUTER CliID in clientmanager.js>>>>>>>>>", editingClient);
 
   function editPaymentHandler(PayID) {
-    console.log("PayID in clientmanager.js>>>>>>>>>", PayID);
     setEditingPayment(PayID);
   }
-  console.log("OUTER PayID in clientmanager.js>>>>>>>>>", editingPayment);
+
+  function viewClientHandler(CliID) {
+    setViewingClient(CliID);
+  }
 
   return (
     <div>
       <Router>
         <Switch>
           <Route
-            path="/ClientManager"
+            path="/adminPannel/ClientManager"
             exact
             component={(DisplayClients, DisplayPayments)}
           >
-            <DisplayClients editClientHandler={editClientHandler} />
+            <DisplayClients
+              editClientHandler={editClientHandler}
+              viewClientHandler={viewClientHandler}
+            />
             <DisplayPayments editPaymentHandler={editPaymentHandler} />
           </Route>
 
@@ -43,6 +47,10 @@ function ClientManager() {
 
           <Route path="/ClientManager/EditClient">
             <EditClient id={editingClient} />
+          </Route>
+
+          <Route path="/ClientManager/ViewClient">
+            <ViewClient id={viewingClient} />
           </Route>
 
           <Route path="/ClientManager/AddPayment">

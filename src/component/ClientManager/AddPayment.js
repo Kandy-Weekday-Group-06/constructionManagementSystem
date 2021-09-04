@@ -4,10 +4,10 @@ import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function AddPayment() {
-  const [clientId, setClientId] = useState("");
-  const [clientIds, setClientIds] = useState([]);
-  const [projectId, setProjectId] = useState("");
-  const [projectIds, setProjectIds] = useState([]);
+  const [clientName, setClientName] = useState("");
+  const [clientNames, setClientNames] = useState([]);
+  const [projectName, setProjectName] = useState("");
+  const [projectNames, setProjectNames] = useState([]);
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
 
@@ -15,15 +15,15 @@ function AddPayment() {
 
   useEffect(() => {
     db.collection("clients").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setClientIds(arr);
+      const arr = snapshot.docs.map((doc) => doc.data().clientName);
+      setClientNames(arr);
     });
   }, [db]);
 
   useEffect(() => {
-    db.collection("projects").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setProjectIds(arr);
+    db.collection("Con_Project").onSnapshot((snapshot) => {
+      const arr = snapshot.docs.map((doc) => doc.data().Title);
+      setProjectNames(arr);
     });
   }, [db]);
 
@@ -33,8 +33,8 @@ function AddPayment() {
     alert("Done!");
 
     const newPayment = {
-      clientId,
-      projectId,
+      clientName,
+      projectName,
       date,
       amount,
     };
@@ -51,8 +51,8 @@ function AddPayment() {
         console.error("Error writing document: ", error);
       });
 
-    setClientId("");
-    setProjectId("");
+    setClientName("");
+    setProjectName("");
     setDate("");
     setAmount("");
   }
@@ -63,24 +63,24 @@ function AddPayment() {
         <Form.Control
           as="select"
           onChange={(e) => {
-            setClientId(e.target.value);
+            setClientName(e.target.value);
           }}
         >
-          <option value="">selectClientId</option>
-          {clientIds.map((clientId) => (
-            <option value={clientId}>{clientId}</option>
+          <option value="">Select Client Name</option>
+          {clientNames.map((clientName) => (
+            <option value={clientName}>{clientName}</option>
           ))}
         </Form.Control>
 
         <Form.Control
           as="select"
           onChange={(e) => {
-            setProjectId(e.target.value);
+            setProjectName(e.target.value);
           }}
         >
-          <option value="">selectProjectId</option>
-          {projectIds.map((projectId) => (
-            <option value={projectId}>{projectId}</option>
+          <option value="">Select Project Name</option>
+          {projectNames.map((projectName) => (
+            <option value={projectName}>{projectName}</option>
           ))}
         </Form.Control>
 
@@ -97,7 +97,7 @@ function AddPayment() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>EmployeeName</Form.Label>
+          <Form.Label>Amount</Form.Label>
           <Form.Control
             type="number"
             placeholder="example: 100000"

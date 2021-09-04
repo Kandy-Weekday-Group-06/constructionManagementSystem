@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function DisplayPayments(props) {
   const [payments, setPayments] = useState([]);
   const db = firebase.firestore();
-  const [editingPayment, seteditingPayment] = useState(props);
+  const [editingPayment, setEditingPayment] = useState(props);
 
   useEffect(() => {
     db.collection("payments").onSnapshot((snapshot) => {
@@ -47,9 +47,9 @@ function DisplayPayments(props) {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Document ID</th>
-            <th>ClientId</th>
-            <th>ProjectId</th>
+            <th style={{ display: "none" }}>Document ID</th>
+            <th>ClientName</th>
+            <th>ProjectName</th>
             <th>Date</th>
             <th>Amount</th>
             <th>Actions</th>
@@ -58,9 +58,9 @@ function DisplayPayments(props) {
         <tbody>
           {payments.map((payment) => (
             <tr>
-              <td>{payment.ID}</td>
-              <td>{payment.data.clientId}</td>
-              <td>{payment.data.projectId}</td>
+              <td style={{ display: "none" }}>{payment.ID}</td>
+              <td>{payment.data.clientName}</td>
+              <td>{payment.data.projectName}</td>
               <td>{payment.data.date}</td>
               <td>{payment.data.amount}</td>
               <td>

@@ -8,23 +8,23 @@ function EditPayment(props) {
 
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
-  const [clientId, setClientId] = useState("");
-  const [clientIds, setClientIds] = useState([]);
-  const [projectId, setProjectId] = useState("");
-  const [projectIds, setProjectIds] = useState([]);
+  const [clientName, setClientName] = useState("");
+  const [clientNames, setClientNames] = useState([]);
+  const [projectName, setProjectName] = useState("");
+  const [projectNames, setProjectNames] = useState([]);
   const [paymentId, setPaymentId] = useState(props.id);
 
   useEffect(() => {
     db.collection("clients").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setClientIds(arr);
+      const arr = snapshot.docs.map((doc) => doc.data().clientName);
+      setClientNames(arr);
     });
   }, [db]);
 
   useEffect(() => {
-    db.collection("projects").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setProjectIds(arr);
+    db.collection("Con_Project").onSnapshot((snapshot) => {
+      const arr = snapshot.docs.map((doc) => doc.data().Title);
+      setProjectNames(arr);
     });
   }, [db]);
 
@@ -35,8 +35,8 @@ function EditPayment(props) {
       .then(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data());
-          setClientId(doc.data().clientId);
-          setProjectId(doc.data().projectId);
+          setClientName(doc.data().clientName);
+          setProjectName(doc.data().projectName);
           setDate(doc.data().date);
           setAmount(doc.data().amount);
         } else {
@@ -56,8 +56,8 @@ function EditPayment(props) {
     alert("editdone");
 
     const updatedPayment = {
-      clientId,
-      projectId,
+      clientName,
+      projectName,
       date,
       amount,
     };
@@ -74,27 +74,27 @@ function EditPayment(props) {
       <Form onSubmit={editdata}>
         <Form.Control
           as="select"
-          value={clientId}
+          value={clientName}
           onChange={(e) => {
-            setClientId(e.target.value);
+            setClientName(e.target.value);
           }}
         >
-          <option value="">selectClientId</option>
-          {clientIds.map((clientId) => (
-            <option value={clientId}>{clientId}</option>
+          <option value="">Select Client Name</option>
+          {clientNames.map((clientName) => (
+            <option value={clientName}>{clientName}</option>
           ))}
         </Form.Control>
 
         <Form.Control
           as="select"
-          value={projectId}
+          value={projectName}
           onChange={(e) => {
-            setProjectId(e.target.value);
+            setProjectName(e.target.value);
           }}
         >
-          <option value="">selectProjectId</option>
-          {projectIds.map((projectId) => (
-            <option value={projectId}>{projectId}</option>
+          <option value="">Select Project Name</option>
+          {projectNames.map((projectName) => (
+            <option value={projectName}>{projectName}</option>
           ))}
         </Form.Control>
 
