@@ -83,6 +83,7 @@ function EditPayment(props) {
       <Form onSubmit={editdata}>
         <Form.Control
           as="select"
+          required
           value={clientName}
           onChange={(e) => {
             setClientName(e.target.value);
@@ -96,6 +97,7 @@ function EditPayment(props) {
         <br />
         <Form.Control
           as="select"
+          required
           value={projectName}
           onChange={(e) => {
             setProjectName(e.target.value);
@@ -112,6 +114,7 @@ function EditPayment(props) {
           <Form.Control
             type="date"
             placeholder="example: 2021/7/22"
+            required
             value={date}
             onChange={(e) => {
               setDate(e.target.value);
@@ -124,6 +127,7 @@ function EditPayment(props) {
           <Form.Control
             type="number"
             placeholder="example: 100000"
+            required
             value={amount}
             onChange={(e) => {
               setAmount(e.target.value);

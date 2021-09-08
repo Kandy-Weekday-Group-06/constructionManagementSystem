@@ -72,6 +72,7 @@ function AddPayment() {
       <Form onSubmit={sendData}>
         <Form.Control
           as="select"
+          required
           onChange={(e) => {
             setClientName(e.target.value);
           }}
@@ -84,6 +85,7 @@ function AddPayment() {
         <br />
         <Form.Control
           as="select"
+          required
           onChange={(e) => {
             setProjectName(e.target.value);
           }}
@@ -99,6 +101,7 @@ function AddPayment() {
           <Form.Control
             type="date"
             placeholder="example: 2021/7/22"
+            required
             value={date}
             onChange={(e) => {
               setDate(e.target.value);
@@ -111,6 +114,7 @@ function AddPayment() {
           <Form.Control
             type="number"
             placeholder="example: 100000"
+            required
             value={amount}
             onChange={(e) => {
               setAmount(e.target.value);

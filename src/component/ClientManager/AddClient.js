@@ -54,10 +54,15 @@ function AddClient() {
       </center>
       <Form onSubmit={sendData}>
         <Form.Group controlId="formBasicName">
-          <Form.Label>Individual's Full Name/ Organization's Name</Form.Label>
+          <Form.Label>
+            Individual's Full Name/ Organization's Name (Required Format: Must
+            Only Contain Letters and Spaces)
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="example: Prad Bitt"
+            required
+            pattern="^[A-Za-z \s*]+$"
             value={clientName}
             onChange={(e) => {
               setClientName(e.target.value);
@@ -66,10 +71,14 @@ function AddClient() {
         </Form.Group>
 
         <Form.Group controlId="formBasicName">
-          <Form.Label>Representative's Full Name</Form.Label>
+          <Form.Label>
+            Representative's Full Name (Required Format: Must Only Contain
+            Letters and Spaces)
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="example: Bangelina Molie"
+            pattern="^[A-Za-z \s*]+$"
             value={representativeName}
             onChange={(e) => {
               setRepresentativeName(e.target.value);
@@ -78,10 +87,15 @@ function AddClient() {
         </Form.Group>
 
         <Form.Group controlId="formBasicPhoneNo">
-          <Form.Label>Individual's/ Representative's Contact Number</Form.Label>
+          <Form.Label>
+            Individual's/ Representative's Contact Number (Required Format: Must
+            Only Contain Ten Numbers)
+          </Form.Label>
           <Form.Control
             type="text"
-            placeholder="example: +94 42 042 0420"
+            placeholder="example: 0764204204"
+            required
+            pattern="[0-9]{10}"
             value={phone}
             onChange={(e) => {
               setPhone(e.target.value);
@@ -90,10 +104,15 @@ function AddClient() {
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Individual's/ Representative's Email Address</Form.Label>
+          <Form.Label>
+            Individual's/ Representative's Email Address (Required Format: Must
+            Match Standard E-mail Formal As Shown In Example)
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="example: bangelina.molie@gmail.com"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -107,6 +126,7 @@ function AddClient() {
             as="textarea"
             rows={3}
             placeholder="example: Shawnee, Oklahoma, USA."
+            required
             value={address}
             onChange={(e) => {
               setAddress(e.target.value);
