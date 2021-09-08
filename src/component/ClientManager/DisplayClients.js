@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { Link } from "react-router-dom";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function DisplayClients(props) {
@@ -38,67 +38,95 @@ function DisplayClients(props) {
     editingClient.editClientHandler(id);
   }
 
-  function viewClient(id) {
+  function viewClient(name) {
     //alert("view cli", id);
-    viewingClient.viewClientHandler(id);
+    viewingClient.viewClientHandler(name);
   }
 
   return (
     <div>
-      <Link to="/ClientManager/AddClient">
-        <Button variant="link">Add New Client</Button>
+      <br />
+      <Link to="/adminPannel/ClientManager/AddClient">
+        <Button style={{ borderRadius: "10px 10px 0 0" }} variant="primary">
+          Add New Client
+        </Button>
       </Link>
-
-      <Table striped bordered hover>
+      <Table bordered size="sm">
         <thead>
           <tr>
             <th style={{ display: "none" }}>Document ID</th>
-            <th>Individual's Full Name/ Organization's Name</th>
-            <th>Representative's Full Name</th>
-            <th>Individual's/ Representative's Contact Number</th>
-            <th>Individual's/ Representative's Email Address</th>
-            <th>Individual's/ Organization's Physical Address</th>
-            <th>Actions</th>
+            <th style={{ textAlign: "center" }}>
+              Individual's Full Name/ Organization's Name
+            </th>
+            <th style={{ textAlign: "center" }}>Representative's Full Name</th>
+            <th style={{ textAlign: "center" }}>
+              Individual's/ Representative's Contact Number
+            </th>
+            <th style={{ textAlign: "center" }}>
+              Individual's/ Representative's Email Address
+            </th>
+            <th style={{ textAlign: "center" }}>
+              Individual's/ Organization's Physical Address
+            </th>
+            <th style={{ textAlign: "center", verticalAlign: "middle" }}>
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
           {clients.map((client) => (
             <tr>
               <td style={{ display: "none" }}>{client.ID}</td>
-              <td>{client.data.clientName}</td>
-              <td>{client.data.representativeName}</td>
-              <td>{client.data.phone}</td>
-              <td>{client.data.email}</td>
-              <td>{client.data.address}</td>
-              <td>
-                <Button
-                  variant="link"
-                  onClick={() => {
-                    deleteClient(client.ID);
-                  }}
-                >
-                  Delete
-                </Button>
-                <Link to="/ClientManager/EditClient">
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {client.data.clientName}
+              </td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {client.data.representativeName}
+              </td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {client.data.phone}
+              </td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {client.data.email}
+              </td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {client.data.address}
+              </td>
+              <td style={{ textAlign: "center" }}>
+                <ButtonGroup>
+                  <Link to="/adminPannel/ClientManager/ViewClient">
+                    <Button
+                      style={{ borderRadius: "5px 0 0 5px" }}
+                      variant="info"
+                      onClick={() => {
+                        viewClient(client.data.clientName);
+                      }}
+                    >
+                      Report
+                    </Button>
+                  </Link>
+
+                  <Link to="/adminPannel/ClientManager/EditClient">
+                    <Button
+                      style={{ borderRadius: "0" }}
+                      variant="warning"
+                      onClick={() => {
+                        editClient(client.ID);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  </Link>
                   <Button
-                    variant="link"
+                    style={{ borderRadius: "0 5px 5px 0" }}
+                    variant="danger"
                     onClick={() => {
-                      editClient(client.ID);
+                      deleteClient(client.ID);
                     }}
                   >
-                    Edit
+                    Delete
                   </Button>
-                </Link>
-                <Link to="/ClientManager/ViewClient">
-                  <Button
-                    variant="link"
-                    onClick={() => {
-                      viewClient(client.ID);
-                    }}
-                  >
-                    Generate Payment Report
-                  </Button>
-                </Link>
+                </ButtonGroup>
               </td>
             </tr>
           ))}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function AddClient() {
@@ -43,8 +44,13 @@ function AddClient() {
 
   return (
     <div className="container">
+      <br />
+      <Link to="/adminPannel/ClientManager">
+        <Button variant="primary">Back</Button>
+      </Link>
+      <br />
       <center>
-        <h4>Add New Client</h4>
+        <h2 style={{ color: "#f0ad4e" }}>Add New Client</h2>
       </center>
       <Form onSubmit={sendData}>
         <Form.Group controlId="formBasicName">
@@ -108,7 +114,7 @@ function AddClient() {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="warning" type="submit">
           Submit
         </Button>
       </Form>

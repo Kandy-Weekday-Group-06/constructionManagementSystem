@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -69,7 +70,15 @@ function EditPayment(props) {
 
   return (
     <div className="container">
-      <h1>Edit payment:{paymentId}</h1>
+      <br />
+      <Link to="/adminPannel/ClientManager">
+        <Button variant="primary">Back</Button>
+      </Link>
+      <br />
+      <center>
+        <h2 style={{ color: "#f0ad4e" }}>Edit Payment</h2>
+      </center>
+      <br />
 
       <Form onSubmit={editdata}>
         <Form.Control
@@ -84,7 +93,7 @@ function EditPayment(props) {
             <option value={clientName}>{clientName}</option>
           ))}
         </Form.Control>
-
+        <br />
         <Form.Control
           as="select"
           value={projectName}
@@ -97,7 +106,7 @@ function EditPayment(props) {
             <option value={projectName}>{projectName}</option>
           ))}
         </Form.Control>
-
+        <br />
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Date</Form.Label>
           <Form.Control
@@ -121,8 +130,8 @@ function EditPayment(props) {
             }}
           />
         </Form.Group>
-
-        <Button variant="primary" type="submit">
+        <br />
+        <Button variant="warning" type="submit">
           Submit
         </Button>
       </Form>

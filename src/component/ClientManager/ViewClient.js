@@ -4,23 +4,22 @@ import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ViewClient(props) {
-  const [clientName, setClientName] = useState("");
   const [representativeName, setRepresentativeName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [payments, setPayments] = useState([]);
   const db = firebase.firestore();
-  const [clientId, setClientId] = useState(props.id);
+  const [clientName, setClientName] = useState(props.name);
 
   useEffect(() => {
     db.collection("clients")
-      .doc(clientId.toString())
+      .where("clientName", "==", clientName)
       .get()
       .then(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data());
-          setClientName(doc.data().clientName);
+          //setClientName(doc.data().clientName);
           setRepresentativeName(doc.data().representativeName);
           setPhone(doc.data().phone);
           setEmail(doc.data().email);
@@ -33,13 +32,13 @@ function ViewClient(props) {
       .catch(function (error) {
         console.log("Error getting document:", error);
       });
-  }, [db, clientId]);
+  }, [db, clientName]);
 
   useEffect(() => {
     async function fetchData() {
       const paymentsRef = db.collection("payments");
       const snapshot = await paymentsRef
-        .where("clientId", "==", clientId)
+        .where("clientName", "==", clientName)
         .get();
       if (snapshot.empty) {
         console.log("No matching documents.");
@@ -57,12 +56,10 @@ function ViewClient(props) {
       });
     }
     fetchData();
-  }, [db, clientId]);
+  }, [db, clientName]);
 
   return (
     <div className="container">
-      <br />
-      <h4>Client ID: {clientId}</h4>
       <br />
       <h4>Client Name: {clientName}</h4>
       <br />

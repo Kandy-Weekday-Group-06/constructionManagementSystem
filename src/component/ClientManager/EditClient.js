@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -51,8 +52,14 @@ function EditClient(props) {
 
   return (
     <div className="container">
-      <h1>Edit client:{clientId}</h1>
-
+      <br />
+      <Link to="/adminPannel/ClientManager">
+        <Button variant="primary">Back</Button>
+      </Link>
+      <br />
+      <center>
+        <h2 style={{ color: "#f0ad4e" }}>Edit Client</h2>
+      </center>
       <Form onSubmit={editdata}>
         <Form.Group controlId="formBasicName">
           <Form.Label>Individual's Full Name/ Organization's Name</Form.Label>
@@ -114,7 +121,7 @@ function EditClient(props) {
             }}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="warning" type="submit">
           Submit
         </Button>
       </Form>

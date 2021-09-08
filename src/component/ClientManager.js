@@ -21,8 +21,8 @@ function ClientManager() {
     setEditingPayment(PayID);
   }
 
-  function viewClientHandler(CliID) {
-    setViewingClient(CliID);
+  function viewClientHandler(CliName) {
+    setViewingClient(CliName);
   }
 
   return (
@@ -41,23 +41,23 @@ function ClientManager() {
             <DisplayPayments editPaymentHandler={editPaymentHandler} />
           </Route>
 
-          <Route path="/ClientManager/AddClient">
+          <Route path="/adminPannel/ClientManager/AddClient">
             <AddClient />
           </Route>
 
-          <Route path="/ClientManager/EditClient">
+          <Route path="/adminPannel/ClientManager/EditClient">
             <EditClient id={editingClient} />
           </Route>
 
-          <Route path="/ClientManager/ViewClient">
-            <ViewClient id={viewingClient} />
+          <Route path="/adminPannel/ClientManager/ViewClient">
+            <ViewClient name={viewingClient} />
           </Route>
 
-          <Route path="/ClientManager/AddPayment">
+          <Route path="/adminPannel/ClientManager/AddPayment">
             <AddPayment />
           </Route>
 
-          <Route path="/ClientManager/EditPayment">
+          <Route path="/adminPannel/ClientManager/EditPayment">
             <EditPayment id={editingPayment} />
           </Route>
         </Switch>
