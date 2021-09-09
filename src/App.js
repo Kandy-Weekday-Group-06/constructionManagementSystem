@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProjectManager from "./component/ProjectManagement/ProjectUI";
 import DesignationManager from "./component/DesignationManager/DesignationManager";
 import ClientManager from "./component/ClientManager";
+import SupplierManager from "./component/SupplierManager/SupplierManager";
 
 function App() {
   //edit part of the designation manager
@@ -44,6 +45,10 @@ function App() {
 
           <Route path="/adminPannel/ClientManager" component={ClientManager}>
             <ClientManager />
+          </Route>
+
+          <Route path = "/adminPannel/supplierManager" component = {SupplierManager}>
+            <SupplierManager/>
           </Route>
         </Switch>
       </Router>
