@@ -1,0 +1,21 @@
+.supplierAddFormSubmitBtn{
+    width:200px;
+  
+}
+.supplierAddFormLabel{
+    font-weight: 500;
+}
+
+.addSupplierHeaderBackground{
+    background-color: #f0ad4e;
+    
+}
+
+.addSupplierH3{
+    padding: 20px;
+}
+.supplierAddFormErroMsg{
+    color:red;
+    font-size: 12px;
+    font-weight: bolder;
+}

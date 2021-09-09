@@ -1,0 +1,21 @@
+.supplierEditOrderFormSubmitBtn{
+    width: 200px;
+}
+
+.supplierEditOrderFormLabel{
+    font-weight: 500;
+}
+
+.supplierEditOrderHeadingBackground{
+    background-color: #f0ad4e;
+}
+
+.supplierEditOrderH3{
+    padding: 20px;
+}
+
+.supplierEditOrderErrorMsg{
+    color: red;
+    font-size: 12px;
+    font-weight: bolder;
+}

@@ -1,0 +1,21 @@
+.supplierEditFormSubmitBtn{
+    width:100px;
+    margin-right: 10px;
+  
+
+}
+.supplierEditFormLabel{
+    font-weight: 500;
+}
+.supplierEditFormHeaderBackground{
+    background-color: #f0ad4e;
+}
+.supplierEditFormHeader3{
+    padding: 20px;
+}
+
+.supplierEditFormErroMsg{
+    color:red;
+    font-size: 12px;
+    font-weight: bolder;
+}
