@@ -4,7 +4,7 @@ import { Form, Button,Row,Col,Container,Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function UpProject(props){
-  //Declaration of Variables
+  //Declaration of Variables 
   const [proid, setproID] = useState(props.updateId);
   const [project, setProject] = useState([]);
   const [upPro, setProjectUp] = useState([]);//Ret of particular data
@@ -202,13 +202,13 @@ function loader(){
                   
 
 
-                  <Form.Label>Client Name: <b>{curProject.Client}</b></Form.Label>
-                    <Form.Select aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}>
-                        <option>Select Client</option>
+                  <Form.Label>Client Name: <b>{curProject.Client}</b></Form.Label> <br/>
+                  <Form.Label>Select Client</Form.Label>
+                    <Form.Control as="select" aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}>
                         {client.map(clients=>(
                             <option  >{clients.data.clientName}</option>
                         ))}
-                   </Form.Select>
+                   </Form.Control>
                 
 
                   

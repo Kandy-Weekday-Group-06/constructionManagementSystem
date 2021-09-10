@@ -1,13 +1,13 @@
 import React,{useState} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import AddProject from './Add_Project';
+import AddProject from '../ProjectManagement/Add_Pro';
 import RetProject from '../ProjectManagement/Ret_Project';
-import UpProject from './Update_Pro';
-import Ongoing from './Ongoing';
+import UpProject from '../ProjectManagement/Update_Pro';
+import Ongoing from '../ProjectManagement/Ongoing';
 import CompProject from '../ProjectManagement/Comp';
 import Header from './Nav';
 
-
+//
 
 function ProjectUI() {
       const [currentPro, setCurrent] = useState("");

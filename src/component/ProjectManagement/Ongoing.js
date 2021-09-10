@@ -23,14 +23,20 @@ export default function OngoingProject(props){
   const [startDate, setStart] = useState(""); 
   const [endDate, setEnd] = useState("");
   const [loading, setLoading] = useState(false);
+  const nDate= new Date();
+
+  
+
   const unit="days";
 
   const dateDiffer = require("date-differ");
 
-  //Database connection
+  //Database connection 
 
   const db1 = firebase.firestore().collection("Con_Project");
   const db2 = firebase.firestore().collection("clients");
+
+  
 
 //Retrieval of Client Function
   function RetClient(e){
@@ -172,7 +178,9 @@ function loader(){
                                 <Card.Text>
                                         <Row>
                                             <Col md={{ span: 9, offset: 2 }}> Project Address: {pro.data.Address}</Col>
-                                            <Col md={{ span: 4, offset: 9 }}> Duration: {getDays(pro.data.Start,pro.data.End)} </Col>
+                                            <Col md={{ span: 4, offset: 9 }}> Duration: {getDays(pro.data.Start,pro.data.End)}
+                                          
+                                             </Col>
                                         </Row>
                                 </Card.Text>
                                 <Row>
