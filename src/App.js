@@ -8,6 +8,7 @@ import ProjectManager from "./component/ProjectManagement/ProjectUI";
 import DesignationManager from "./component/DesignationManager/DesignationManager";
 import ClientManager from "./component/ClientManager";
 import SupplierManager from "./component/SupplierManager/SupplierManager";
+import SubcontractManager from "./component/SubcontractManager/SubcontractManager";
 
 
 //Headers-----------Import
@@ -67,6 +68,12 @@ function App() {
             <SupplierManager/>
           </Route>
         </Switch>
+
+        <Route 
+            path="/adminPannel/SubcontractManager" component={SubcontractManager}>
+            <SubcontractManager/>
+          </Route>
+
       </Router>
     </div>
   );

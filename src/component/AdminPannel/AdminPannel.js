@@ -47,7 +47,7 @@ function AdminPannel() {
           </Card>
         </Link>
 
-        <Link to="/SubcontractManager" className="nav-link">
+        <Link to="/adminPannel/SubcontractManager/SubconMain" className="nav-link">
           <Card
             className="text-center"
             bg={"Warning".toLowerCase()}
