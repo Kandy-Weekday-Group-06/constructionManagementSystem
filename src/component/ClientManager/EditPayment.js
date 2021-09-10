@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,23 +9,23 @@ function EditPayment(props) {
 
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
-  const [clientId, setClientId] = useState("");
-  const [clientIds, setClientIds] = useState([]);
-  const [projectId, setProjectId] = useState("");
-  const [projectIds, setProjectIds] = useState([]);
+  const [clientName, setClientName] = useState("");
+  const [clientNames, setClientNames] = useState([]);
+  const [projectName, setProjectName] = useState("");
+  const [projectNames, setProjectNames] = useState([]);
   const [paymentId, setPaymentId] = useState(props.id);
 
   useEffect(() => {
     db.collection("clients").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setClientIds(arr);
+      const arr = snapshot.docs.map((doc) => doc.data().clientName);
+      setClientNames(arr);
     });
   }, [db]);
 
   useEffect(() => {
-    db.collection("projects").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setProjectIds(arr);
+    db.collection("Con_Project").onSnapshot((snapshot) => {
+      const arr = snapshot.docs.map((doc) => doc.data().Title);
+      setProjectNames(arr);
     });
   }, [db]);
 
@@ -35,8 +36,8 @@ function EditPayment(props) {
       .then(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data());
-          setClientId(doc.data().clientId);
-          setProjectId(doc.data().projectId);
+          setClientName(doc.data().clientName);
+          setProjectName(doc.data().projectName);
           setDate(doc.data().date);
           setAmount(doc.data().amount);
         } else {
@@ -56,8 +57,8 @@ function EditPayment(props) {
     alert("editdone");
 
     const updatedPayment = {
-      clientId,
-      projectId,
+      clientName,
+      projectName,
       date,
       amount,
     };
@@ -69,40 +70,51 @@ function EditPayment(props) {
 
   return (
     <div className="container">
-      <h1>Edit payment:{paymentId}</h1>
+      <br />
+      <Link to="/adminPannel/ClientManager">
+        <Button variant="primary">Back</Button>
+      </Link>
+      <br />
+      <center>
+        <h2 style={{ color: "#f0ad4e" }}>Edit Payment</h2>
+      </center>
+      <br />
 
       <Form onSubmit={editdata}>
         <Form.Control
           as="select"
-          value={clientId}
+          required
+          value={clientName}
           onChange={(e) => {
-            setClientId(e.target.value);
+            setClientName(e.target.value);
           }}
         >
-          <option value="">selectClientId</option>
-          {clientIds.map((clientId) => (
-            <option value={clientId}>{clientId}</option>
+          <option value="">Select Client Name</option>
+          {clientNames.map((clientName) => (
+            <option value={clientName}>{clientName}</option>
           ))}
         </Form.Control>
-
+        <br />
         <Form.Control
           as="select"
-          value={projectId}
+          required
+          value={projectName}
           onChange={(e) => {
-            setProjectId(e.target.value);
+            setProjectName(e.target.value);
           }}
         >
-          <option value="">selectProjectId</option>
-          {projectIds.map((projectId) => (
-            <option value={projectId}>{projectId}</option>
+          <option value="">Select Project Name</option>
+          {projectNames.map((projectName) => (
+            <option value={projectName}>{projectName}</option>
           ))}
         </Form.Control>
-
+        <br />
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Date</Form.Label>
           <Form.Control
             type="date"
             placeholder="example: 2021/7/22"
+            required
             value={date}
             onChange={(e) => {
               setDate(e.target.value);
@@ -115,14 +127,15 @@ function EditPayment(props) {
           <Form.Control
             type="number"
             placeholder="example: 100000"
+            required
             value={amount}
             onChange={(e) => {
               setAmount(e.target.value);
             }}
           />
         </Form.Group>
-
-        <Button variant="primary" type="submit">
+        <br />
+        <Button variant="warning" type="submit">
           Submit
         </Button>
       </Form>

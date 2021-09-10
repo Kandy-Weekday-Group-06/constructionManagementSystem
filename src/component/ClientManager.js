@@ -6,50 +6,58 @@ import AddPayment from "./ClientManager/AddPayment";
 import React, { useState } from "react";
 import DisplayPayments from "./ClientManager/DisplayPayments";
 import EditPayment from "./ClientManager/EditPayment";
-// comment for commit
+import ViewClient from "./ClientManager/ViewClient";
 
 function ClientManager() {
   const [editingClient, setEditingClient] = useState("");
   const [editingPayment, setEditingPayment] = useState("");
+  const [viewingClient, setViewingClient] = useState("");
 
   function editClientHandler(CliID) {
-    console.log("CliID in clientmanager.js>>>>>>>>>", CliID);
     setEditingClient(CliID);
   }
-  console.log("OUTER CliID in clientmanager.js>>>>>>>>>", editingClient);
 
   function editPaymentHandler(PayID) {
-    console.log("PayID in clientmanager.js>>>>>>>>>", PayID);
     setEditingPayment(PayID);
   }
-  console.log("OUTER PayID in clientmanager.js>>>>>>>>>", editingPayment);
+
+  function viewClientHandler(CliName) {
+    setViewingClient(CliName);
+  }
 
   return (
     <div>
       <Router>
         <Switch>
           <Route
-            path="/ClientManager"
+            path="/adminPannel/ClientManager"
             exact
             component={(DisplayClients, DisplayPayments)}
           >
-            <DisplayClients editClientHandler={editClientHandler} />
+            <DisplayClients
+              editClientHandler={editClientHandler}
+              viewClientHandler={viewClientHandler}
+            />
             <DisplayPayments editPaymentHandler={editPaymentHandler} />
           </Route>
 
-          <Route path="/ClientManager/AddClient">
+          <Route path="/adminPannel/ClientManager/AddClient">
             <AddClient />
           </Route>
 
-          <Route path="/ClientManager/EditClient">
+          <Route path="/adminPannel/ClientManager/EditClient">
             <EditClient id={editingClient} />
           </Route>
 
-          <Route path="/ClientManager/AddPayment">
+          <Route path="/adminPannel/ClientManager/ViewClient">
+            <ViewClient name={viewingClient} />
+          </Route>
+
+          <Route path="/adminPannel/ClientManager/AddPayment">
             <AddPayment />
           </Route>
 
-          <Route path="/ClientManager/EditPayment">
+          <Route path="/adminPannel/ClientManager/EditPayment">
             <EditPayment id={editingPayment} />
           </Route>
         </Switch>

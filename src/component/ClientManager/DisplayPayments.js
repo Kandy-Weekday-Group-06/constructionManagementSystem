@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { Link } from "react-router-dom";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function DisplayPayments(props) {
   const [payments, setPayments] = useState([]);
   const db = firebase.firestore();
-  const [editingPayment, seteditingPayment] = useState(props);
+  const [editingPayment, setEditingPayment] = useState(props);
 
   useEffect(() => {
     db.collection("payments").onSnapshot((snapshot) => {
@@ -40,48 +40,62 @@ function DisplayPayments(props) {
 
   return (
     <div>
-      <Link to="/ClientManager/AddPayment">
-        <Button variant="link">Add New Payment</Button>
+      <Link to="/adminPannel/ClientManager/AddPayment">
+        <Button style={{ borderRadius: "10px 10px 0 0" }} variant="primary">
+          Add New Payment
+        </Button>
       </Link>
 
-      <Table striped bordered hover>
+      <Table bordered size="sm">
         <thead>
           <tr>
-            <th>Document ID</th>
-            <th>ClientId</th>
-            <th>ProjectId</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Actions</th>
+            <th style={{ display: "none" }}>Document ID</th>
+            <th style={{ textAlign: "center" }}>Client Name</th>
+            <th style={{ textAlign: "center" }}>Project Name</th>
+            <th style={{ textAlign: "center" }}>Date</th>
+            <th style={{ textAlign: "center" }}>Amount</th>
+            <th style={{ textAlign: "center" }}>Actions</th>
           </tr>
         </thead>
         <tbody>
           {payments.map((payment) => (
             <tr>
-              <td>{payment.ID}</td>
-              <td>{payment.data.clientId}</td>
-              <td>{payment.data.projectId}</td>
-              <td>{payment.data.date}</td>
-              <td>{payment.data.amount}</td>
-              <td>
-                <Button
-                  variant="link"
-                  onClick={() => {
-                    deletePayment(payment.ID);
-                  }}
-                >
-                  Delete
-                </Button>
-                <Link to="/ClientManager/EditPayment">
+              <td style={{ display: "none" }}>{payment.ID}</td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {payment.data.clientName}
+              </td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {payment.data.projectName}
+              </td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {payment.data.date}
+              </td>
+              <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                {payment.data.amount}
+              </td>
+              <td style={{ textAlign: "center" }}>
+                <ButtonGroup>
+                  <Link to="/adminPannel/ClientManager/EditPayment">
+                    <Button
+                      style={{ borderRadius: "5px 0 0 5px" }}
+                      variant="warning"
+                      onClick={() => {
+                        editPayment(payment.ID);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  </Link>
                   <Button
-                    variant="link"
+                    style={{ borderRadius: "0 5px 5px 0" }}
+                    variant="danger"
                     onClick={() => {
-                      editPayment(payment.ID);
+                      deletePayment(payment.ID);
                     }}
                   >
-                    Edit
+                    Delete
                   </Button>
-                </Link>
+                </ButtonGroup>
               </td>
             </tr>
           ))}

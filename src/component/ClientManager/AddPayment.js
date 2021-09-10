@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function AddPayment() {
-  const [clientId, setClientId] = useState("");
-  const [clientIds, setClientIds] = useState([]);
-  const [projectId, setProjectId] = useState("");
-  const [projectIds, setProjectIds] = useState([]);
+  const [clientName, setClientName] = useState("");
+  const [clientNames, setClientNames] = useState([]);
+  const [projectName, setProjectName] = useState("");
+  const [projectNames, setProjectNames] = useState([]);
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
 
@@ -15,15 +16,15 @@ function AddPayment() {
 
   useEffect(() => {
     db.collection("clients").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setClientIds(arr);
+      const arr = snapshot.docs.map((doc) => doc.data().clientName);
+      setClientNames(arr);
     });
   }, [db]);
 
   useEffect(() => {
-    db.collection("projects").onSnapshot((snapshot) => {
-      const arr = snapshot.docs.map((doc) => doc.id);
-      setProjectIds(arr);
+    db.collection("Con_Project").onSnapshot((snapshot) => {
+      const arr = snapshot.docs.map((doc) => doc.data().Title);
+      setProjectNames(arr);
     });
   }, [db]);
 
@@ -33,8 +34,8 @@ function AddPayment() {
     alert("Done!");
 
     const newPayment = {
-      clientId,
-      projectId,
+      clientName,
+      projectName,
       date,
       amount,
     };
@@ -51,44 +52,56 @@ function AddPayment() {
         console.error("Error writing document: ", error);
       });
 
-    setClientId("");
-    setProjectId("");
+    setClientName("");
+    setProjectName("");
     setDate("");
     setAmount("");
   }
 
   return (
     <div className="container">
+      <br />
+      <Link to="/adminPannel/ClientManager">
+        <Button variant="primary">Back</Button>
+      </Link>
+      <br />
+      <center>
+        <h2 style={{ color: "#f0ad4e" }}>Add New Payment</h2>
+      </center>
+      <br />
       <Form onSubmit={sendData}>
         <Form.Control
           as="select"
+          required
           onChange={(e) => {
-            setClientId(e.target.value);
+            setClientName(e.target.value);
           }}
         >
-          <option value="">selectClientId</option>
-          {clientIds.map((clientId) => (
-            <option value={clientId}>{clientId}</option>
+          <option value="">Select Client Name</option>
+          {clientNames.map((clientName) => (
+            <option value={clientName}>{clientName}</option>
           ))}
         </Form.Control>
-
+        <br />
         <Form.Control
           as="select"
+          required
           onChange={(e) => {
-            setProjectId(e.target.value);
+            setProjectName(e.target.value);
           }}
         >
-          <option value="">selectProjectId</option>
-          {projectIds.map((projectId) => (
-            <option value={projectId}>{projectId}</option>
+          <option value="">Select Project Name</option>
+          {projectNames.map((projectName) => (
+            <option value={projectName}>{projectName}</option>
           ))}
         </Form.Control>
-
+        <br />
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Date</Form.Label>
           <Form.Control
             type="date"
             placeholder="example: 2021/7/22"
+            required
             value={date}
             onChange={(e) => {
               setDate(e.target.value);
@@ -97,18 +110,19 @@ function AddPayment() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>EmployeeName</Form.Label>
+          <Form.Label>Amount</Form.Label>
           <Form.Control
             type="number"
             placeholder="example: 100000"
+            required
             value={amount}
             onChange={(e) => {
               setAmount(e.target.value);
             }}
           />
         </Form.Group>
-
-        <Button variant="primary" type="submit">
+        <br />
+        <Button variant="warning" type="submit">
           Submit
         </Button>
       </Form>

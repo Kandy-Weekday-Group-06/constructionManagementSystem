@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { Link } from "react-router-dom";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, ButtonGroup, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./clientmanager.css";
 
 function DisplayClients(props) {
   const [clients, setClients] = useState([]);
   const db = firebase.firestore();
-  const [editingClient, seteditingClient] = useState(props);
+  const [editingClient, setEditingClient] = useState(props);
+  const [viewingClient, setViewingClient] = useState(props);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     db.collection("clients").onSnapshot((snapshot) => {
@@ -16,7 +19,6 @@ function DisplayClients(props) {
         data: doc.data(),
       }));
 
-      console.log(arr);
       setClients(arr);
     });
   }, [db]);
@@ -38,55 +40,121 @@ function DisplayClients(props) {
     editingClient.editClientHandler(id);
   }
 
+  function viewClient(name) {
+    //alert("view cli", id);
+    viewingClient.viewClientHandler(name);
+  }
+
   return (
     <div>
-      <Link to="/ClientManager/AddClient">
-        <Button variant="link">Add New Client</Button>
+      <br />
+      <center>
+        <Form.Group controlId="formBasicSearchBar">
+          <Form.Control
+            type="text"
+            placeholder="Search by Individual's Name/ Organization's Name..."
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+        </Form.Group>
+      </center>
+      <Link to="/adminPannel/ClientManager/AddClient">
+        <Button style={{ borderRadius: "10px 10px 0 0" }} variant="primary">
+          Add New Client
+        </Button>
       </Link>
-
-      <Table striped bordered hover>
+      <Table bordered size="sm">
         <thead>
           <tr>
-            <th>Document ID</th>
-            <th>Individual's Full Name/ Organization's Name</th>
-            <th>Representative's Full Name</th>
-            <th>Individual's/ Representative's Contact Number</th>
-            <th>Individual's/ Representative's Email Address</th>
-            <th>Individual's/ Organization's Physical Address</th>
-            <th>Actions</th>
+            <th style={{ display: "none" }}>Document ID</th>
+            <th style={{ textAlign: "center" }}>
+              Individual's Full Name/ Organization's Name
+            </th>
+            <th style={{ textAlign: "center" }}>Representative's Full Name</th>
+            <th style={{ textAlign: "center" }}>
+              Individual's/ Representative's Contact Number
+            </th>
+            <th style={{ textAlign: "center" }}>
+              Individual's/ Representative's Email Address
+            </th>
+            <th style={{ textAlign: "center" }}>
+              Individual's/ Organization's Physical Address
+            </th>
+            <th style={{ textAlign: "center", verticalAlign: "middle" }}>
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
-          {clients.map((client) => (
-            <tr>
-              <td>{client.ID}</td>
-              <td>{client.data.clientName}</td>
-              <td>{client.data.representativeName}</td>
-              <td>{client.data.phone}</td>
-              <td>{client.data.email}</td>
-              <td>{client.data.address}</td>
-              <td>
-                <Button
-                  variant="link"
-                  onClick={() => {
-                    deleteClient(client.ID);
-                  }}
-                >
-                  Delete
-                </Button>
-                <Link to="/ClientManager/EditClient">
-                  <Button
-                    variant="link"
-                    onClick={() => {
-                      editClient(client.ID);
-                    }}
-                  >
-                    Edit
-                  </Button>
-                </Link>
-              </td>
-            </tr>
-          ))}
+          {clients
+            .filter((client) => {
+              if (searchTerm == "") {
+                return client;
+              } else if (
+                client.data.clientName
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              ) {
+                return client;
+              }
+            })
+            .map((client) => (
+              <tr>
+                <td style={{ display: "none" }}>{client.ID}</td>
+                <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                  {client.data.clientName}
+                </td>
+                <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                  {client.data.representativeName}
+                </td>
+                <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                  {client.data.phone}
+                </td>
+                <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                  {client.data.email}
+                </td>
+                <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+                  {client.data.address}
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <ButtonGroup>
+                    <Link to="/adminPannel/ClientManager/ViewClient">
+                      <Button
+                        style={{ borderRadius: "5px 0 0 5px" }}
+                        variant="info"
+                        onClick={() => {
+                          viewClient(client.data.clientName);
+                        }}
+                      >
+                        Report
+                      </Button>
+                    </Link>
+
+                    <Link to="/adminPannel/ClientManager/EditClient">
+                      <Button
+                        style={{ borderRadius: "0" }}
+                        variant="warning"
+                        onClick={() => {
+                          editClient(client.ID);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Link>
+                    <Button
+                      style={{ borderRadius: "0 5px 5px 0" }}
+                      variant="danger"
+                      onClick={() => {
+                        deleteClient(client.ID);
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </ButtonGroup>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </div>
