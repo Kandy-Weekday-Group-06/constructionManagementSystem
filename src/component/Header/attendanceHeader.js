@@ -1,11 +1,13 @@
 import React,{useEffect,useState} from 'react';
+import '../../assets/css/home/bootstrap.min.css';
+import '../../assets/css/home/agency.min.css';
 import {  Link } from "react-router-dom";
-import { Button ,Container,Row} from 'react-bootstrap';
+import { NavDropdown} from 'react-bootstrap';
+
 import firebase from "../../firebase";
-import './attendancemanager.css';
-
-
-function AttendanceManagerPannel() {
+import './Header.css'
+//attendanceHeader
+function AttendanceHeader() {
     const db = firebase.firestore();
     const [employees, setEmployees] = useState([]);
     const [arriveAt, setArriveAt] = useState("null");
@@ -13,7 +15,7 @@ function AttendanceManagerPannel() {
     const [dayStatus, setDayStatus] = useState("initialized");
     const [employeeID, setEmployeeID] = useState("");
     const [leftAt, setLeftAt] = useState("null");
-    const [month, setMonth] = useState("09");
+    const [month, setMonth] = useState("08");
     const [year, setYear] = useState("2021");
     const [ProjectTitle, setProjectTitle] = useState("");
 
@@ -130,76 +132,71 @@ function AttendanceManagerPannel() {
       }
       //deleteClient();
 
-      
-    
-      
-
-      
-
-
-      
-      
-      
 
 
 
 
-      
+
+
+
+
+
+
 
     return (
         <div>
-            <Row className="justify-content-md-center mt-5">
-                <h1 className="text-center text-warning">Employee Attendance</h1>
-            </Row>
-                        
-            
-            <Container className="width500px mt-5 bg-white p-5 rounded"  >
-                <Row className="justify-content-md-center ">
-                    <div className="w-100 align-middle mh-100">
-                        <Link to='/adminPannel/attendanceManager/markArriving'  className="nav-link" >
-                            <Row className="justify-content-md-center">
-                                <Button className="attendanceManager__mainButton" variant="outline-warning" onClick={()=>{checkInitializationForall()}}>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark Header__height py-lg-1" id="mainNav" >
+                <div className="container">
+                <a className="navbar-brand" href="#page-top"><img className="Header_imageWidth" src="../../assets/img/7a67f2976c750a4c9055d4bf1dc646aa.png" alt="..." /></a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i className="fa fa-bars ms-1"></i>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarResponsive">
+                    <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li className="nav-item"><Link to='/'  className="nav-link" >Home</Link></li>
+                    
+                    <li className="nav-item"><Link to='/adminPannel'  className="nav-link" >Admin Pannel</Link></li>
+                    <li className="nav-item">   
+                        <NavDropdown
+                            id="nav-dropdown-dark-example"
+                            title="Attendace Manager"
+                            menuVariant="dark"
+                            >
+
+                            <Link to='/adminPannel/attendanceManager/markArriving'  className="nav-link" >
+                                <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
                                     Mark arriving attendace
-                                </Button>
-                            </Row>                
-                        </Link>
-                        <Link to='/adminPannel/attendanceManager/markLeaving'  className="nav-link" >
-                            <Row className="justify-content-md-center">
-                                <Button className="attendanceManager__mainButton" variant="outline-warning" onClick={()=>{checkInitializationForall()}}>
+                                </NavDropdown.Item>
+                            </Link>
+                            <Link to='/adminPannel/attendanceManager/markLeaving'  className="nav-link" >
+                                <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
                                     Mark leaving attendace
-                                </Button>
-                            </Row>                
-                        </Link>
-                        <Link to='/adminPannel/attendanceManager/MarkPastHolidays'  className="nav-link" >
-                            <Row className="justify-content-md-center">
-                                <Button className="attendanceManager__mainButton" variant="outline-warning" onClick={()=>{checkInitializationForall()}}>
-                                    Mark Past hollidays
-                                </Button>
-                            </Row>                   
-                        </Link>
-                        <Link to='/adminPannel/attendanceManager/DeleteOldData'  className="nav-link" >
-                            <Row className="justify-content-md-center">
-                                <Button className="attendanceManager__mainButton" variant="outline-warning" onClick={()=>{checkInitializationForall()}}>
+                                </NavDropdown.Item>                
+                            </Link>
+                            <Link to='/adminPannel/attendanceManager/MarkPastHolidays'  className="nav-link" >
+                                <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
+                                     Mark Past hollidays
+                                </NavDropdown.Item>                
+                            </Link>
+                            <Link to='/adminPannel/attendanceManager/DeleteOldData'  className="nav-link" >
+                                <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
                                     Delete Old Attendace
-                                </Button>
-                            </Row>                   
-                        </Link>
-                        <Link to='/adminPannel/attendanceManager/MonthlyReport'  className="nav-link" >
-                            <Row className="justify-content-md-center">
-                                <Button className="attendanceManager__mainButton" variant="outline-warning" onClick={()=>{checkInitializationForall()}}>
+                                </NavDropdown.Item>                
+                            </Link>
+                            <Link to='/adminPannel/attendanceManager/MonthlyReport'  className="nav-link" >
+                                <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
                                     Monthly Report
-                                </Button>
-                            </Row>                   
-                        </Link>
-                       
-                        
-                        
-                    </div>
-                </Row>
-            </Container>
-            
+                                </NavDropdown.Item>                
+                            </Link>
+                        </NavDropdown>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
         </div>
     )
 }
 
-export default AttendanceManagerPannel
+export default AttendanceHeader

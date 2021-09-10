@@ -7,7 +7,7 @@ import './Header.css'
 function Header() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark Header__height" id="mainNav" >
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark Header__height py-lg-1"  id="mainNav" >
                 <div className="container">
                 <a className="navbar-brand" href="#page-top"><img className="Header_imageWidth" src="../../assets/img/7a67f2976c750a4c9055d4bf1dc646aa.png" alt="..." /></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

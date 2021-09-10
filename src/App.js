@@ -10,6 +10,17 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProjectManager from './component/ProjectManagement/ProjectUI';
 import DesignationManager from './component/DesignationManager/DesignationManager';
 
+
+//Headers-----------Import
+import AttendanceHeader from './component/Header/attendanceHeader';
+
+
+
+
+
+
+
+
 function App() {
   
   //edit part of the designation manager
@@ -21,9 +32,9 @@ function App() {
       
      
       <Router>
+        
+        {/* <Route path='/adminPannel/attendanceManager' component={AttendanceHeader}/> */}
         <Route path='/adminPannel' component={Header}/>
-           
-
         <Switch>
           <Route path='/' exact component={Home} >
             <Home/>
