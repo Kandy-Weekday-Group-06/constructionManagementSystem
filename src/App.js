@@ -55,7 +55,7 @@ function App() {
             <DesignationManager />
           </Route>
 
-          <Route path="/ProjectManagement" exact component={ProjectManager}>
+          <Route path="/adminPannel/ProjectManagement" exact component={ProjectManager}>
             <ProjectManager />
           </Route>
 

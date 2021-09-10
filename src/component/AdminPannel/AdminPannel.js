@@ -34,7 +34,7 @@ function AdminPannel() {
           </Card>
         </Link>
 
-        <Link to="/ProjectManagement" className="nav-link">
+        <Link to="/adminPannel/ProjectManagement" className="nav-link">
           <Card
             className="text-center"
             bg={"Warning".toLowerCase()}

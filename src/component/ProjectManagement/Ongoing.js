@@ -6,7 +6,10 @@ import date from "diff-dates";
 import dateformat from "dateformat";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 export default function OngoingProject(props){
+
+
   //Declaration of Variables
   const [onproject, setOngoing] = useState(props);
   const [project, setProject] = useState([]);
@@ -21,6 +24,8 @@ export default function OngoingProject(props){
   const [endDate, setEnd] = useState("");
   const [loading, setLoading] = useState(false);
   const unit="days";
+
+  const dateDiffer = require("date-differ");
 
   //Database connection
 
@@ -109,12 +114,20 @@ function editProject(e) {
 }
 //Date Difference
 function getDays(date1, date2) {
+  
+      
+ 
+  const result = dateDiffer({
+    from: date1,
+    to: date2,
+    days: true,
+  });
    
-    return date(dateformat(date1,"isoDate"), dateformat(date2,"isoDate"),unit);
+    return result;
   }
   
 function RetOngoing(id) {
-  onproject.CurrentProject(id);
+  onproject.CurProject(id);
 
   }
 
@@ -140,21 +153,30 @@ function loader(){
     return(
       <div>
           <Container fluid="sm">
+            <br/><br/>
+              <Row>
+                <Col  md={{ span: 4, offset:  10}}>
+                 <Link to="/adminPannel/ProjectManagement/Add">
+                       <Button variant="outline-info"> New Project </Button>
+                   </Link>
+                </Col>
+              </Row>
+              <br/><br/>
                 <Row>
                     <Col md={{ span: 9, offset: 2 }}>
                     {project.map(pro=>(
-                        <Card>
-                            <Card.Header as="h5">{pro.data.Title}</Card.Header>
-                            <Card.Body>
+                        <Card  border="warning">
+                            <Card.Header variant="outline-info" as="h5">{pro.data.Title}</Card.Header>
+                            <Card.Body >
                                 <Card.Title>Client Name: {pro.data.Client}</Card.Title>
                                 <Card.Text>
                                         <Row>
                                             <Col md={{ span: 9, offset: 2 }}> Project Address: {pro.data.Address}</Col>
-                                            <Col md={{ span: 4, offset: 9 }}> Duration: {getDays(pro.data.End,pro.data.Start)} Days</Col>
+                                            <Col md={{ span: 4, offset: 9 }}> Duration: {getDays(pro.data.Start,pro.data.End)} </Col>
                                         </Row>
                                 </Card.Text>
                                 <Row>
-                                    <Col md={{ span: 4, offset: 8 }}> <Link to="/ProjectManagement/RetProject">
+                                    <Col md={{ span: 4, offset: 8 }}> <Link to="/adminPannel/ProjectManagement/RetProject">
                                                                          <Button variant="warning" onClick={() => { RetOngoing(pro.id); }} > More info </Button>
                                                                         </Link>
                                       </Col>
@@ -162,11 +184,13 @@ function loader(){
                                
                             </Card.Body>
                          </Card>
+                        
                          
                       ))}
                     
                     
                     </Col>
+                    <br/>
                 </Row>
           </Container>
           
