@@ -9,6 +9,7 @@ import DesignationManager from "./component/DesignationManager/DesignationManage
 import ClientManager from "./component/ClientManager";
 import SupplierManager from "./component/SupplierManager/SupplierManager";
 import SubcontractManager from "./component/SubcontractManager/SubcontractManager";
+import EmployeeManager from "./component/employeeManager/employeeManager";
 
 
 //Headers-----------Import
@@ -54,6 +55,10 @@ function App() {
             component={DesignationManager}
           >
             <DesignationManager />
+          </Route>
+
+          <Route path='/adminPannel/EmployeeManager' component={EmployeeManager}>
+            <EmployeeManager/>
           </Route>
 
           <Route path="/adminPannel/ProjectManagement" exact component={ProjectManager}>
