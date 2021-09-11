@@ -8,6 +8,8 @@ import ProjectManager from "./component/ProjectManagement/ProjectUI";
 import DesignationManager from "./component/DesignationManager/DesignationManager";
 import ClientManager from "./component/ClientManager";
 import SupplierManager from "./component/SupplierManager/SupplierManager";
+import SubcontractManager from "./component/SubcontractManager/SubcontractManager";
+import EmployeeManager from "./component/employeeManager/employeeManager";
 
 
 //Headers-----------Import
@@ -55,6 +57,10 @@ function App() {
             <DesignationManager />
           </Route>
 
+          <Route path='/adminPannel/EmployeeManager' component={EmployeeManager}>
+            <EmployeeManager/>
+          </Route>
+
           <Route path="/adminPannel/ProjectManagement" exact component={ProjectManager}>
             <ProjectManager />
           </Route>
@@ -67,6 +73,12 @@ function App() {
             <SupplierManager/>
           </Route>
         </Switch>
+
+        <Route 
+            path="/adminPannel/SubcontractManager" component={SubcontractManager}>
+            <SubcontractManager/>
+          </Route>
+
       </Router>
     </div>
   );

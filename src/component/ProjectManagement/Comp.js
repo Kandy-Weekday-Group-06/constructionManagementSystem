@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function CompProject(props){
 
 
-  //Declaration of Variables
+  //Declaration of Variables  
   const [onproject, setOngoing] = useState(props);
   const [project, setProject] = useState([]);
   const [upPro, setProjectUp] = useState([]);//Ret of particular data
@@ -93,11 +93,19 @@ function loader(){
     return(
       <div>
           <Container fluid="sm">
-          <h1>Completed Projects</h1>
+            <Row>
+            <Col md={{ span: 50, offset: 5 }}>
+                    <Button variant="warning" size="lg" disabled>
+                     Completed Projects
+                    </Button>
+                    </Col>
+           </Row>
+           <br/>
+                     <br/>
                 <Row>
                     <Col md={{ span: 9, offset: 2 }}>
                     {project.map(pro=>(
-                        <Card>
+                        <Card  border="dark">
                             <Card.Header as="h5">{pro.data.Title}</Card.Header>
                             <Card.Body>
                                 <Card.Title>Client Name: {pro.data.Client}</Card.Title>

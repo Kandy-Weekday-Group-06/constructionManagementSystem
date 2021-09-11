@@ -53,7 +53,7 @@ function loader(){
   
 }
 
- //Add Project
+ //Add Project  
  function AddData(e){
   
   e.preventDefault();
@@ -95,8 +95,8 @@ function loader(){
   
 
     return(
-     
-      <Container fluid="sm" >
+     <div>
+    <Container fluid="sm" >
         <Row>
           <Col md={{ span: 5, offset: 3 }}>
               <br/>
@@ -120,15 +120,14 @@ function loader(){
                     <Form.Control as="textarea" rows={3} value={address} onChange={e => setAdd(e.target.value)}/>
                   </Form.Group>
                   
-
-
-                  
-                    <Form.Select aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}>
-                        <option>Select Client</option>
+                  <Form.Label>Select Client</Form.Label>
+                  <Form.Control as="select" aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}>
+                        
                         {client.map(clients=>(
                             <option  >{clients.data.clientName}</option>
                         ))}
-                   </Form.Select>
+                   </Form.Control>
+                  
                 
 
                   
@@ -160,16 +159,15 @@ function loader(){
                   
 
                   
-                      <Button variant="primary" type="submit">
+                      <Button variant="warning" type="submit">
                               Submit
                         </Button>
                 </Form>
           </Col>
         </Row>
       </Container>
-   
 
-
+</div>
    
       
     );

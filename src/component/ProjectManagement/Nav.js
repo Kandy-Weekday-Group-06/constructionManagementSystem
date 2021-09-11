@@ -6,7 +6,7 @@ import {  Link } from "react-router-dom";
 
 export default function Navigation(){
 
-  
+  //
 
     return(
       <div>
@@ -18,7 +18,7 @@ export default function Navigation(){
                                 id="dropdown-button-dark-example2"
                                 variant="secondary"
                                 menuVariant="dark"
-                                title="Dropdown button"
+                                title="Projects"
                                 className="mt-2"
                             >
                            

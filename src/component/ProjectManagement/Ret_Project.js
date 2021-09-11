@@ -20,7 +20,7 @@ export default function Ret_Project(props){
   const [address, setAdd] = useState("");
 
   const [clientDet, setClient] = useState("Luki");
-  
+  //
   const [client, setClDet] = useState([]);
 
   
@@ -167,7 +167,7 @@ else{
                   <Row xs="auto">
                         <Col>
                             <Link to="/adminPannel/ProjectManagement/UpdatePro">
-                                    <Button variant="primary" onClick={() => { UpOngoing(id); }}> Modify </Button>
+                                    <Button variant="warning" onClick={() => { UpOngoing(id); }}> Modify </Button>
                           </Link>
                         </Col>
                         <Col>
@@ -191,7 +191,7 @@ else{
                   </Row>
                   <br/><br/><br/><br/>
                   <Row>
-                    <Col><Button onClick={() => setLgShow(true)}>Employee</Button>
+                    <Col><Button variant="warning" onClick={() => setLgShow(true)}>Employee</Button>
                     <Modal
                       size="lg"
                       show={lgShow}
