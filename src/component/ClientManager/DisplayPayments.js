@@ -26,7 +26,7 @@ function DisplayPayments(props) {
       .doc(ID)
       .delete()
       .then(() => {
-        alert(ID, "Document successfully deleted!");
+        alert("Payment successfully deleted!");
       })
       .catch((err) => {
         console.error("Error removing document: ", err);
@@ -34,7 +34,7 @@ function DisplayPayments(props) {
   }
 
   function editPayment(id) {
-    alert("edit pay", id);
+    //alert("edit pay", id);
     editingPayment.editPaymentHandler(id);
   }
 
@@ -90,7 +90,13 @@ function DisplayPayments(props) {
                     style={{ borderRadius: "0 5px 5px 0" }}
                     variant="danger"
                     onClick={() => {
-                      deletePayment(payment.ID);
+                      if (
+                        window.confirm(
+                          "Are you sure you want to delete this payment's details? This action is irreversible!"
+                        )
+                      ) {
+                        deletePayment(payment.ID);
+                      }
                     }}
                   >
                     Delete

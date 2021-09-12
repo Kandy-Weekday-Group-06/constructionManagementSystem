@@ -36,7 +36,7 @@ function DisplayClients(props) {
   }
 
   function editClient(id) {
-    alert("edit cli", id);
+    //alert("edit cli", id);
     editingClient.editClientHandler(id);
   }
 
@@ -146,7 +146,13 @@ function DisplayClients(props) {
                       style={{ borderRadius: "0 5px 5px 0" }}
                       variant="danger"
                       onClick={() => {
-                        deleteClient(client.ID);
+                        if (
+                          window.confirm(
+                            "Are you sure you want to delete this client's details? This action is irreversible!"
+                          )
+                        ) {
+                          deleteClient(client.ID);
+                        }
                       }}
                     >
                       Delete
