@@ -82,56 +82,57 @@ function MarkLeaving(props) {
     
             var date = today.getFullYear()+'-'+makeTwodigitNumber((today.getMonth()+1))+'-'+makeTwodigitNumber(today.getDate());
             setArrivingDate(date);
+            db.collection("employees").onSnapshot((snapshot) => {
+                const arr = snapshot.docs.map((doc) => {
+                    
+                    
+                    return {
+                        ID: doc.id,
+                        name: doc.data().employeeName,
+                        position: doc.data().designation,
+                        leftAt: "null",
+                        arriveAt: "null",
+                    }
+                });
+          
+                console.log(arr);
+                for (let i = 0; i < arr.length; i++) {
+                    var arrayy=[];
+                    var arrayy2=[];
+                    db.collection('attendance')
+                    .where('employeeID', '==', arr[i].ID)
+                    .where('date','==',date)
+                    .get()
+                    .then((querySnapshot)=>{
+                        arrayy = querySnapshot.docs.map((docc)=>(
+                          docc.data().leftAt
+            
+                        ));
+                        arrayy2 = querySnapshot.docs.map((docc)=>(
+                            docc.data().arriveAt
+              
+                          ));
+                        arr[i].leftAt = arrayy[0];
+                        arr[i].arriveAt = arrayy2[0];
+                    })
+                }
+                 setEmployees(arr);
+                
+                console.log(employees)
+                
+            });
+    
+    
+              //-----------project titles--------------------------
+            db.collection("Con_Project").onSnapshot((snapshot) => {
+                const arr = snapshot.docs.map((doc) => (doc.data().Title));
+          
+                
+                SetProjectTitles(arr);
+            });
         }
         makeDate();
-        db.collection("employees").onSnapshot((snapshot) => {
-            const arr = snapshot.docs.map((doc) => {
-                
-                
-                return {
-                    ID: doc.id,
-                    name: doc.data().employeeName,
-                    position: doc.data().designation,
-                    leftAt: "null",
-                    arriveAt: "null",
-                }
-            });
-      
-            console.log(arr);
-            for (let i = 0; i < arr.length; i++) {
-                var arrayy=[];
-                var arrayy2=[];
-                db.collection('attendance')
-                .where('employeeID', '==', arr[i].ID)
-                .where('date','==',arrivingDate)
-                .get()
-                .then((querySnapshot)=>{
-                    arrayy = querySnapshot.docs.map((docc)=>(
-                      docc.data().leftAt
         
-                    ));
-                    arrayy2 = querySnapshot.docs.map((docc)=>(
-                        docc.data().arriveAt
-          
-                      ));
-                    arr[i].leftAt = arrayy[0];
-                    arr[i].arriveAt = arrayy2[0];
-                })
-            }
-             setEmployees(arr);
-            
-            console.log(employees)
-            
-        });
-
-
-          //-----------project titles--------------------------
-        db.collection("Con_Project").onSnapshot((snapshot) => {
-            const arr = snapshot.docs.map((doc) => (doc.data().Title));
-      
-            
-            SetProjectTitles(arr);
-        });
           return ()=>{
               
           }

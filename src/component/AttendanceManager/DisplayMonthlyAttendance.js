@@ -8,7 +8,7 @@ import {  Link } from "react-router-dom";
 
 function DisplayMonthlyAttendance(props) {
     const db = firebase.firestore();
-    const [month,setMonth] = useState("08");
+    const [month,setMonth] = useState("09");
     const [year,setYear] = useState("2021");
     const [employeeID,setEmployeeID] = useState("7zdlrB1jfaWyXJrpjkW0");
     const [employee,setEmployee] = useState({});
@@ -211,8 +211,8 @@ function DisplayMonthlyAttendance(props) {
                         YY:<Form.Control size="sm" as="select" className="DisplayMonthlyAttendance__mon-year-width mx-1" value={year} onChange={(e)=>{setYear(e.target.value);}}>
                                 
                                 
-                                <option value="01">2020</option>
-                                <option value="02">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
                                          
                         </Form.Control>    
 
