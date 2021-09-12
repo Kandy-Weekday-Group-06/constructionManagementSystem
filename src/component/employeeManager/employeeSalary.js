@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react';
 import firebase from "../../firebase";
 import FigureCaption from 'react-bootstrap/esm/FigureCaption';
@@ -47,15 +47,19 @@ function Employee(props) {
                         const array2 = querySnapshot.docs.map((doc)=>{
                                 
                                 //key : doc.id
+                                let work_days=total;
+                                let basic_salary=doc.data().basicSalary;
                                 let amount= total*doc.data().basicSalary; 
                                 console.log("amount",amount);
                                 let ETF_amount=amount*5/100;
-                                let employeeName=employee[i].data.employeeName;
+                                let employee_name=employee[i].data.employeeName;
 
                                 const SalaryRecord = {
                                     year,
                                     month,
-                                    employeeName,
+                                    employee_name,
+                                    work_days,
+                                    basic_salary,
                                     amount,
                                     ETF_amount,
                                     
@@ -73,25 +77,6 @@ function Employee(props) {
                         
 
                         //calculations of salary and ETF
-                        
-
-                        //if(array2[0].data.status=="permanent") only calculate the ETF
-                        
-                        //set all the required data to 'SalaryRecord' array before sending them to the database
-                        /*const SalaryRecord = {
-                            year,
-                            month,
-                            employeeName,
-                            amount,
-                            ETF_amount,
-                            
-                        }
-
-                        //sending the record to the database
-                        db.collection("Salary").add(SalaryRecord).then(()=>{
-                        }).catch((err)=>{
-                            alert(err.message);
-                        });*/
 
                     }) 
     
@@ -104,6 +89,7 @@ function Employee(props) {
 
     } 
     
+    
     function SendDetails(year,month){
         console.log("month", month);
         console.log("year" ,year);
@@ -111,18 +97,44 @@ function Employee(props) {
     }
     return (
         <div>
-            <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Year</Form.Label>
-                    <Form.Control onChange={(e)=>{setYear(e.target.value)}} type="text" placeholder="Enter year"/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Month</Form.Label>
-                    <Form.Control onChange={(e)=>{setMonth(e.target.value)}} type="text" placeholder="Enter month"/>
-                </Form.Group>
-            </Form>
-            <Button onClick={CalculateSalary} variant="primary" type="submit">Calculate Salary</Button>
-            <Link to='/adminPannel/EmployeeManager/salaryReport'><Button onClick={()=>{SendDetails(year,month)}} variant="primary" type="submit">Generate Salary Report</Button></Link>
+            <Container style={{margin:"80px 50px 50px 150px",}}>            
+                <Col style={{margin:"50px 50px 50px 100px",}}>
+                    <Row>
+                        <Col>
+                            <Row style={{margin:"0px 10px 0px 10px"}}>
+                                <Col md={{ span: 2, offset: 2 }}> <Form.Label  md={{ span: 2, offset: 5 }} className="text-warning" style={{fontSize:"18px"}}>Year</Form.Label> </Col>
+                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setYear(e.target.value)}} type="text" placeholder="Enter year"/></Col>
+                            </Row>   
+                        </Col>
+
+                    </Row><br/>
+                    <Row>
+                        <Col>
+                            <Row style={{margin:"0px 10px 0px 10px"}}>
+                                <Col md={{ span: 2, offset: 2 }}> <Form.Label md={{ span: 2, offset: 2 }} className="text-warning" style={{fontSize:"18px"}}>Month</Form.Label></Col>
+                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setMonth(e.target.value)}} type="text" placeholder="Enter month"/></Col>
+                            </Row>   
+                        </Col>
+
+                    </Row>
+                </Col>       
+            </Container>
+            <Container style={{margin:"20px 50px 50px 150px",}}>
+
+                <Row style={{margin:"20px 50px 50px 150px",}}>
+                   
+                        <Col>
+                            <Row>
+                                <Col md={{ span: 2, offset: 2 }}> <Button variant="outline-warning" onClick={CalculateSalary} type="submit">Calculate Salary</Button></Col>
+                                <Col md={{ span: 4, offset: 0 }}>  <Link to='/adminPannel/EmployeeManager/salaryReport'><Button variant="outline-warning" onClick={()=>{SendDetails(year,month)}} type="submit">Generate Salary Report</Button></Link></Col>
+                            </Row>   
+                        </Col>
+                   
+                </Row>    
+            
+            </Container>
+
+            
         </div>
     )
 }

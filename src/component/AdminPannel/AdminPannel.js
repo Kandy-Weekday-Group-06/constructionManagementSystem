@@ -21,7 +21,7 @@ function AdminPannel() {
             </Card.Body>
           </Card>
         </Link>
-        <Link to="/AdminPannel/EmployeeManager" className="nav-link">
+        <Link to="/adminPannel/EmployeeManager/EmpHome" className="nav-link">
           <Card
             className="text-center"
             bg={"Warning".toLowerCase()}

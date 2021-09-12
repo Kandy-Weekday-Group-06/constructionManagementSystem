@@ -45,15 +45,15 @@ function RetrieveDesignations(props) {
     return (
         <div>
             <Container style={{margin:"50px 100px 20px 620px",}}>
-                <h2 style={{color:"#f0ad4e", fontWeight:"18px"}}>Employee Designations</h2>
+                <h2 className="text-warning" style={{ fontWeight:"18px"}}>Employee Designations</h2>
             </Container>
             <Container class="container" style={{margin : "100px 100px 100px 220px",border:"5px",}} >
                 <Table align='center' style={{border:"5px",}}>
-                    <thead style={{backgroundColor:"#616161",fontSize:"18px",fontStyle:"", fontWeight:"5px"}}>
+                    <thead style={{backgroundColor:"#212121",fontSize:"18px",fontStyle:"", fontWeight:"5px"}}>
                         <tr>
-                        <td style={{color:"white"}}>Designation</td>
-                        <td style={{color:"white"}}>Basic Salary</td>
-                        <td style={{color:"white"}}>Status</td>
+                        <td className="text-warning">Designation</td>
+                        <td className="text-warning">Basic Salary</td>
+                        <td className="text-warning">Status</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,15 +62,15 @@ function RetrieveDesignations(props) {
                                 <td>{desig.data.designation}</td>
                                 <td>{desig.data.basicSalary}</td>
                                 <td>{desig.data.status}</td>
-                                <Button style={{backgroundColor:"#f0ad4e",color:"#ffffff", margin:"4px 2px 4px 20px"}} onClick={()=>{DeleteDesignation(desig.key)}} class="btn">Delete</Button>
-                                <Link to='/AdminPannel/DesignationManager/editDesignation'><Button style={{backgroundColor:"#f0ad4e",color:"#ffffff", margin:"4px 10px 4px 2px"}} onClick={()=>{EditDesignation(desig.key)}}>Edit </Button></Link> 
+                                <Button variant="outline-warning" style={{margin:"4px 2px 4px 20px"}} onClick={()=>{DeleteDesignation(desig.key)}} class="btn">Delete</Button>
+                                <Link to='/AdminPannel/DesignationManager/editDesignation'><Button variant="outline-warning" style={{margin:"4px 10px 4px 2px"}} onClick={()=>{EditDesignation(desig.key)}}>Edit </Button></Link> 
                             </tr>
                         ))}
                     </tbody>
                 </Table>
                 <br/>
 
-                <Link to='/AdminPannel/DesignationManager/addDesignation'><Button style={{color:"#ffffff",backgroundColor:"#f0ad4e"}}>Add Designation</Button></Link>
+                <Link to='/AdminPannel/DesignationManager/addDesignation'><Button variant="outline-warning">Add Designation</Button></Link>
             </Container>       
         </div>
     )

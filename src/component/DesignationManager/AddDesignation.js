@@ -38,8 +38,9 @@ function AddDesignation(){
 
   async function validateInput(ab){
     
-    var x=typeof (ab);
-    if(x == "string"){
+    var Myboolean=!isNaN(+ab);
+    if(Myboolean == "false"){
+      setBasicSalary("");
       alert("Enter a number");
     }
   }
@@ -52,15 +53,15 @@ function AddDesignation(){
             <Col>
               <Form style={{margin:"80px 50px 50px 100px",}}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Designation</Form.Label>
+                  <Form.Label className="text-warning" style={{fontSize:"18px"}}>Designation</Form.Label>
                   <Form.Control p-md onChange={(e)=>{setDesignation(e.target.value)}} type="text" placeholder="Enter the designation" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Basic Salary</Form.Label>
+                  <Form.Label className="text-warning" style={{fontSize:"18px"}}>Basic Salary</Form.Label>
                   <Form.Control onChange={(e)=>{setBasicSalary(e.target.value); validateInput(e.target.value)}}  type="number" placeholder="Enter basic salary" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Status</Form.Label>
+                  <Form.Label className="text-warning" style={{fontSize:"18px"}}>Status</Form.Label>
                   <Form.Control as="select" onChange={(e)=>{setStatus(e.target.value)}}>
                       <option>contracted</option>
                       <option>no-contracted</option>
@@ -68,7 +69,7 @@ function AddDesignation(){
                 </Form.Group>
                 <br/>
 
-                <Link to='/AdminPannel/DesignationManager'><Button style={{color:"#ffffff",backgroundColor:"#f0ad4e"}} onClick={sendData} variant="primary" type="submit"> Submit</Button></Link> 
+                <Link to='/AdminPannel/DesignationManager'><Button variant="outline-warning" onClick={sendData} type="submit"> Submit</Button></Link> 
               </Form>
             </Col>
             <Col>
