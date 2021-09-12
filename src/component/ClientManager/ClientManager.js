@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import DisplayClients from "./ClientManager/DisplayClients";
-import AddClient from "./ClientManager/AddClient";
-import EditClient from "./ClientManager/EditClient";
-import AddPayment from "./ClientManager/AddPayment";
+import DisplayClients from "./DisplayClients";
+import AddClient from "./AddClient";
+import EditClient from "./EditClient";
+import AddPayment from "./AddPayment";
 import React, { useState } from "react";
-import DisplayPayments from "./ClientManager/DisplayPayments";
-import EditPayment from "./ClientManager/EditPayment";
-import ViewClient from "./ClientManager/ViewClient";
+import DisplayPayments from "./DisplayPayments";
+import EditPayment from "./EditPayment";
+import ViewClient from "./ViewClient";
 
 function ClientManager() {
   const [editingClient, setEditingClient] = useState("");
