@@ -1,37 +1,35 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
-import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ViewClient(props) {
-  const [representativeName, setRepresentativeName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
   const [payments, setPayments] = useState([]);
+  const [clients, setClients] = useState([]);
   const db = firebase.firestore();
-  const [clientName, setClientName] = useState(props.name);
+  const [clientName] = useState(props.name);
 
   useEffect(() => {
-    db.collection("clients")
-      .where("clientName", "==", clientName)
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-          //setClientName(doc.data().clientName);
-          setRepresentativeName(doc.data().representativeName);
-          setPhone(doc.data().phone);
-          setEmail(doc.data().email);
-          setAddress(doc.data().address);
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      })
-      .catch(function (error) {
-        console.log("Error getting document:", error);
+    async function fetchClients() {
+      const clientsRef = db.collection("clients");
+      const snapshot = await clientsRef
+        .where("clientName", "==", clientName)
+        .get();
+      if (snapshot.empty) {
+        console.log("No matching documents.");
+        return;
+      }
+
+      snapshot.forEach((doc) => {
+        console.log(doc.id, "=>", doc.data());
+        const arr = snapshot.docs.map((doc) => ({
+          ID: doc.id,
+          data: doc.data(),
+        }));
+
+        setClients(arr);
       });
+    }
+    fetchClients();
   }, [db, clientName]);
 
   useEffect(() => {
@@ -63,13 +61,17 @@ function ViewClient(props) {
       <br />
       <h4>Client Name: {clientName}</h4>
       <br />
-      <h4>Representative Name: {representativeName}</h4>
-      <br />
-      <h4>Client/ Representative Phone Number: {phone}</h4>
-      <br />
-      <h4>Client/ Representative Email: {email}</h4>
-      <br />
-      <h4>Client Address: {address}</h4>
+      {clients.map((client) => (
+        <div>
+          <h4>Representative Name: {client.data.representativeName}</h4>
+          <br />
+          <h4>Client/ Representative Phone Number: {client.data.phone}</h4>
+          <br />
+          <h4>Client/ Representative Email: {client.data.email}</h4>
+          <br />
+          <h4>Client Address: {client.data.address}</h4>
+        </div>
+      ))}
       <br />
       <h4>Client Payments: </h4>
       {payments.map((payment) => (

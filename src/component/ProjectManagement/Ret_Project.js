@@ -37,6 +37,8 @@ export default function Ret_Project(props){
 
   //Pop ups
   const [lgShow, setLgShow] = useState(false);
+  const [lgShow1, setLgShow1] = useState(false);
+  const [lgShow2, setLgShow2] = useState(false);
 
   //DB connection
 
@@ -207,22 +209,44 @@ else{
                     </Modal>
                     
                     </Col>
+                    <Col><Button variant="warning" onClick={() => setLgShow1(true)}>Subcontracts</Button>
+                    <Modal
+                      size="lg"
+                      show={lgShow1}
+                      onHide={() => setLgShow1(false)}
+                      aria-labelledby="example-modal-sizes-title-lg"
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title id="example-modal-sizes-title-lg">
+                        Subcontracts
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>...</Modal.Body>
+                    </Modal>
                     
-                  </Row>
-                  <br/><br/><br/><br/>
-                  <Row>
-                    <Col><h4>Sub Contracts</h4></Col>
+                    </Col>
+                    <Col><Button variant="warning" onClick={() => setLgShow2(true)}>Suppliers</Button>
+                    <Modal
+                      size="lg"
+                      show={lgShow2}
+                      onHide={() => setLgShow2(false)}
+                      aria-labelledby="example-modal-sizes-title-lg"
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title id="example-modal-sizes-title-lg">
+                          Suppliers
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>...</Modal.Body>
+                    </Modal>
                     
-                  </Row>
-                  <br/><br/><br/><br/>
-                  <Row>
-                    <Col><h4>Supplies</h4></Col>
-                    
-                  </Row>
+                    </Col>
+                    </Row>
+                 
                   <br/><br/><br/><br/>
                   <Row>
                     <Col md={{ span: 4, offset: 4 }}><Button variant="success">Summary</Button></Col>
-                    <Col md={{ span: 4, offset: 7 }} ><Button variant="danger"  onClick={() => deleteProject(currentPro)}>Close Project</Button></Col>
+                    <Col md={{ span: 4, offset: 7 }} ><Button variant="danger"  onClick={() => {if(window.confirm('Are you sure to Close this Project?')){ deleteProject(currentPro)};}}>Close Project</Button></Col>
                   </Row>
 
         </Container>

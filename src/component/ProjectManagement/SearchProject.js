@@ -7,21 +7,23 @@ import dateformat from "dateformat";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-export default function OngoingProject(props){
+export default function Search(props){
 
 
   //Declaration of Variables
+
+  const [proSearchtitle, setSTitle] = useState(props.title);
   const [onproject, setOngoing] = useState(props);
   const [project, setProject] = useState([]);
   const [upPro, setProjectUp] = useState([]);//Ret of particular data
   const [client, setClientName] = useState([]);//Client details ret
   const [id, setID] = useState("");
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(props.title);
   const [budget, setBudget] = useState("");
   const [address, setAdd] = useState("");
   const [clientDet, setClient] = useState("");
-  const [startDate, setStart] = useState(""); 
-  const [endDate, setEnd] = useState("");
+  const [date1, setStart] = useState(project.Start); 
+  const [date2, setEnd] = useState(project.End);
   const [loading, setLoading] = useState(false);
   const nDate= new Date();
   const [stitle, setSearch] = useState("");
@@ -56,10 +58,10 @@ export default function OngoingProject(props){
 
 //Retrieval of Project Details
 
-function RetData(e){
+function RetSearchData(e){
 
    
-  db1.get().then((item) => {
+  db1.where("Title","==",proSearchtitle).get().then((item) => {
     const items = item.docs.map((doc) => ({
       id:doc.id,
       data:doc.data()
@@ -69,7 +71,28 @@ function RetData(e){
   });
  
 }
-
+function RetData (proSearchtitle){
+  
+    setTitle(proSearchtitle);
+    
+    db1.where("Title","==",title)
+             .get()
+             .then((querySnapshot) =>{
+ 
+                 querySnapshot.forEach((doc) => {
+               
+                     setProject(doc.data());
+                     
+                     
+ 
+                 });
+                 loader();
+                
+         })
+         .catch(async(error) => {
+           console.log("Error getting documents: ", error);
+         });
+   }
 
 //Retrieval of Single Project Details
 function retProject(pro){
@@ -88,41 +111,16 @@ function retProject(pro){
 
 
 }
+function SearchProject(stitle){
+  onproject.SearchPro(stitle);
 
-//Edit Data
-
-function editProject(e) {
-  e.preventDefault();
-
-  const editProject={
-    title,
-    budget,
-    address,
-    clientDet,
-    startDate,
-    endDate
-  }
- 
-  db1.doc(id).update({
-    Title: editProject.title,
-    Budget: editProject.budget,
-    Address:editProject.address,
-    Client:editProject.clientDet,
-    Start:editProject.startDate,
-    End:editProject.endDate
-  }).then(() => {
-    alert("Data updated Succesfully: ");
-    loader();
-  })
-    .catch((err) => {
-      console.error(err);
-    });
 }
+
 //Date Difference
-function getDays(date1, date2) {
+function getDays(date1,date2) {
   
       
- 
+   
   const result = dateDiffer({
     from: date1,
     to: date2,
@@ -140,12 +138,29 @@ function RetOngoing(id) {
     onproject.SearchPro(stitle);
 
   }
-
   useEffect(() => {
-    RetData();
-    RetClient();
+    db1.where("Title","==",title)
+             .get()
+             .then((querySnapshot) =>{
+ 
+                 querySnapshot.forEach((doc) => {
+               
+                     setProject(doc.data());
+                     setID(doc.id);
+                   
+                     
+ 
+                 });
+                 loader();
+                
+         })
+         .catch(async(error) => {
+           console.log("Error getting documents: ", error);
+         });
+    
+    
    
-  }, [loading]);
+  }, [db1,title]);
 
   
 function loader(){
@@ -172,9 +187,9 @@ function loader(){
                       <Form.Control type="text" placeholder="Search ......." value={stitle} onChange={e => setSearch(e.target.value)}/>
                     </Form.Group>
                     <Col  md={{ span: 4, offset:  4}}>
-                    <Link to="/adminPannel/ProjectManagement/Search">
-                       <Button variant="dark" onClick={() => { SearchProject(stitle); }} > Search </Button>
-                       </Link>
+        
+                       <Button variant="dark" onClick={() => { RetData(stitle); }} > Search </Button>
+          
                     </Col>
                    
                   </Form>
@@ -190,22 +205,22 @@ function loader(){
               <br/><br/>
                 <Row>
                     <Col md={{ span: 9, offset: 2 }}>
-                    {project.map(pro=>(
+
                         <Card  border="warning">
-                            <Card.Header variant="outline-info" as="h5">{pro.data.Title}</Card.Header>
+                            <Card.Header variant="outline-info" as="h5">{project.Title}</Card.Header>
                             <Card.Body >
-                                <Card.Title>Client Name: {pro.data.Client}</Card.Title>
+                                <Card.Title>Client Name: {project.Client}</Card.Title>
                                 <Card.Text>
                                         <Row>
-                                            <Col md={{ span: 9, offset: 2 }}> Project Address: {pro.data.Address}</Col>
-                                            <Col md={{ span: 4, offset: 9 }}> Duration: {getDays(pro.data.Start,pro.data.End)}
+                                            <Col md={{ span: 9, offset: 2 }}> Project Address: {project.Address}</Col>
+                                            <Col md={{ span: 4, offset: 9 }}>  Duration: 72 days
                                           
                                              </Col>
                                         </Row>
                                 </Card.Text>
                                 <Row>
                                     <Col md={{ span: 4, offset: 8 }}> <Link to="/adminPannel/ProjectManagement/RetProject">
-                                                                         <Button variant="warning" onClick={() => { RetOngoing(pro.id); }} > More info </Button>
+                                                                         <Button variant="warning" onClick={() => { RetOngoing(id); }} > More info </Button>
                                                                         </Link>
                                       </Col>
                                 </Row>
@@ -214,7 +229,6 @@ function loader(){
                          </Card>
                         
                          
-                      ))}
                     
                     
                     </Col>
