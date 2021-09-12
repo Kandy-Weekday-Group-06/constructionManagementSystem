@@ -107,21 +107,21 @@ function loader(){
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicTitle">
                     <Form.Label>Project Title</Form.Label>
-                      <Form.Control type="text" placeholder="Project_Restraunt01" value={title} onChange={e => setTitle(e.target.value)}/>
+                      <Form.Control type="text" placeholder="Project_Resort"  pattern="[A-Za-z]+_[A-Za-z]+$" value={title} onChange={e => setTitle(e.target.value)}  required/>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicBudget">
                     <Form.Label>Project Budget</Form.Label>
-                      <Form.Control type="number" placeholder="Rs12500000" value={budget} onChange={e => setBudget(e.target.value)}/>
+                      <Form.Control type="number" placeholder="Rs1250000" pattern="[0-9]{10}" value={budget} onChange={e => setBudget(e.target.value)}  required/>
                   </Form.Group>
                   
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Project Address</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={address} onChange={e => setAdd(e.target.value)}/>
+                    <Form.Control as="textarea" rows={3} value={address} pattern="^[A-Za-z \s*]+$" onChange={e => setAdd(e.target.value)}  required/>
                   </Form.Group>
                   
                   <Form.Label>Select Client</Form.Label>
-                  <Form.Control as="select" aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}>
+                  <Form.Control as="select" aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}  required>
                         
                         {client.map(clients=>(
                             <option  >{clients.data.clientName}</option>
@@ -143,14 +143,14 @@ function loader(){
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicDate">
                           <Form.Label>Start Date</Form.Label>
-                            <Form.Control type="date" placeholder="Project_Restraunt" value={startDate} onChange={e => setStart(e.target.value)}/>
+                            <Form.Control type="date" placeholder="Project_Restraunt" value={startDate} onChange={e => setStart(e.target.value)}  required/>
                         </Form.Group>
 
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicDate">
                           <Form.Label>End Date</Form.Label>
-                            <Form.Control type="date" placeholder="Project_Restraunt" value={endDate} onChange={e => setEnd(e.target.value)}/>
+                            <Form.Control type="date" placeholder="Project_Restraunt" value={endDate} onChange={e => setEnd(e.target.value)}  required/>
                         </Form.Group>
                     </Col>
 
