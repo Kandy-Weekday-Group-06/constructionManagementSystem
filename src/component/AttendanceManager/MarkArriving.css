@@ -60,9 +60,17 @@ body {
 
 .MarkArriving__arrvingMarkButton {
   border-radius: 10.625rem !important;
-  width: 150px !important;
+  width: 200px !important;
 }
 .MarkArriving__align-me-v-center {
   display: flex !important;
   align-items: center !important;
+}
+
+.MarkArriving__hide {
+  display: none !important;
+}
+.MarkArriving__displaywarning {
+  font-size: 0.9rem !important;
+  color: red !important;
 }

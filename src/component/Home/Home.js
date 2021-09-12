@@ -35,7 +35,7 @@ function Home() {
                 <div className="container">
                 <div className="masthead-subheading">Welcome To Kuruduwaththa Construtions!</div>
                 <div className="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a className="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+                <a className="btn btn-warning btn-xl text-uppercase" href="#services">Tell Me More</a>
                 </div>
             </header>
             {/*<!-- Services-->*/}
@@ -48,7 +48,7 @@ function Home() {
                 <div className="row text-center">
                     <div className="col-md-4">
                     <span className="fa-stack fa-4x">
-                        <i className="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i className="fa fa-circle fa-stack-2x text-warning"></i>
                         <i className="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 className="my-3">E-Commerce</h4>
@@ -56,7 +56,7 @@ function Home() {
                     </div>
                     <div className="col-md-4">
                     <span className="fa-stack fa-4x">
-                        <i className="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i className="fa fa-circle fa-stack-2x text-warning"></i>
                         <i className="fa fa-laptop fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 className="my-3">Responsive Design</h4>
@@ -64,7 +64,7 @@ function Home() {
                     </div>
                     <div className="col-md-4">
                     <span className="fa-stack fa-4x">
-                        <i className="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i className="fa fa-circle fa-stack-2x text-warning"></i>
                         <i className="fa fa-lock fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 className="my-3">Web Security</h4>

@@ -6,7 +6,9 @@ import AttendanceManagerPannel from './AttendanceManagerPannel';
 import MarkArriving from './MarkArriving';
 import MarkLeaving from './MarkLeaving';
 import EditAttendance from './editAttendance';
-
+import DisplayMonthlyAttendance from './DisplayMonthlyAttendance';
+import MarkPastHolidays from './MarkPastHolidays';
+import DeleteOldData from './DeleteOldData';
 function AttendanceManager() {
     const [editingAttendanceEmpID, setEditingAttendanceEmpID] = useState("");
     const [editingAttendanceDate, setEditingAttendanceDate] = useState("");
@@ -27,11 +29,20 @@ function AttendanceManager() {
                 <MarkArriving editAttendaceHandler={editAttendaceHandler}/>
             </Route>
             <Route path='/adminPannel/attendanceManager/markLeaving' component={MarkLeaving}>
-                <MarkLeaving employeeID={editingAttendanceEmpID} editingAttendanceDate={editingAttendanceDate}/>
+                <MarkLeaving editAttendaceHandler={editAttendaceHandler}/>
             </Route> 
             <Route path='/adminPannel/attendanceManager/EditAttendance' component={EditAttendance}>
                 <EditAttendance employeeID={editingAttendanceEmpID} editingAttendanceDate={editingAttendanceDate}/>
-            </Route>          
+            </Route>
+            <Route path='/adminPannel/attendanceManager/MonthlyReport' component={DisplayMonthlyAttendance}>
+                <DisplayMonthlyAttendance editAttendaceHandler={editAttendaceHandler}/>
+            </Route>
+            <Route path='/adminPannel/attendanceManager/MarkPastHolidays' component={MarkPastHolidays}>
+                <MarkPastHolidays/>
+            </Route>
+            <Route path='/adminPannel/attendanceManager/DeleteOldData' component={DeleteOldData}>
+                <DeleteOldData/>
+            </Route>           
                     
                 
             

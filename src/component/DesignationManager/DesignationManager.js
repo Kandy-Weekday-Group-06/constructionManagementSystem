@@ -1,4 +1,3 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddDesignation from './AddDesignation';
 import RetrieveDesignations from './RetrieveDesignations';

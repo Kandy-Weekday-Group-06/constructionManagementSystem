@@ -1,35 +1,47 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { DropdownButton,Dropdown,Button,Col,Row} from "react-bootstrap";
 
 import {  Link } from "react-router-dom";
 
 export default function Navigation(){
 
-  
+  //
 
     return(
+      <div>
       
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container-fluid">
-            <a className="navbar-brand" href="#">Costruction Management</a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-                <Link className="nav-link active" aria-current="page" href="/">Home</Link>
-                <Link className="nav-link" to="/ProjectManagement/Add">Add Project</Link>
-                <Link className="nav-link" to="/ProjectManagement/UpdatePro">Update Project</Link>
-                <Link className="nav-link" to="/ProjectManagement/RetProject"> Ret Project</Link>
-                <Link className="nav-link" to="/ProjectManagement/Ongoing">Ongoing Project</Link>
-                
-            </div>
-            </div>
+             
+             <Row>  
+                <Col md={{ span: 2, offset: 1 }}>
+                            <DropdownButton
+                                id="dropdown-button-dark-example2"
+                                variant="secondary"
+                                menuVariant="dark"
+                                title="Projects"
+                                className="mt-2"
+                            >
+                           
+                           <Dropdown.Item variant="dark">
+                               
+                           <Link to="/adminPannel/ProjectManagement">
+                                 <Button variant="outline-warning"> Ongoing  </Button>
+                            </Link>
+                           </Dropdown.Item>
+                            <Dropdown.Divider />
+                          <Dropdown.Item  variant="dark">
+                              
+                          <Link to="/adminPannel/ProjectManagement/Comp">
+                              <Button variant="outline-warning"> Completed </Button>
+                           </Link>
+                          </Dropdown.Item>
+                            <Dropdown.Divider />
+                          </DropdownButton>
+                         
+                </Col>
+             </Row>  
+
         </div>
-        </nav>
-
-
-        
   
    
  
