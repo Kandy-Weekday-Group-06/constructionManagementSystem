@@ -8,7 +8,9 @@ import { NavDropdown} from 'react-bootstrap';
 import './Header.css'
 //attendanceHeader
 function AttendanceHeader() {
-    
+    useEffect(() => {
+        
+    }, [])
 
     return (
         <div>

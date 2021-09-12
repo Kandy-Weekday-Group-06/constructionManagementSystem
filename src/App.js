@@ -6,15 +6,17 @@ import AttendanceManager from "./component/AttendanceManager/AttendanceManager";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProjectManager from "./component/ProjectManagement/ProjectUI";
 import DesignationManager from "./component/DesignationManager/DesignationManager";
-import ClientManager from "./component/ClientManager";
+import ClientManager from "./component/ClientManager/ClientManager";
 import SupplierManager from "./component/SupplierManager/SupplierManager";
 import SubcontractManager from "./component/SubcontractManager/SubcontractManager";
 import EmployeeManager from "./component/employeeManager/employeeManager";
 
-
 //Headers-----------Import
+
 import AttendanceHeader from './component/Header/attendanceHeader';
 import SubContractorHeader from './component/Header/SubContractorHeader';
+import SupplireManagerHeader from './component/Header/SupplireManagerHeader';
+
 
 
 
@@ -30,12 +32,13 @@ function App() {
     <div className="App">
       <Router>
 
-        
-        {/*<Route path='/adminPannel/attendanceManager' component={AttendanceHeader}/>
-        <Route path='/adminPannel/SubcontractManager' component={SubContractorHeader}/>*/}
+
+      <Switch>
+        <Route path='/adminPannel/attendanceManager' component={AttendanceHeader}/>
+        <Route path='/adminPannel/SubcontractManager' component={SubContractorHeader}/>
+        <Route path='/adminPannel/supplierManager' component={SupplireManagerHeader}/>
         <Route path='/adminPannel' component={Header}/>
-
-
+    </Switch>
 
         <Switch>
           <Route path="/" exact component={Home}>
@@ -59,11 +62,18 @@ function App() {
             <DesignationManager />
           </Route>
 
-          <Route path='/adminPannel/EmployeeManager' component={EmployeeManager}>
-            <EmployeeManager/>
+          <Route
+            path="/adminPannel/EmployeeManager"
+            component={EmployeeManager}
+          >
+            <EmployeeManager />
           </Route>
 
-          <Route path="/adminPannel/ProjectManagement" exact component={ProjectManager}>
+          <Route
+            path="/adminPannel/ProjectManagement"
+            exact
+            component={ProjectManager}
+          >
             <ProjectManager />
           </Route>
 
@@ -71,16 +81,20 @@ function App() {
             <ClientManager />
           </Route>
 
-          <Route path = "/adminPannel/supplierManager" component = {SupplierManager}>
-            <SupplierManager/>
+          <Route
+            path="/adminPannel/supplierManager"
+            component={SupplierManager}
+          >
+            <SupplierManager />
           </Route>
         </Switch>
 
-        <Route 
-            path="/adminPannel/SubcontractManager" component={SubcontractManager}>
-            <SubcontractManager/>
-          </Route>
-
+        <Route
+          path="/adminPannel/SubcontractManager"
+          component={SubcontractManager}
+        >
+          <SubcontractManager />
+        </Route>
       </Router>
     </div>
   );

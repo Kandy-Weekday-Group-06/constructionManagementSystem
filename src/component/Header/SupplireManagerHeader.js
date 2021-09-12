@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import '../../assets/css/home/bootstrap.min.css';
 import '../../assets/css/home/agency.min.css';
 import {  Link } from "react-router-dom";
@@ -7,10 +7,8 @@ import { NavDropdown} from 'react-bootstrap';
 
 import './Header.css'
 //attendanceHeader
-function AttendanceHeader() {
-    useEffect(() => {
-        
-    }, [])
+function SupplireManagerHeader() {
+
     
 
     return (
@@ -30,29 +28,30 @@ function AttendanceHeader() {
                     <li className="nav-item">   
                         <NavDropdown
                             id="nav-dropdown-dark-example"
-                            title="SubContractor Manager"
+                            title="Supplire Manager"
                             menuVariant="dark"
+                            
                             >
 
-                            <Link to='/adminPannel/SubcontractManager/SubconMain'  className="nav-link" >
+                            <Link to = "/adminPannel/supplierManager"  className="nav-link" >
                                 <NavDropdown.Item href="#action/3.1" >
-                                    SubContractor Pannel
+                                    Supplier Dashboard
                                 </NavDropdown.Item>
                             </Link>    
-                            <Link to='/adminPannel/SubcontractManager/addSubcon' className="nav-link" >
+                            <Link to = "/adminPannel/supplierManager/addSupplier" className="nav-link" >
                                 <NavDropdown.Item href="#action/3.1">
-                                    Add New Subcontractor
+                                    Add Supplier
                                 </NavDropdown.Item>
                              </Link>
-                             <Link to='/adminPannel/SubcontractManager/displaySubcontractors' className="nav-link" >
+                             <Link to = "/adminPannel/supplierManager/viewOrders" className="nav-link" >
                                 
                                 <NavDropdown.Item href="#action/3.1">
-                                    Subcontractor's Details
+                                View Upcoming Orders
                                 </NavDropdown.Item>
                              </Link>
-                             <Link to='/adminPannel/SubcontractManager/SubconMain' className="nav-link" >
+                             <Link to = "" className = "SupplierMainNavLinks" className="nav-link" >
                                 <NavDropdown.Item href="#action/3.1">
-                                    Subcontractor's Payments Report
+                                View Report
                                 </NavDropdown.Item>
                              </Link>
 
@@ -67,4 +66,4 @@ function AttendanceHeader() {
     )
 }
 
-export default AttendanceHeader
+export default SupplireManagerHeader
