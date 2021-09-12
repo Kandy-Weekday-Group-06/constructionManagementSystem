@@ -32,10 +32,11 @@ export default function UpProject(props){
     db2.get().then((item) => {
       const items = item.docs.map((doc) => ({
         id:doc.id,
-        data:doc.data()
+        data:doc.data(),
+        
       }));
       setClientName(items);
-  
+     
     });
    
   }
@@ -52,7 +53,8 @@ function RetData(e){
       data:doc.data()
     }));
     setProject(items);
-    loader();
+    
+
     
 
   });
@@ -122,11 +124,22 @@ function editProject(e) {
 
   useEffect(() => {
     RetData();
+    db1.doc(proid).get().then(snapshot => setCurrentProject(snapshot.data()),
+    setTitle(curProject.Title),
+    setBudget(curProject.Budget),
+    setAdd(curProject.Address),
+    setClient(curProject.Client),
+    setStart(curProject.Start),
+    setEnd(curProject.End),
+    setID(proid),
+    
+    );
+  
     RetClient();
    
     
    
-  }, [loading]);
+  }, [loading,proid]);
 
   
 function loader(){
@@ -180,31 +193,31 @@ function loader(){
       <Row>
         <Col md={{ span: 5, offset: 3 }}>
             <br/>
-            <br/>
-            <Form onSubmit={editProject}>
+            <br/> 
+            <Form   onSubmit={editProject}>
                 <Form.Group  controlId="formGridState" align="center" >
                     <Form.Label size="lg" >Update  Project</Form.Label>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicTitle">
                     <Form.Label>Project Title: <b>{curProject.Title}</b></Form.Label>
-                      <Form.Control type="text" placeholder="Project_Restraunt01" value={title}  onChange={(e) => {setTitle(e.target.value);}}/>
+                      <Form.Control type="text" placeholder="Project_Restraunt01" value={title}  onChange={(e) => {setTitle(e.target.value);}}  required/>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicBudget">
                     <Form.Label>Project Budget: <b>{curProject.Budget}</b></Form.Label>
-                      <Form.Control type="number" placeholder="Rs12500000" value={budget} onChange={e => setBudget(e.target.value)}/>
+                      <Form.Control type="number" placeholder="Rs12500000" value={budget} onChange={e => setBudget(e.target.value)}  required/>
                   </Form.Group>
                   
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Project Address: <b>{curProject.Address}</b></Form.Label>
-                    <Form.Control as="textarea" rows={3} value={address} onChange={e => setAdd(e.target.value)}/>
+                    <Form.Control as="textarea" rows={3} value={address} onChange={e => setAdd(e.target.value)}  required/>
                   </Form.Group>
                   
 
 
                   <Form.Label>Client Name: <b>{curProject.Client}</b></Form.Label> <br/>
                   <Form.Label>Select Client</Form.Label>
-                    <Form.Control as="select" aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}>
+                    <Form.Control as="select" aria-label="Default select example" size="xxl" value={clientDet} onChange={e => setClient(e.target.value)}  required>
                         {client.map(clients=>(
                             <option  >{clients.data.clientName}</option>
                         ))}
@@ -224,14 +237,14 @@ function loader(){
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicDate">
                           <Form.Label>Start Date:  <b>{curProject.Start}</b></Form.Label>
-                            <Form.Control type="date" placeholder="Project_Restraunt" value={startDate} onChange={e => setStart(e.target.value)}/>
+                            <Form.Control type="date" placeholder="Project_Restraunt" value={startDate} onChange={e => setStart(e.target.value)}  required/>
                         </Form.Group>
 
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicDate">
                           <Form.Label>End Date:  <b>{curProject.End}</b></Form.Label>
-                            <Form.Control type="date" placeholder="Project_Restraunt" value={endDate} onChange={e => setEnd(e.target.value)}/>
+                            <Form.Control type="date" placeholder="Project_Restraunt" value={endDate} onChange={e => setEnd(e.target.value)}  required/>
                         </Form.Group>
                     </Col>
 
@@ -241,7 +254,7 @@ function loader(){
 
                   <center>
                       <Button variant="outline-danger" type="submit">
-                              Submit
+                             Update
                       </Button>
                       </center>
                       <br/>
