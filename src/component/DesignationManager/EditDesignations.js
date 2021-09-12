@@ -39,7 +39,7 @@ function EditDesignation(props) {
             status
         }
         db.collection("Designation").doc(designationID).update(newDesignation);
-        alert("designation updated");
+        alert("designation updated" );
 
         setDesignation("");
         setBasicSalary("");
@@ -53,15 +53,15 @@ function EditDesignation(props) {
                     <Col>
                         <Form style={{margin:"80px 50px 50px 100px",}}>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label style={{color:"#212121",fontWeight:"5px",}}>Designation</Form.Label>
+                                <Form.Label className="text-warning" style={{fontSize:"18px",}}>Designation</Form.Label>
                                 <Form.Control value={designation} onChange={(e)=>{setDesignation(e.target.value)}} type="text" />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label style={{color:"#212121",fontWeight:"5px",}}>Basic Salary</Form.Label>
+                                <Form.Label className="text-warning" style={{fontSize:"18px",}}>Basic Salary</Form.Label>
                                 <Form.Control value={basicSalary} onChange={(e)=>{setBasicSalary(e.target.value)}} type="text"  />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label style={{color:"#212121",fontWeight:"5px",}}>Status</Form.Label>
+                                <Form.Label className="text-warning" style={{fontSize:"18px",}}>Status</Form.Label>
                                 <Form.Control as="select" value={status} onChange={(e)=>{setStatus(e.target.value)}}>
                                     <option>contracted</option>
                                     <option>non-contracted</option>
@@ -69,8 +69,8 @@ function EditDesignation(props) {
                             </Form.Group>
                             <br/>
                             
-                            <Link to='/AdminPannel/DesignationManager'>
-                                <Button style={{color:"#ffffff",backgroundColor:"#f0ad4e"}} onClick={UpdateDesignation} variant="primary" type="submit"> Update</Button>
+                            <Link to='./AdminPannel/DesignationManager'>
+                                <Button variant="outline-warning" onClick={UpdateDesignation}  type="submit"> Update</Button>
                             </Link>
                            
                         </Form>

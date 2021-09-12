@@ -8,6 +8,7 @@ function EmployeeManager() {
 
     const[month,setMonth]= useState("");
     const[year,setYear]=useState("");
+    
 
     function setDetailsMain(year,month){
       setYear(year);
@@ -24,7 +25,7 @@ function EmployeeManager() {
                 <Employee setDetailsMain={setDetailsMain}/>
               </Route>
               <Route path='/adminPannel/EmployeeManager/salaryReport' component={SalaryReport}>
-                <SalaryReport year={year} month={month} />
+                <SalaryReport year={year} month={month}  />
               </Route>
 
             </Switch>
