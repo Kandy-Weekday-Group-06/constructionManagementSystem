@@ -3,6 +3,8 @@ import SubconMain from './SubconMain';
 import AddSubcontractor from './AddSubcon';
 import DisplaySubcontractor from "./DisplaySubcon";
 import EditSubcon from "./EditSubcon";
+import Report from "./Report";
+import ViewReport from "./ViewReport";
 import React,{ useState } from 'react';
 
 
@@ -10,14 +12,17 @@ import React,{ useState } from 'react';
 function SubcontractManager() {
 
     const [editingSubconID, setEditingSubconID] = useState("");
-   
+    const [viewingReport , setViewingReport] = useState("");
+  
   
     function editSubconHandler(SubID){
       console.log("SubID in app.js>>>>>>>>>",SubID);
       setEditingSubconID(SubID);
     }
     
-   
+    function viewReportHandler(SubName){
+        setViewingReport(SubName);
+    }
 
 
     return (
@@ -42,6 +47,15 @@ function SubcontractManager() {
                        <EditSubcon id={editingSubconID}/>
                    </Route>
 
+                   <Route path='/adminPannel/SubcontractManager/report'  component={Report}>
+                       <Report 
+                            viewReportHandler={viewReportHandler}
+                       />
+                   </Route>
+
+                   <Route path='/adminPannel/SubcontractManager/ViewReport' >
+                       <ViewReport id={viewingReport}/>
+                   </Route>
                    
                </Switch>
             </Router>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button,Container,Row,Col,Image} from 'react-bootstrap';
+import {Button,Table,Row,Col,Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import addsubconMainpic from "../SubcontractManager/Images/single.PNG";
@@ -13,15 +13,16 @@ function SubconMain() {
 
     <div style={{backgroundColor : ' #f5f6fa'}}>
         
-         <br/>
+        
          <br/>
          <br/>
        <div className="container">
        <br/>
+        <div style={{color: '#ffb84d',}}> <h2>Subcontractors </h2> </div>
          <br/>
-       <div className="container" style={{backgroundColor : 'white'}}>
+       <div className="container" style={{backgroundColor : 'white',width: 1500,height: 400}}>
             
-        <Container>
+        <Table>
         <Row>
           <br/>
           <br/>
@@ -32,6 +33,8 @@ function SubconMain() {
          <Col></Col>
          <Col></Col>
          <Col></Col>
+         <Col></Col>
+         
          
           <Col xs={6} md={3}>
               <Image src={addsubconMainpic} fluid className= "addsubconMainpic" thumbnail roundedCircle style={{width: 200,height: 200}}/> 
@@ -41,7 +44,7 @@ function SubconMain() {
               </>
               </Link>
          </Col>
-        <Col></Col>
+         
       
          <Col xs={6} md={4}>
              <Image src={teamsubconMainpic} fluid className= "addsubconMainpic" thumbnail roundedCircle style={{width: 200,height: 200}}/> 
@@ -52,19 +55,30 @@ function SubconMain() {
             </>
             </Link>
          </Col>
+          
+         <Col xs={6} md={3}>
+              <Image src={reportsubconMainpic} fluid className= "addsubconMainpic" thumbnail roundedCircle style={{width: 200,height: 200}}/> 
+              <Link to='/adminPannel/SubcontractManager/report'  className="link1" >
+              <>
+              <Button variant="outline-dark">Payments Report</Button>{' '}
+              </>
+              </Link>
+         </Col>
 
-         <Col xs={6} md={4}>
-             <Image src={reportsubconMainpic} fluid className= "addsubconMainpic" thumbnail roundedCircle style={{width: 200,height: 200}}/> 
-             <>
-              <Button variant="outline-dark">Subcontractor's Payments Report</Button>{' '}
-            </>
-         </Col>        
+       
+         <Col> </Col>       
+         <Col> </Col>       
+         <Col> </Col>       
+         <Col> </Col>       
+         <Col> </Col>       
+         <Col> </Col>       
+         <Col> </Col>       
+         <Col> </Col>       
       </Row>
        <br/>
        <br/>
-       <Row>
-       </Row>
-      </Container>
+      
+      </Table>
       </div>
       </div>
       <br/>
