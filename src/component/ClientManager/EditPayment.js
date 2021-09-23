@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./clientmanager.css";
 
 function EditPayment(props) {
   const db = firebase.firestore();
@@ -81,63 +82,67 @@ function EditPayment(props) {
       <br />
 
       <Form onSubmit={editdata}>
-        <Form.Control
-          as="select"
-          required
-          value={clientName}
-          onChange={(e) => {
-            setClientName(e.target.value);
-          }}
-        >
-          <option value="">Select Client Name</option>
-          {clientNames.map((clientName) => (
-            <option value={clientName}>{clientName}</option>
-          ))}
-        </Form.Control>
-        <br />
-        <Form.Control
-          as="select"
-          required
-          value={projectName}
-          onChange={(e) => {
-            setProjectName(e.target.value);
-          }}
-        >
-          <option value="">Select Project Name</option>
-          {projectNames.map((projectName) => (
-            <option value={projectName}>{projectName}</option>
-          ))}
-        </Form.Control>
-        <br />
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Date</Form.Label>
+        <center>
           <Form.Control
-            type="date"
-            placeholder="example: 2021/7/22"
+            style={{ width: "400px" }}
+            as="select"
             required
-            value={date}
+            value={clientName}
             onChange={(e) => {
-              setDate(e.target.value);
+              setClientName(e.target.value);
             }}
-          />
-        </Form.Group>
+          >
+            <option value="">Select Client Name</option>
+            {clientNames.map((clientName) => (
+              <option value={clientName}>{clientName}</option>
+            ))}
+          </Form.Control>
+          <br />
+          <Form.Control
+            style={{ width: "400px" }}
+            as="select"
+            required
+            value={projectName}
+            onChange={(e) => {
+              setProjectName(e.target.value);
+            }}
+          >
+            <option value="">Select Project Name</option>
+            {projectNames.map((projectName) => (
+              <option value={projectName}>{projectName}</option>
+            ))}
+          </Form.Control>
+          <br />
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Date</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="example: 2021/7/22"
+              required
+              value={date}
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+            />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Amount</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="example: 100000"
-            required
-            value={amount}
-            onChange={(e) => {
-              setAmount(e.target.value);
-            }}
-          />
-        </Form.Group>
-        <br />
-        <Button variant="warning" type="submit">
-          Submit
-        </Button>
+          <Form.Group controlId="formBasicNumber">
+            <Form.Label>Amount</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="example: 100000"
+              required
+              value={amount}
+              onChange={(e) => {
+                setAmount(e.target.value);
+              }}
+            />
+          </Form.Group>
+          <br />
+          <Button variant="warning" type="submit">
+            Submit
+          </Button>
+        </center>
       </Form>
     </div>
   );
