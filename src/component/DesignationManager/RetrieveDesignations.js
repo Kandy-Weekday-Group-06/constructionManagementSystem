@@ -44,10 +44,13 @@ function RetrieveDesignations(props) {
 
     return (
         <div>
-            <Container style={{margin:"50px 100px 20px 620px",}}>
+            <center>
+            <Container style={{margin:"50px 0px 20px 0px",}}>
                 <h2 className="text-warning" style={{ fontWeight:"18px"}}>Employee Designations</h2>
             </Container>
-            <Container class="container" style={{margin : "100px 100px 100px 220px",border:"5px",}} >
+            </center>
+            <center>
+            <Container class="container" style={{margin : "100px 100px 50px 220px",border:"5px",}} >
                 <Table align='center' style={{border:"5px",}}>
                     <thead style={{backgroundColor:"#212121",fontSize:"18px",fontStyle:"", fontWeight:"5px"}}>
                         <tr>
@@ -68,10 +71,12 @@ function RetrieveDesignations(props) {
                         ))}
                     </tbody>
                 </Table>
+                </Container>
+                </center>
                 <br/>
-
+            <Container style={{margin : "0px 0px 0px 350px",border:"5px",}}>
                 <Link to='/AdminPannel/DesignationManager/addDesignation'><Button variant="outline-warning">Add Designation</Button></Link>
-            </Container>       
+            </Container>         
         </div>
     )
 }

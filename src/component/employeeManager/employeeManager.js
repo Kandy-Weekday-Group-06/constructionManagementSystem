@@ -72,7 +72,7 @@ export default function EmployeeManager() {
                         <Employee setDetailsMain={setDetailsMain}/>
                     </Route>
                     <Route path='/adminPannel/EmployeeManager/salaryReport' component={SalaryReport}>
-                        <SalaryReport year={year} month={month}  />
+                        <SalaryReport year={year} month={month}/>
                     </Route>
 
                     <Route exact path='/adminPannel/EmployeeManager/EmpHome'  component={EmpHome}>
