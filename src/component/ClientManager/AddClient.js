@@ -13,7 +13,7 @@ function AddClient() {
   const [address, setAddress] = useState("");
 
   const db = firebase.firestore();
-
+  
   function sendData(e) {
     e.preventDefault();
     alert("Done!");

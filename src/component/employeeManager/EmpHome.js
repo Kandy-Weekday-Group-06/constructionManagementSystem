@@ -8,7 +8,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import Avatar from '@material-ui/core/Avatar';
 import { Grid, } from '@material-ui/core';
 import {  Link } from "react-router-dom";
-import image1 from '../EmployeeManager/image/emp.jpg';
+import image1 from './image/emp.jpg';
 import { Form, Button,Row,Col,Container } from "react-bootstrap";
 
 

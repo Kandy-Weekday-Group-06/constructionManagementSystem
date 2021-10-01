@@ -67,16 +67,13 @@ function Employee(props) {
         
                                 //sending the record to the database
                                 db.collection("Salary").add(SalaryRecord).then(()=>{
+                                    console.log("record added for>>",employee[i].key)
                                 }).catch((err)=>{
                                     alert(err.message);
                                 });
                                 
-                                return 0;
                                 
                                 });  
-                        
-
-                        //calculations of salary and ETF
 
                     }) 
     
@@ -84,26 +81,32 @@ function Employee(props) {
             }
                 
         });
-
         alert("Salary Calculated");
-
     } 
     
     
     function SendDetails(year,month){
         console.log("month", month);
         console.log("year" ,year);
-        details.setDetailsMain(year,month);
+        if(year=="" || month==""){
+            alert("Year & month needed")
+        }
+        else{
+            details.setDetailsMain(year,month);
+        }
+        
     }
     return (
         <div>
-            <Container style={{margin:"80px 50px 50px 150px",}}>            
+            <Container>
+            <Form onSubmit={CalculateSalary}>
+            <Container style={{margin:"80px 50px 50px 150px",}}>          
                 <Col style={{margin:"50px 50px 50px 100px",}}>
                     <Row>
                         <Col>
                             <Row style={{margin:"0px 10px 0px 10px"}}>
                                 <Col md={{ span: 2, offset: 2 }}> <Form.Label  md={{ span: 2, offset: 5 }} className="text-warning" style={{fontSize:"18px"}}>Year</Form.Label> </Col>
-                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setYear(e.target.value)}} type="text" placeholder="Enter year"/></Col>
+                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setYear(e.target.value)}} type="text" placeholder="Enter year" required pattern="[0-9]{4}"/></Col>
                             </Row>   
                         </Col>
 
@@ -112,7 +115,7 @@ function Employee(props) {
                         <Col>
                             <Row style={{margin:"0px 10px 0px 10px"}}>
                                 <Col md={{ span: 2, offset: 2 }}> <Form.Label md={{ span: 2, offset: 2 }} className="text-warning" style={{fontSize:"18px"}}>Month</Form.Label></Col>
-                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setMonth(e.target.value)}} type="text" placeholder="Enter month"/></Col>
+                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setMonth(e.target.value)}} type="text" placeholder="Enter month" required pattern="[0-9]{2}"/></Col>
                             </Row>   
                         </Col>
 
@@ -125,13 +128,14 @@ function Employee(props) {
                    
                         <Col>
                             <Row>
-                                <Col md={{ span: 2, offset: 2 }}> <Button variant="outline-warning" onClick={CalculateSalary} type="submit">Calculate Salary</Button></Col>
+                                <Col md={{ span: 2, offset: 2 }}> <Button variant="outline-warning" type="submit">Calculate Salary</Button></Col>
                                 <Col md={{ span: 4, offset: 0 }}>  <Link to='/adminPannel/EmployeeManager/salaryReport'><Button variant="outline-warning" onClick={()=>{SendDetails(year,month)}} type="submit">Generate Salary Report</Button></Link></Col>
                             </Row>   
                         </Col>
                    
                 </Row>    
-            
+            </Container>
+            </Form>
             </Container>
 
             

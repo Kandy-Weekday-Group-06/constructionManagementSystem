@@ -36,29 +36,20 @@ function AddDesignation(){
     setBasicSalary("");
   }
 
-  async function validateInput(ab){
-    
-    var Myboolean=!isNaN(+ab);
-    if(Myboolean == "false"){
-      setBasicSalary("");
-      alert("Enter a number");
-    }
-  }
-
   return(
 
       <div>
         <Container>
           <Row>
             <Col>
-              <Form style={{margin:"80px 50px 50px 100px",}}>
+              <Form style={{margin:"80px 50px 50px 100px",}} onSubmit={sendData}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Label className="text-warning" style={{fontSize:"18px"}}>Designation</Form.Label>
-                  <Form.Control p-md onChange={(e)=>{setDesignation(e.target.value)}} type="text" placeholder="Enter the designation" />
+                  <Form.Control p-md onChange={(e)=>{setDesignation(e.target.value)}} type="text" placeholder="Enter the designation"  required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Label className="text-warning" style={{fontSize:"18px"}}>Basic Salary</Form.Label>
-                  <Form.Control onChange={(e)=>{setBasicSalary(e.target.value); validateInput(e.target.value)}}  type="number" placeholder="Enter basic salary" />
+                  <Form.Control onChange={(e)=>{setBasicSalary(e.target.value)}}  type="number" placeholder="Enter basic salary" required pattern="[0-9]"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Label className="text-warning" style={{fontSize:"18px"}}>Status</Form.Label>
@@ -69,7 +60,7 @@ function AddDesignation(){
                 </Form.Group>
                 <br/>
 
-                <Link to='/AdminPannel/DesignationManager'><Button variant="outline-warning" onClick={sendData} type="submit"> Submit</Button></Link> 
+                <Button variant="outline-warning" type="submit"> Submit</Button>
               </Form>
             </Col>
             <Col>
