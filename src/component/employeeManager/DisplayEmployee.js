@@ -227,9 +227,16 @@ function DisplayEmployee(props) {
                     <Button
                       style={{backgroundColor : "#ffffff",
                              }}
-                      //variant="danger"
+                      variant="danger"
                       onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you want to delete this Employee's details?"
+                          )
+                        ) 
+                        {
                         deleteEmployee(employee.ID);
+                        }
                       }}
                     >
                       <DeleteIcon fontSize="small" 

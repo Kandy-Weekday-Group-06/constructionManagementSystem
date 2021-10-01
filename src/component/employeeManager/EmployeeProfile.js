@@ -58,8 +58,8 @@ function employeeattendanceClicked(ID){
 
       <>
       <PageHeader
-      title={employeeName}
-      //subTitle="Form design with validation"
+      title="Employee Profile"
+      subTitle={employeeName}
       icon={<SpeakerNotesIcon fontSize="large" />}
       />
 
@@ -70,18 +70,20 @@ function employeeattendanceClicked(ID){
             styles = {{
               margin : "0px 0px 0px 100px",
             }}>
-              <h5>EmployeeID:{EmployeeID}</h5><br/>
-      <h5>Address : {address}</h5>
+      
+      <h5>Employee ID  :  {EmployeeID}</h5>
+      <br/>
+      <h5>Address      :  {address}</h5>
       <br />
-      <h5>Phone Number : {phoneNumber}</h5>
+      <h5>Phone Number :  {phoneNumber}</h5>
       <br />
-      <h5>Designation : {designation}</h5>
+      <h5>Designation  :  {designation}</h5>
       <br />
-      <h5>Start Date : {startdate}</h5>
+      <h5>Start Date   :  {startdate}</h5>
       <br />
-      <h5>ETF Amount : {etf}</h5>
+      <h5>ETF Amount   :  {etf}</h5>
       <br />
-      <h5>Type : {empType}</h5>
+      <h5>Type         :  {empType}</h5>
       <br />
       </Container>
 
