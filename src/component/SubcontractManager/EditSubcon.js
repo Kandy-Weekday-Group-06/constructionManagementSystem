@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { Form, Button,Container,Row,Col,Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import editsubconpic from "../SubcontractManager/Images/abc.jpg";
 
 function EditSubcon(props) {
     const db=firebase.firestore();
@@ -65,7 +65,7 @@ function EditSubcon(props) {
     <Row>
     <Col>
      <div className="container">
-     <h3 class="text-center" style={{color: '#f0ad4e'}}><br/>Edit Details :{subcontractorId} </h3>
+     <h3 class="text-center" style={{color: '#f0ad4e'}}><br/>Edit Details:  {comName} </h3>
 
       <Form onSubmit={editdata} style={{backgroundColor : 'white'}}>
         <Form.Group controlId="formBasicName">
@@ -117,7 +117,7 @@ function EditSubcon(props) {
            </Form.Group>
 
 
-        <Button variant="primary" type="submit" style={{width:  510 ,backgroundColor: '#ffb84d',color: '#404040'}}>
+        <Button variant="primary" type="submit" style={{width:  609 ,backgroundColor: '#ffb84d',color: '#404040'}}>
           Submit
         </Button>
         <br/>
@@ -126,12 +126,13 @@ function EditSubcon(props) {
     </div>
     </Col>
     <Col>
-          <div>
-              <br/>
-              <br/>
-
-          </div>
-    </Col>
+          <br/>
+          <br/>
+          <br/>
+            <div>
+               <Image src={editsubconpic} fluid className= "addsubconpic" thumbnail style={{border:"none", height:448}}/>
+            </div>
+         </Col>
     </Row>
     </Container>
    </div> 
