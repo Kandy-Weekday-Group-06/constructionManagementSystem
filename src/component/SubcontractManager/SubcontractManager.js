@@ -54,7 +54,7 @@ function SubcontractManager() {
                    </Route>
 
                    <Route path='/adminPannel/SubcontractManager/ViewReport' >
-                       <ViewReport id={viewingReport}/>
+                       <ViewReport name={viewingReport}/>
                    </Route>
                    
                </Switch>

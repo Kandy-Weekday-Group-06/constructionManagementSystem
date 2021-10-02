@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ViewReport(props) {
@@ -56,13 +56,17 @@ function ViewReport(props) {
   return (
     <div className="container">
       <br />
-      <h4>{comName} : {type}</h4>
-      <br />
+      <h4> Company Name : {comName} </h4>
+     
+      <br/>
       <Table striped bordered hover>
         <thead>
            <tr style={{backgroundColor: '#ffb84d'}}> 
-             <th>Project</th>    
-             <th>Paid Amount</th>
+             <th>Project</th>   
+             <th>Advance Amount</th>
+             <th>First Phase Paid Amount</th>
+             <th>Second Phase Paid Amount</th>
+             <th>Total Amount</th>
                    
            </tr>
         </thead>
@@ -70,11 +74,16 @@ function ViewReport(props) {
             {payments.map((payment) => (
               <tr>
                   <td>{payment.data.Title}</td> 
-                  <td>{payment.data.Paid_amount}</td> 
+                  <td>{payment.data.advance_money}</td> 
+                  <td>{payment.data.first_phase}</td> 
+                  <td>{payment.data.second_phase}</td> 
+                  <td>{payment.data.advance_money+payment.data.first_phase+payment.data.second_phase}</td> 
               </tr>
             ))}
         </tbody>
       </Table>
+      
+
     </div>
   );
 }

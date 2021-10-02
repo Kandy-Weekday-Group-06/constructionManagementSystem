@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Table, Button } from "react-bootstrap";
+import { Table, Button,Form } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,7 +18,7 @@ function Report(props) {
     const [subcontractors, setSubcontractors] = useState([]);
 
     const [viewingReport, setViewingReport] = useState(props);
-
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
 
@@ -44,8 +44,19 @@ function Report(props) {
              <br/>
              <h3 style={{color: '#ffb84d',}}>Payment Details</h3>
              <br/>
+             <center>
+             <Form.Group controlId="formBasicSearchBar">
+              <Form.Control
+                type="text"
+                placeholder="Search....."
+                onChange={(event) => {
+                setSearchTerm(event.target.value);
+                 }}
+              />
+             </Form.Group>
+            </center>
              <br/>
-             <h3 style={{backgroundColor: '#404040',color: '#ffb84d',padding: "7px"}}>
+             <h3 style={{backgroundColor: '#404040',color: '',padding: "7px"}}>
                </h3>
              <Table striped bordered hover>
                 <thead>
@@ -56,7 +67,19 @@ function Report(props) {
                   </tr>
                </thead>
                <tbody>
-               {subcontractors.map((subcontractor)=>(
+               {subcontractors
+                   .filter((subcontractor) => {
+                     if (searchTerm == "") {
+                        return subcontractor;
+                     }else if (
+                        subcontractor.data.comName
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())
+                     ) {
+                      return subcontractor;
+                    }
+                    })
+                  .map((subcontractor)=>(
                   
                   <tr>
                       <td>{subcontractor.data.comName}</td>
