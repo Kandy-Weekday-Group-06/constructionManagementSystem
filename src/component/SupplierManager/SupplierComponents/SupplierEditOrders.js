@@ -158,7 +158,7 @@ export default function SupplierEditOrders(props) {
 
         <div className = "container">
             
-        <Form className ="container">
+        <Form className ="supplierEditOrderForm">
 
             <Row className = "supplierEditOrderHeadingBackground">
                 <h3 className = "supplierEditOrderH3"> Edit Order Details</h3>

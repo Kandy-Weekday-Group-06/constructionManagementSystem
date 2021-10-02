@@ -7,15 +7,24 @@
 }
 
 .supplierEditOrderHeadingBackground{
-    background-color: #f0ad4e;
+    background-color: whitesmoke;
 }
 
 .supplierEditOrderH3{
     padding: 20px;
+    color:#ffc107;
 }
 
 .supplierEditOrderErrorMsg{
     color: red;
     font-size: 12px;
     font-weight: bolder;
+}
+
+.supplierEditOrderForm{
+    margin-left: 8%;
+    margin-right: 30%;
+    display: block;
+    border:1px #ffc107 dashed;
+    padding: 20px;
 }
