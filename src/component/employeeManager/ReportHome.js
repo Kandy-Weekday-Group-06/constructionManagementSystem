@@ -5,7 +5,7 @@ import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornm
 //import Popup from "../../components/Popup";
 //import Employees from "./Employees";
 import PageHeader from "./PageHeader";
-import Button from '@material-ui/core/Button';
+import { Form, Button,Row,Col,Container } from "react-bootstrap";
 import Avatar from '@material-ui/core/Avatar';
 import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
 import { Grid, } from '@material-ui/core';
@@ -45,7 +45,7 @@ export default function EmpHome() {
                     Employee salary report
                 </Button></Link>
 
-                <Button style={{
+                <Link to="/adminPannel/EmployeeManager/BarChart"><Button style={{
                           borderRadius: 15,
                           /*padding: "10px 20px",*/
                           backgroundColor: "#424242",
@@ -55,7 +55,7 @@ export default function EmpHome() {
                           }}
                           variant="contained" >
                      Contract based employee report
-                </Button>
+                </Button></Link>
 
               </Grid>
               <Grid item xs={6}>

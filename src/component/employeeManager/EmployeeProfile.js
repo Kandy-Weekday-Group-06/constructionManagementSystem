@@ -58,34 +58,64 @@ function employeeattendanceClicked(ID){
 
       <>
       <PageHeader
-      title={employeeName}
-      //subTitle="Form design with validation"
+      title="Employee Profile"
+      subTitle={employeeName}
       icon={<SpeakerNotesIcon fontSize="large" />}
       />
 
-
       <div >
-      <br />
-      <Container
-            styles = {{
-              margin : "0px 0px 0px 100px",
-            }}>
-              <h5>EmployeeID:{EmployeeID}</h5><br/>
-      <h5>Address : {address}</h5>
-      <br />
-      <h5>Phone Number : {phoneNumber}</h5>
-      <br />
-      <h5>Designation : {designation}</h5>
-      <br />
-      <h5>Start Date : {startdate}</h5>
-      <br />
-      <h5>ETF Amount : {etf}</h5>
-      <br />
-      <h5>Type : {empType}</h5>
-      <br />
-      </Container>
 
-      <Link to ='/adminPannel/attendanceManager/MonthlyReport'>
+    
+      <Container style = {{
+        marginLeft :"290px",
+      }}>
+        <Row xs={2} md={4} lg={6}>
+          <Col >Employee ID</Col>
+          <Col >:</Col>
+          <Col >{EmployeeID}</Col>
+        </Row>
+
+        <Row xs={2} md={4} lg={6} >
+          <Col >Address</Col>
+          <Col  >:</Col>
+          <Col >{address}</Col>
+        </Row>
+
+        <Row xs={2} md={4} lg={6}>
+          <Col >Phone Number</Col>
+          <Col >:</Col>
+          <Col md={{ span: 4, offset: 0 }}>{phoneNumber}</Col>
+        </Row>
+
+        <Row xs={2} md={4} lg={6}>
+          <Col >Designation</Col>
+          <Col >:</Col>
+          <Col md={{ span: 4, offset: 0 }}>{designation}</Col>
+        </Row>
+
+        <Row xs={2} md={4} lg={6}>
+          <Col >Start Date</Col>
+          <Col >:</Col>
+          <Col md={{ span: 4, offset: 0 }}>{startdate}</Col>
+        </Row>
+
+        <Row xs={2} md={4} lg={6}>
+          <Col >ETF Amount</Col>
+          <Col >:</Col>
+          <Col md={{ span: 4, offset: 0 }}>{etf}</Col>
+        </Row>
+
+        <Row xs={2} md={4} lg={6}>
+          <Col >Type </Col>
+          <Col >:</Col>
+          <Col md={{ span: 4, offset: 0 }}>{empType}</Col>
+        </Row>
+
+      <br/><br/>
+
+        <Row xs="auto">
+          <Col md={{ span: 4, offset: 0 }}>
+          <Link to ='/adminPannel/attendanceManager/MonthlyReport'>
                     <Button  type="submit"
                       styles={{
                         borderRadius: 15,
@@ -102,8 +132,11 @@ function employeeattendanceClicked(ID){
                         View Attendance
                     </Button>
                   </Link>
+          </Col>
+        </Row>
 
-                        <br/><br/>
+      </Container>
+
     </div>
 
     </>

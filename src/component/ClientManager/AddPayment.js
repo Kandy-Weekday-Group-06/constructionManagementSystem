@@ -38,7 +38,7 @@ function AddPayment() {
       clientName,
       projectName,
       date,
-      amount,
+      amount: parseFloat(amount),
     };
 
     console.log(newPayment);

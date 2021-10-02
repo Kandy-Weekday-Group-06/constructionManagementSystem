@@ -82,6 +82,7 @@ export default function AddEmplyee_Pro(){
     setTitle("");
     setEmp("");
     setDate("");
+
     }).catch((error) => {
     console.error("Error adding document: ", error);
   });
@@ -150,7 +151,8 @@ useEffect(() => {
                             <Form.Control type="date" placeholder="Employee Added" value={date} onChange={e => setDate(e.target.value)}/>
                     </Form.Group>
 				   
-				   
+
+
 				   
 				   
 

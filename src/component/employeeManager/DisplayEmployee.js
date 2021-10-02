@@ -128,7 +128,7 @@ function DisplayEmployee(props) {
         </Grid>
         </Grid>
       
-      <Table bordered size="sm">
+      <Table bordered size="sm" >
         <thead>
           <tr>
             <th style={{ display: "none" }}>Document ID</th>
@@ -144,10 +144,6 @@ function DisplayEmployee(props) {
             </th>
             <th style={{ textAlign: "center" }}>
               Start Date
-            </th>
-
-            <th style={{ textAlign: "center" }}>
-              ETF
             </th>
             <th style={{ textAlign: "center" }}>
               Type
@@ -189,9 +185,7 @@ function DisplayEmployee(props) {
                   {employee.data.startdate}
                 </td>
 
-                <td style={{ textAlign: "center", verticalAlign: "middle" }}>
-                  {employee.data.etf}
-                </td>
+
                 <td style={{ textAlign: "center", verticalAlign: "middle" }}>
                   {employee.data.empType}
                 </td>
@@ -227,9 +221,16 @@ function DisplayEmployee(props) {
                     <Button
                       style={{backgroundColor : "#ffffff",
                              }}
-                      //variant="danger"
+                      variant="danger"
                       onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you want to delete this Employee's details?"
+                          )
+                        ) 
+                        {
                         deleteEmployee(employee.ID);
+                        }
                       }}
                     >
                       <DeleteIcon fontSize="small" 
