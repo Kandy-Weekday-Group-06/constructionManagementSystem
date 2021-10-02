@@ -54,11 +54,15 @@ function ViewReport(props) {
   }, [db, comName]);
 
   return (
-    <div className="container">
+    <div className="container" style={{backgroundColor : ' #f5f6fa'}}>
       <br />
-      <h4> Company Name : {comName} </h4>
+      <div >
+      <div className="container" style={{backgroundColor : 'white'}}>
+      <br/>
+      <h4> Company Name :  {comName} </h4>
      
       <br/>
+      
       <Table striped bordered hover>
         <thead>
            <tr style={{backgroundColor: '#ffb84d'}}> 
@@ -82,8 +86,8 @@ function ViewReport(props) {
             ))}
         </tbody>
       </Table>
-      
-
+      </div>
+     </div>
     </div>
   );
 }

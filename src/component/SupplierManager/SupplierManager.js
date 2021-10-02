@@ -10,6 +10,7 @@ import SupplierEditForm from './SupplierComponents/SupplierEditForm';
 import SupplierAddOrder from './SupplierComponents/SupplierAddOrder';
 import SupplierViewOrders from './SupplierComponents/SupplierViewOrders';
 import SupplierEditOrders from './SupplierComponents/SupplierEditOrders';
+import SupplierOrderReport from './SupplierComponents/SupplierOrderReport';
 
 
 export default function SupplierManager() {
@@ -76,6 +77,11 @@ export default function SupplierManager() {
                                 <Route exact path= "/adminPannel/supplierManager/viewOrders/editOrders" component = {SupplierEditOrders}>
                                         <SupplierEditOrders orderID = {editingSupOrders}/>
                                 </Route>
+
+                                <Route exact path= "/adminPannel/supplierManager/orderReport" component = {SupplierOrderReport}>
+                                        <SupplierOrderReport/>
+                                </Route>
+                                
                                 
                              </Switch> 
                                   

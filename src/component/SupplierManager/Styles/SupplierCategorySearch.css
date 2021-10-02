@@ -1,6 +1,7 @@
 .supplierCards{
     /* width: 18rem; */
-    width:auto
+    width:auto;
+    border:1px  solid #ffc107;
 }
 
 .supplierAddOrderBtn{
@@ -16,5 +17,8 @@
     height: 50px;
 }
 .supplierCardHead{
-    background:  #f0ad4e;
+    background:  white;
+}
+.supplierCardHeaderH6{
+    color:#ffc107;
 }

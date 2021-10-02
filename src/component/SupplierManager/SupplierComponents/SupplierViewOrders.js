@@ -194,8 +194,8 @@ export default function SupplierViewOrders(props) {
                         <td>{order.quantity}</td>
                         <td>{order.orderDate}</td>
                         <td>{order.dueDate}</td>
-                        <td>{order.advancePayment}</td>
-                        <td>{order.fullAmount}</td>
+                        <td>Rs.{order.advancePayment}</td>
+                        <td>Rs.{order.fullAmount}</td>
                         <td>{order.orderStatus}</td>
                         <td>
                             <Row>

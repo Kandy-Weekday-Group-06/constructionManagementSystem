@@ -56,8 +56,7 @@ function Report(props) {
              </Form.Group>
             </center>
              <br/>
-             <h3 style={{backgroundColor: '#404040',color: '',padding: "7px"}}>
-               </h3>
+            <div className="container" style={{backgroundColor : 'white'}}>
              <Table striped bordered hover>
                 <thead>
                   <tr class="p-3 mb-2 bg-warning text-dark"> 
@@ -100,6 +99,7 @@ function Report(props) {
                <br/>
                <br/>
                </Table>
+               </div>
           </div>
         </div>
    )

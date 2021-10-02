@@ -15,36 +15,40 @@ function SubconMain() {
         
        <div className="container">
        <br/>
-        <div style={{color: '#ffb84d'}}> <h2 >Subcontractors </h2> </div>
+        <div style={{color: '#ffb84d'}}> </div>
          <br/>
        <div className="container" style={{backgroundColor : 'white',width: 900,height: 400}}>
-       <br/>
+       <h2 class="text-warning">Subcontractors </h2>
        <br/>   <br/>
-       <br/>   <br/>
+      
               
        <Container>
         <Row>
           <Col >
-             
+          <div className="container">
+          <div className="container">  
+             <br/>
           <Link to='/adminPannel/SubcontractManager/addSubcon'  className="link1" >
               <>
-              <Button variant="outline-dark">Add New Subcontractor</Button>{' '}
+              <Button style={{width: 200}}variant="outline-warning">Add New Subcontractor</Button>{' '}
               </>
               </Link>
               <br/>
               <br/>
              <Link to='/adminPannel/SubcontractManager/displaySubcontractors'  className="link1" >
              <>
-              <Button variant="outline-dark">Subcontractor's Details</Button>{' '}
+              <Button style={{width: 200}} variant="outline-warning">Subcontractor's Details</Button>{' '}
             </>
             </Link>
             <br/>
             <br/>
               <Link to='/adminPannel/SubcontractManager/report'  className="link1" >
               <>
-              <Button variant="outline-dark">Payments Report</Button>{' '}
+              <Button style={{width: 200}} variant="outline-warning">Payments Report</Button>{' '}
               </>
               </Link>
+             </div> 
+             </div>
           </Col>
           <Col>
           <Image src={addsubconpic} fluid className= "addsubconpic" thumbnail style={{border:"none"}}/>
