@@ -61,7 +61,7 @@ function EditPayment(props) {
       clientName,
       projectName,
       date,
-      amount,
+      amount: parseFloat(amount),
     };
 
     console.log(updatedPayment);
