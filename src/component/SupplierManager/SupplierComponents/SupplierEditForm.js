@@ -23,6 +23,8 @@ export default function SupplierEditForm(props) {
     const [contactNoValidError,setContactNoValidError]= useState('');
     const [emailValidError,setEmailValidError] = useState('');
 
+    const [comapnyNameValid,setCompanyNameValid] = useState(false);
+
     //fetch supplier details based on ID
     useEffect(() => {
 
@@ -54,7 +56,7 @@ export default function SupplierEditForm(props) {
     function updateSupplierData(e){
         e.preventDefault();
 
-        if(isSupplierEditDataValid() && isContactNoValid() && isEmailValid()){
+        if(isSupplierEditDataValid() && isContactNoValid() && isEmailValid() && isCompanyValid()){
 
             //update
             db.collection("Supplier").doc(supID).update({
@@ -81,6 +83,7 @@ export default function SupplierEditForm(props) {
             setContactNoValidError('');
             setEmailValidError('');
             setSupID(props.supplierID);
+            setCompanyNameValid(false);
 
         }
         
@@ -131,10 +134,21 @@ export default function SupplierEditForm(props) {
 
         if(contactNo.match('[0-9]{10}') == null){
 
+            setCompanyError("");
+            setCertificateError("");
+            setContactNoError("");
+            setEmailError("");
+            setEmailValidError("");
             setContactNoValidError("Invalid contactNo");
             return false;
         }
         else if(contactNo.length > 10){
+
+            setCompanyError("");
+            setCertificateError("");
+            setContactNoError("");
+            setEmailError("");
+            setEmailValidError("");
             setContactNoValidError("Invalid contactNo");
             return false;
         }
@@ -146,18 +160,49 @@ export default function SupplierEditForm(props) {
     function isEmailValid(){
 
         if(email.match('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+[.]+[a-z]{2,3}$') == null){
+
+            setCompanyError("");
+            setCertificateError("");
+            setContactNoError("");
+            setEmailError("");
+            setContactNoValidError("");
             setEmailValidError('Invalid Email');
             return false;
         }
         return true;
     }
 
+     //check company name valid
+     function isCompanyValid(){
+
+        db.collection("Supplier").where("company","==",company).where("supplierCategory","==",supplierCategory).get().then(querySnapshot=>{
+        
+        // console.log(querySnapshot.empty);
+        if(querySnapshot.empty)
+            setCompanyNameValid(true);
+       
+        }).catch(err=>{
+            console.log(err.message);
+        })
+      
+        if(comapnyNameValid === true)
+            return true;
+        else{
+            setCompanyError("Company name is already exists within this category");
+            setCertificateError("");
+            setContactNoError("");
+            setEmailError("");
+            setContactNoValidError("");
+            setEmailValidError("");
+            return false;
+        }    
+    }
 
     return (
 
         <div className = "container">
         
-            <Form className ="container">
+            <Form className ="supplierEditForm">
 
                 <Row className = "supplierEditFormHeaderBackground">
                     <h3 className = "supplierEditFormHeader3"> Edit Supplier Details</h3>

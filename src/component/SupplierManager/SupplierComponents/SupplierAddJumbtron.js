@@ -15,8 +15,7 @@ export default function SupplierAddJumbtron() {
             </Row>
             <br/>
             <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
+               If you want to add new Supplier click below button...
             </p>
             <br/>
             <p>

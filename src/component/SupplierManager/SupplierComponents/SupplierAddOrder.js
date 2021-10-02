@@ -169,7 +169,7 @@ export default function SupplierAddOrder(props) {
     return (
         <div className = "container">
             
-            <Form className ="container">
+            <Form className ="supplierAddOrderForm">
 
                 <Row className = "supplirAddOrderHeadingBackground">
                     <h3 className = "supplierAddOrderH3"> Add New Order</h3>

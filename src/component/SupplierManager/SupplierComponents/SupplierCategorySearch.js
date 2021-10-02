@@ -147,9 +147,13 @@ export default function SupplierCategorySearch(props) {
                         <Card className= "supplierCards">
                             <Card.Header className = "supplierCardHead">
                                 
-                                <h5><b>SupplierID :</b></h5> 
-                                <h6><i>{supplier.supplierID}</i> </h6>
-                                <Image src = {supplierIcon} className = "supplierIcon"/><br/>
+                                {/* <h5><b>SupplierID :</b></h5> 
+                                <h6><i>{supplier.supplierID}</i> </h6> */}
+                                <Row>
+                                    <Col> <Image src = {supplierIcon} className = "supplierIcon"/></Col>
+                                    <Col><h5 className = "supplierCardHeaderH6">{supplier.company}</h5></Col>
+                                </Row>
+                                <br/>
                               
                             </Card.Header>
                             
@@ -157,7 +161,7 @@ export default function SupplierCategorySearch(props) {
                                 {/* <Card.Title>Supplier ID: <h6>{supplier.supplierID}</h6></Card.Title> */}
 
                                 <Card.Text>
-                                     <b>Company:</b>  {supplier.company} <br/>
+                                     {/* <b>Company:</b>  {supplier.company} <br/> */}
                                      <b>Contact No: </b> {supplier.contactNo} <br/>
                                      <b>Email: </b>{supplier.email} <br/>
                                      <b>Certification: </b>{supplier.certificate} <br/>
