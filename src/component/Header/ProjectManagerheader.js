@@ -7,7 +7,7 @@ import { NavDropdown} from 'react-bootstrap';
 
 import './Header.css'
 //attendanceHeader
-function AttendanceHeader() {
+function ProjectManagerHeader() {
     useEffect(() => {
         
     }, [])
@@ -29,31 +29,19 @@ function AttendanceHeader() {
                     <li className="nav-item">   
                         <NavDropdown
                             id="nav-dropdown-dark-example"
-                            title="SubContractor Manager"
+                            title="Project mannger"
                             menuVariant="dark"
                             >
+                               
+                                
 
-                            <Link to='/adminPannel/SubcontractManager/SubconMain'  className="nav-link" >
+                            <Link to='/adminPannel/ProjectManagement'  className="nav-link" >
                                 <NavDropdown.Item href="#action/3.1" >
-                                    SubContractor Pannel
+                                Ongoing
                                 </NavDropdown.Item>
                             </Link>    
-                            <Link to='/adminPannel/SubcontractManager/addSubcon' className="nav-link" >
-                                <NavDropdown.Item href="#action/3.1">
-                                    Add New Subcontractor
-                                </NavDropdown.Item>
-                             </Link>
-                             <Link to='/adminPannel/SubcontractManager/displaySubcontractors' className="nav-link" >
-                                
-                                <NavDropdown.Item href="#action/3.1">
-                                    Subcontractor's Details
-                                </NavDropdown.Item>
-                             </Link>
-                             <Link to='/adminPannel/SubcontractManager/SubconMain' className="nav-link" >
-                                <NavDropdown.Item href="#action/3.1">
-                                    Subcontractor's Payments Report
-                                </NavDropdown.Item>
-                             </Link>
+                            
+                             
 
                             
                         </NavDropdown>
@@ -66,4 +54,4 @@ function AttendanceHeader() {
     )
 }
 
-export default AttendanceHeader
+export default ProjectManagerHeader

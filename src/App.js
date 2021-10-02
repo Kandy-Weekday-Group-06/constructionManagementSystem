@@ -16,6 +16,7 @@ import EmployeeManager from "./component/EmployeeManager/EmployeeManager";
 import AttendanceHeader from './component/Header/attendanceHeader';
 import SubContractorHeader from './component/Header/SubContractorHeader';
 import SupplireManagerHeader from './component/Header/SupplireManagerHeader';
+import ProjectManagerHeader from "./component/Header/ProjectManagerheader";
 
 
 
@@ -35,6 +36,7 @@ function App() {
 
       <Switch>
         <Route path='/adminPannel/attendanceManager' component={AttendanceHeader}/>
+        <Route path='/adminPannel/ProjectManagement' component={ProjectManagerHeader}/>
         <Route path='/adminPannel/SubcontractManager' component={SubContractorHeader}/>
         <Route path='/adminPannel/supplierManager' component={SupplireManagerHeader}/>
         <Route path='/adminPannel' component={Header}/>

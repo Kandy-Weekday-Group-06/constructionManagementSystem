@@ -3,7 +3,6 @@
 }
 .DisplayMonthlyAttendance__noDataBg {
   color: red !important;
-  font-weight: bold !important;
 }
 .DisplayMonthlyAttendance__editbtn {
   padding-top: 0px !important;

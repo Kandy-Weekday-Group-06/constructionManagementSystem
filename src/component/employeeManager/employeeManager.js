@@ -104,10 +104,10 @@ export default function EmployeeManager() {
                         <EmployeeProfile name ={viewEmployee} editEmployeeHandler={editEmployeeHandler}/>
                     </Route>
 
-                    <Route path='/adminPannel/attendanceManager/MonthlyReport' component={DisplayMonthlyAttendance}>
-                        <DisplayMonthlyAttendance editAttendaceHandler={editAttendaceHandler}/>
+                    <Route path='/adminPannel/EmployeeManager/MonthlyReport' component={DisplayMonthlyAttendance}>
+                        <DisplayMonthlyAttendance employeeID={editEmployee} editAttendaceHandler={editAttendaceHandler}/>
                     </Route>
-                    <Route path='/adminPannel/attendanceManager/EditAttendance' component={EditAttendance}>
+                    <Route path='/adminPannel/EmployeeManager/EditAttendance' component={EditAttendance}>
                         <EditAttendance employeeID={editingAttendanceEmpID} editingAttendanceDate={editingAttendanceDate}/>
                     </Route>
 

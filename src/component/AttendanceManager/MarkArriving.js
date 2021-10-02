@@ -28,7 +28,7 @@ function Alert(props) {
 function MarkArriving(props) {
     const db = firebase.firestore();
     const [arrivingTime, setArrivingTime] = useState("");
-    const [arrivingDate, setArrivingDate] = useState("2021-09-10");
+    const [arrivingDate, setArrivingDate] = useState("2021-10-02");
     const [employees, setEmployees] = useState([]);
     const [editingAttendance, setEditingAttendance] = useState(props);
     const [ProjectTitles, SetProjectTitles] = useState([]);
@@ -103,18 +103,23 @@ function MarkArriving(props) {
 
 
     useEffect(() => {
+        function makeTwodigitNumber(number){
+            let formattedNumber = number.toLocaleString('en-US', {
+              minimumIntegerDigits: 2,
+              useGrouping: false
+            })
+            return formattedNumber;
+        }
         function makeDate(){
             var today = new Date();
-            function makeTwodigitNumber(number){
-                let formattedNumber = number.toLocaleString('en-US', {
-                  minimumIntegerDigits: 2,
-                  useGrouping: false
-                })
-                return formattedNumber;
-            }
+            
     
-            var date = today.getFullYear()+'-'+makeTwodigitNumber((today.getMonth()+1))+'-'+makeTwodigitNumber(today.getDate());
-            setArrivingDate(date);
+            var datee = today.getFullYear()+'-'+makeTwodigitNumber((today.getMonth()+1))+'-'+makeTwodigitNumber(today.getDate());
+            console.log(datee);
+            
+            setArrivingDate(datee);
+            console.log(datee);
+            console.log("Arriving Date",arrivingDate);
             db.collection("employees").onSnapshot((snapshot) => {
                 const arr = snapshot.docs.map((doc) => {
                     
@@ -134,7 +139,7 @@ function MarkArriving(props) {
                     var arrayy2=[];
                     db.collection('attendance')
                     .where('employeeID', '==', arr[i].ID)
-                    .where('date','==',date)
+                    .where('date','==',arrivingDate)
                     .get()
                     .then((querySnapshot)=>{
                         arrayy = querySnapshot.docs.map((docc)=>(
@@ -272,9 +277,23 @@ function MarkArriving(props) {
         <div className="justify-content-center">
             
             <Row className="mt-5 ">
-                <h1 className="text-center text-warning">Mark Arriving</h1>
+                <Col s lg="2" className="d-flex justify-content-center align-items-center"></Col>
+                <Col s lg="8" className="d-flex justify-content-center align-items-center">
+                    <h1 className="text-center text-warning">Mark Arriving</h1>
+                </Col>
+                
+                <Col s lg="2" className="d-flex justify-content-center align-items-center">
+                    <Link to='/adminPannel/attendanceManager/DailyAttendanceReport'  className="nav-link" >
+                    <Button variant="contained" color="primary" 
+                                disabled={false}
+                                 
+                                className="">
+                                    Report
+                    </Button>
+                    </Link>
+                </Col>
             </Row>
-            <Row className="d-flex justify-content-center mt-3 bg-warning text-white">
+            <Row className="d-flex justify-content-center mt-3 bg-warning text-white shadow-sm">
                     <Col s lg="2" className="d-flex justify-content-center align-items-center"><h6 className="text-center">Date: {arrivingDate} </h6></Col>
                     <Col s lg="2" className="d-flex justify-content-center align-items-center"><h6 className="text-center">Time: {arrivingTime} </h6></Col>
                     <Col s lg="1" className="d-flex justify-content-center align-items-center"><h6 className="text-right" >Project:</h6></Col>
@@ -302,8 +321,8 @@ function MarkArriving(props) {
            
             <div id="myTable">
             {employees.map((employee) => (
-            <Row className="justify-content-center mt-2 ">
-                <div className="arrivingSearchResults border pl-5 py-3">
+            <Row className="justify-content-center mt-2">
+                <div className="arrivingSearchResults pl-5 py-3 shadow-sm">
                     <Row>
                     <Col xs lg="1" className="MarkArriving__align-me-v-center"><svg className="m-2" xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

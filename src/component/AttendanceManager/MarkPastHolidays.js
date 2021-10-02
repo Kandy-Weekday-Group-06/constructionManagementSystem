@@ -6,6 +6,7 @@ import {  Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import './MarkPastHolidays.css'
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }

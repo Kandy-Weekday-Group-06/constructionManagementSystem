@@ -121,7 +121,7 @@ function AttendanceManagerPannel() {
       
       console.log("EmployeeID List>>>>>>",employees);
       function deleteClient() {
-        var jobskill_query = db.collection('attendance').where('date','==',"2021-08-05");
+        var jobskill_query = db.collection('attendance').where('date','==',"2021-10-01");
             jobskill_query.get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 doc.ref.delete();

@@ -1,16 +1,193 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import '../../assets/css/home/bootstrap.min.css';
 import '../../assets/css/home/agency.min.css';
 import Portfolio from './compoents/Portfolio';
 import {  Link } from "react-router-dom";
+import { Modal,Form,Row,Col,Container,Button,NavDropdown} from 'react-bootstrap';
+import { makeStyles } from '@material-ui/core/styles';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import firebase from 'firebase';
+import './home.css';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+  
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
 
 
 
 function Home() {
+    const db = firebase.firestore();
+    const [show, setShow] = useState(false);
+    const [auth,setAuth] = useState(false);
+    const [user,setUser] = useState({name:""});
+    const [open1, setOpen1] = useState(false);
+    const [upradater,setUpdater] =useState(true);
+    const [password,setPassword] = useState("");
+    const [username,setUserName] = useState("");
+    const [invalidUserMsg,setinvalidUserMsg] =useState(false);
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = () =>{setShow(true);
+        setinvalidUserMsg(false);
+        setPassword("");
+        setUserName("");
+    }
+
+    const error1HandleClick = () => {
+        setOpen1(true);
+    };
+    const error1HandleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen1(false);
+    };
+
+    useEffect(() => {
+
+        
+
+        const func = async ()=>{
+            var id= localStorage.getItem("token");
+            if(localStorage.getItem("token")==null){
+                console.log("not logged in")
+            }else{
+
+                const cityRef = db.collection('AdminAccounts').doc(id);
+                const doc = await cityRef.get();
+                if (!doc.exists) {
+                console.log('No such document!');
+                setAuth(false);
+                } else {
+                console.log('Document data:', doc.data());
+                setUser({name:doc.data().userName});
+                setAuth(true);
+                }
+            }
+           
+            
+        }
+        func();
+        
+    }, [upradater])
+
+    function login(e){
+        e.preventDefault();
+        setinvalidUserMsg(false);
+        setUpdater(false);
+        db.collection("AdminAccounts")
+        .where('password', '==', password).where('userName','==',username).get()
+        .then((querySnapshot) => {
+            console.log(querySnapshot.docs,"pass:", password,"usernamr :",username);
+            querySnapshot.docs.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                localStorage.setItem("token", doc.id);
+                handleClose();
+                error1HandleClick();
+                setUpdater(true)
+            
+            })
+            if(querySnapshot.docs.length==0){
+                setUpdater(false);
+                setinvalidUserMsg(true);
+                
+                console.log("invalid user name or password")
+            }
+        
+        
+  
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+            
+            
+        
+    }
+
+    function logout(){
+        localStorage.setItem("token", null);
+        setUpdater(false);
+    }
   
     return (
         
         <div classNameName="App">
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Admin Login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                        <Row className="d-flex justify-content-center ">
+                            <div className="w-100 align-middle mh-100 d-flex justify-content-center ">
+                            <Form className="w-75 justify-content-center mb-5"  onSubmit={login} >
+                            
+                                <Row className="d-flex justify-content-center align-items-center w-100">
+                                    <span className={(invalidUserMsg)? `home__invalidYouser_error_msg_visible` :`home__invalidYouser_error_msg_hidden` } >Invalid username or password!</span>
+                                </Row>
+                                <Row className="d-flex justify-content-center align-items-center mt-3 w-100">
+                                    
+                                
+                                    <Form.Group className="mb-1 " controlId="formBasicEmail">
+                                        <Form.Label>
+                                            <h6 className="" >Username :</h6>
+                                        </Form.Label>
+                                        <input type="text" class="form-control" id="userName1" placeholder="Username"
+                                        value={username} onChange={(e)=>{setUserName(e.target.value);}}/>
+                                    </Form.Group>
+                                    
+                                </Row>
+                                <Row className="d-flex justify-content-center align-items-center  mt-3 w-100">
+                                    
+            
+                                    <Form.Group className="mb-1 " controlId="formBasicEmail">
+                                        <Form.Label>
+                                            <h6 className="" >Password :</h6>
+                                        </Form.Label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                                        value={password} onChange={(e)=>{setPassword(e.target.value);}}/>
+                                    </Form.Group>
+                                    
+                                </Row>
+                                
+                                <Row className="justify-content-center mt-1 w-100">
+                                    <Col xs lg="12" className=" d-flex justify-content-center">
+                                        <Button type="submit" variant="warning" className="">
+                                            Login
+                                        </Button>
+                                    </Col>
+                                </Row> 
+                                <Row className="d-flex justify-content-center mt-1 w-100">
+        
+                                    Forgot password? <Button className="d-inline " variant="link">Contact Admin</Button>
+                                    
+                                </Row>   
+                            
+                            </Form>
+                            
+                                 
+                            </div>
+                        </Row>
+                </Modal.Body>
+                
+            </Modal>
+            <Snackbar open={open1} autoHideDuration={2200} onClose={error1HandleClose}>
+                <Alert onClose={error1HandleClose} severity="success">
+                    Successfully LoggeIn
+                </Alert>
+            </Snackbar>
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div className="container">
                 <a className="navbar-brand" href="#page-top"><img src="assets/img/7a67f2976c750a4c9055d4bf1dc646aa.png" alt="..." /></a>
@@ -25,7 +202,22 @@ function Home() {
                     <li className="nav-item"><a className="nav-link" href="#about">About</a></li>
                     <li className="nav-item"><a className="nav-link" href="#team">Team</a></li>
                     <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
-                    <li className="nav-item"><Link to='/adminPannel'  className="nav-link" >Admin Pannel</Link></li>
+                    <li className={(auth)? `nav-item` :`home__hide_adminPannel` }><Link to='/adminPannel'  className="nav-link" >Admin Pannel</Link></li>
+                    <li className={(auth)? `home__hide_adminPannel` :`nav-item` } onClick={handleShow}><Button variant="warning" className="rounded-circle shadow">Log In</Button></li>
+                    <li className={(auth)? `nav-item` :`home__hide_adminPannel` } >
+                    <NavDropdown
+                            id="nav-dropdown-dark-example"
+                            title={user.name}
+                            menuVariant="dark"
+                            >
+                       
+                                <NavDropdown.Item href="#action/3.1" onClick={logout}>
+                                    Logout
+                                </NavDropdown.Item>
+                            
+
+                            
+                        </NavDropdown></li>
                     </ul>
                 </div>
                 </div>

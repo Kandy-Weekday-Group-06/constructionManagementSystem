@@ -3,6 +3,7 @@ import { Form,Row,Col,Table,Button as BootButton} from 'react-bootstrap';
 import firebase from "../../firebase";
 import './DisplayMonthlyAttendance.css';
 import {  Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 
 
@@ -10,11 +11,14 @@ function DisplayMonthlyAttendance(props) {
     const db = firebase.firestore();
     const [month,setMonth] = useState("09");
     const [year,setYear] = useState("2021");
-    const [employeeID,setEmployeeID] = useState("7zdlrB1jfaWyXJrpjkW0");
+    const [employeeID,setEmployeeID] = useState(props.employeeID);
     const [employee,setEmployee] = useState({});
     const [attendanceList, setAttendanceList] = useState([]);
     const [attendanceList2, setAttendanceList2] = useState([]);
     const [editingAttendance, setEditingAttendance] = useState(props);
+    const [workedDayCount,setworkedDayCount]= useState(0);
+    const [leavesCount,setleavesCount]= useState(0);
+    const [halfDayCount,sethalfDayCount]= useState(0);
     const [updater,setUpdater]= useState(false);
     
 
@@ -67,9 +71,7 @@ function DisplayMonthlyAttendance(props) {
     
         }
         
-
-        setEmployeeID("7zdlrB1jfaWyXJrpjkW0");
-
+        console.log(employeeID);
         db.collection("employees")
         .doc(employeeID)
         .get()
@@ -94,7 +96,7 @@ function DisplayMonthlyAttendance(props) {
         });
 
         //-----------------------------------------------------------------------------
-
+        console.log(employeeID);
         db.collection("attendance")
         .where('employeeID', '==',employeeID).where('month','==',month).where('year','==',year).get()
         .then((querySnapshot) => {
@@ -118,6 +120,52 @@ function DisplayMonthlyAttendance(props) {
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
+
+        //getting data for worked days leaves and half days
+        db.collection("attendance")
+        .where('employeeID', '==',employeeID).where('month','==',month).where('year','==',year).where('dayStatus','==','worked').get()
+        .then((querySnapshot) => {
+            
+            const arr = querySnapshot.docs.map((doc) => (doc.data()));
+            
+            const no = arr.length
+            setworkedDayCount(no);
+            console.log("worked days.....>>>>>",workedDayCount);
+            
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+        db.collection("attendance")
+        .where('employeeID', '==',employeeID).where('month','==',month).where('year','==',year).where('dayStatus','==','onLeave').get()
+        .then((querySnapshot) => {
+            setAttendanceList([]);
+            const arr = querySnapshot.docs.map((doc) => (doc.data()));
+            const no = arr.length
+            console.log(arr.length)
+            setleavesCount(no)
+            console.log("leaves days.....>>>>>",leavesCount);
+            
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+        db.collection("attendance")
+        .where('employeeID', '==',employeeID).where('month','==',month).where('year','==',year).where('dayStatus','==','onHalfDay').get()
+        .then((querySnapshot) => {
+            setAttendanceList([]);
+            const arr = querySnapshot.docs.map((doc) => (doc.data()));
+            const no = arr.length
+            console.log(arr.length)
+            sethalfDayCount(no)
+            console.log("onHalfDay days.....>>>>>",halfDayCount);
+            
+            
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+        
         
         
 
@@ -187,7 +235,7 @@ function DisplayMonthlyAttendance(props) {
             <Row className="justify-content-center mt-5">
                 <h1 className="text-center text-warning">Monthly Attendance Report</h1>
             </Row>
-            <Row className="d-flex justify-content-center mt-3 bg-warning text-white">
+            <Row className="d-flex justify-content-center mt-3 bg-warning text-white shadow-sm">
                     <Col xs lg="3" className="d-flex align-items-center py-2"><h6 className="text-right w-100">ID: {employee.ID} </h6></Col>
                     <Col xs lg="3" className="d-flex align-items-center py-2"><h6 className="text-center w-100">Name: {employee.name} </h6></Col>
                     <Col xs lg="3" className="d-flex align-items-center py-2"><h6 className="text-leftt w-100" >Position:{employee.position}</h6></Col>
@@ -219,8 +267,53 @@ function DisplayMonthlyAttendance(props) {
                         </h6>
                     </Col>
             </Row>
-            <Row className="justify-content-center mt-5 border  pr-5 pl-5">
-                <Table striped bordered hover size="sm" className="w-100 m-5 ">
+            <Row className=" mt-5">
+                <Col xs lg="4" className="d-flex justify-content-center py-2">
+                    <Card
+                        hover="true"
+                        className="text-center rounded align-middle shadow"
+                        bg={"Warning".toLowerCase()}
+                        text={"white"}
+                        style={{ width: "12rem", height: "7rem", color: "#111111" }}
+                    >
+                        <Card.Body>
+                            <Card.Title>Total Worked Days</Card.Title>
+                            <Card.Title>{workedDayCount}</Card.Title>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col xs lg="4" className="d-flex justify-content-center py-2">
+                    <Card 
+                        hover="true"
+                        className="text-center rounded align-middle shadow"
+                        bg={"Warning".toLowerCase()}
+                        text={"white"}
+                        style={{ width: "12rem", height: "7rem", color: "#111111" }}
+                    >
+                        <Card.Body>
+                            <Card.Title>Total HalfDays</Card.Title>
+                            <Card.Title>{halfDayCount}</Card.Title>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col xs lg="4" className="d-flex justify-content-center py-2">
+                    <Card
+                        hover="true"
+                        className="text-center rounded shadow"
+                        bg={"Warning".toLowerCase()}
+                        text={"white"}
+                        style={{ width: "12rem", height: "7rem", color: "#111111" }}
+                    >
+                        <Card.Body>
+                            <Card.Title>Total Leaves</Card.Title>
+                            <Card.Title>{leavesCount}</Card.Title>
+                        </Card.Body>
+                    </Card>
+                </Col>
+
+            </Row>
+            <Row className="justify-content-center mt-5 pr-5 pl-5">
+                <Table striped bordered hover size="sm" className="w-100 m-5 shadow">
                     <thead>
                         <tr>
                         <th className="text-center">date</th>
@@ -241,7 +334,7 @@ function DisplayMonthlyAttendance(props) {
                                 <td className={`text-center ${(attendance.dayStatus=="null") ? "DisplayMonthlyAttendance__HideElement" : ""} `}>{attendance.dayStatus}</td>
                                 <td className={`text-center ${(attendance.dayStatus=="null") ? "DisplayMonthlyAttendance__HideElement" : ""} `}>{attendance.ProjectTitle}</td>
                                 <td className={`text-center DisplayMonthlyAttendance__editbtn ${(attendance.dayStatus=="null") ? "DisplayMonthlyAttendance__HideElement" : ""} `}>
-                                    <Link className="" to='/adminPannel/attendanceManager/EditAttendance'  className="nav-link" >
+                                    <Link className="" to='/adminPannel/EmployeeManager/EditAttendance'  className="nav-link" >
                                         <svg onClick={() => { morePressd(employeeID,attendance.datee);}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>

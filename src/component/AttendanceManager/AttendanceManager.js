@@ -1,6 +1,6 @@
-import React,{UseSate, useState} from 'react';
-
-import { Route } from "react-router-dom";
+import React,{UseSate, useState,useEffect} from 'react';
+import {Container, Row,Col} from "react-bootstrap";
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import './attendancemanager.css';
 import AttendanceManagerPannel from './AttendanceManagerPannel';
 import MarkArriving from './MarkArriving';
@@ -9,6 +9,7 @@ import EditAttendance from './editAttendance';
 import DisplayMonthlyAttendance from './DisplayMonthlyAttendance';
 import MarkPastHolidays from './MarkPastHolidays';
 import DeleteOldData from './DeleteOldData';
+import DailyAttendanceReport from './DailyAttendanceReport';
 function AttendanceManager() {
     const [editingAttendanceEmpID, setEditingAttendanceEmpID] = useState("");
     const [editingAttendanceDate, setEditingAttendanceDate] = useState("");
@@ -18,6 +19,11 @@ function AttendanceManager() {
         setEditingAttendanceEmpID(EmpID);
         setEditingAttendanceDate(datee);
     }
+    useEffect(() => {
+        
+        
+        
+    }, [])
 
     return (
         <div className="">
@@ -42,7 +48,12 @@ function AttendanceManager() {
             </Route>
             <Route path='/adminPannel/attendanceManager/DeleteOldData' component={DeleteOldData}>
                 <DeleteOldData/>
-            </Route>           
+            </Route>   
+            <Route path='/adminPannel/attendanceManager/DailyAttendanceReport' component={DailyAttendanceReport}>
+                <DailyAttendanceReport/>
+            </Route>  
+
+                
                     
                 
             
@@ -51,3 +62,4 @@ function AttendanceManager() {
 }
 
 export default AttendanceManager;
+

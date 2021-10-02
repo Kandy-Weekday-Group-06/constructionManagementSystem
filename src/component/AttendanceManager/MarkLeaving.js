@@ -26,7 +26,7 @@ function Alert(props) {
 function MarkLeaving(props) {
     const db = firebase.firestore();
     const [arrivingTime, setArrivingTime] = useState("");
-    const [arrivingDate, setArrivingDate] = useState("2021-09-10");
+    const [arrivingDate, setArrivingDate] = useState("2021-10-02");
     const [employees, setEmployees] = useState([]);
     const [editingAttendance, setEditingAttendance] = useState(props);
     const [ProjectTitles, SetProjectTitles] = useState([]);
@@ -81,6 +81,7 @@ function MarkLeaving(props) {
             }
     
             var date = today.getFullYear()+'-'+makeTwodigitNumber((today.getMonth()+1))+'-'+makeTwodigitNumber(today.getDate());
+            console.log(date)
             setArrivingDate(date);
             db.collection("employees").onSnapshot((snapshot) => {
                 const arr = snapshot.docs.map((doc) => {

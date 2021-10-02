@@ -163,6 +163,11 @@ function AttendanceHeader() {
                             title="Attendace Manager"
                             menuVariant="dark"
                             >
+                            <Link to='/adminPannel/attendanceManager/attendanceManagePanel'  className="nav-link" >
+                                <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
+                                    Attendace mannager pannel
+                                </NavDropdown.Item>
+                            </Link>
 
                             <Link to='/adminPannel/attendanceManager/markArriving'  className="nav-link" >
                                 <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
