@@ -11,7 +11,6 @@ function Employee(props) {
     const[details,setDetails]=useState(props);
     const [year,setYear] = useState("");
     const [month, setMonth]=useState("");
-    const[employee,setEmployee]=useState([]);
 
     async function CalculateSalary(){
 
@@ -23,14 +22,11 @@ function Employee(props) {
                     key : doc.id,
             }));
 
-            setEmployee(array);
-            console.log("employee array>>>>>>>>",employee);
-
             //run the for loop for each employee
-            for(let i=0;i<employee.length;i++){
+            for(let i=0;i<array.length;i++){
 
                 //filtering the number of worked days of the employee
-                db.collection("attendance").where("employeeID","==",employee[i].key).where("year","==",year).where("month","==",month).where("dayStatus","==","worked").onSnapshot(async (querySnapshot)=>{
+                db.collection("attendance").where("employeeID","==",array[i].key).where("year","==",year).where("month","==",month).where("dayStatus","==","worked").onSnapshot(async (querySnapshot)=>{
                     const array1=querySnapshot.docs.map((doc)=>({
                     
                             data : doc.data(),
@@ -39,11 +35,11 @@ function Employee(props) {
                     
                     //taking the length of the 'array1'
                     let total=array1.length;
-                    console.log("total of ",employee[i].key," is ",total);
+                    console.log("total of ",array[i].key," is ",total);
 
                     
                     //filtering the basic salary of the designation of the employee
-                    await db.collection("Designation").where("designation","==", employee[i].data.designation).onSnapshot((querySnapshot)=>{
+                    await db.collection("Designation").where("designation","==", array[i].data.designation).onSnapshot((querySnapshot)=>{
                         const array2 = querySnapshot.docs.map((doc)=>{
                                 
                                 //key : doc.id
@@ -51,8 +47,14 @@ function Employee(props) {
                                 let basic_salary=doc.data().basicSalary;
                                 let amount= total*doc.data().basicSalary; 
                                 console.log("amount",amount);
-                                let ETF_amount=amount*5/100;
-                                let employee_name=employee[i].data.employeeName;
+                                let ETF_amount=0;
+                                let employee_name=array[i].data.employeeName;
+
+                                //only for the contracted employees, ETF amount is calculated
+                                if(doc.data().status=="contracted"){
+                                    ETF_amount=amount*5/100;
+                                    console.log("ETF calculated for ",employee_name);
+                                }
 
                                 const SalaryRecord = {
                                     year,
@@ -67,7 +69,7 @@ function Employee(props) {
         
                                 //sending the record to the database
                                 db.collection("Salary").add(SalaryRecord).then(()=>{
-                                    console.log("record added for>>",employee[i].key)
+                                    console.log("record added for>>",array[i].key)
                                 }).catch((err)=>{
                                     alert(err.message);
                                 });
@@ -96,10 +98,19 @@ function Employee(props) {
         }
         
     }
+
+    function DeleteRecord(year,month){
+        var array = db.collection("Salary").where("year","==",year).where("month","==",month);
+        array.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            doc.ref.delete();
+        });
+        });
+        alert("Records deleted for year",year," month ",month);
+    }
+
     return (
         <div>
-            <Container>
-            <Form onSubmit={CalculateSalary}>
             <Container style={{margin:"80px 50px 50px 150px",}}>          
                 <Col style={{margin:"50px 50px 50px 100px",}}>
                     <Row>
@@ -128,17 +139,14 @@ function Employee(props) {
                    
                         <Col>
                             <Row>
-                                <Col md={{ span: 2, offset: 2 }}> <Button variant="outline-warning" type="submit">Calculate Salary</Button></Col>
+                                <Col md={{ span: 2, offset: 2 }}> <Button variant="outline-warning" type="submit" onClick={CalculateSalary}>Calculate Salary</Button></Col>
                                 <Col md={{ span: 4, offset: 0 }}>  <Link to='/adminPannel/EmployeeManager/salaryReport'><Button variant="outline-warning" onClick={()=>{SendDetails(year,month)}} type="submit">Generate Salary Report</Button></Link></Col>
+                                <Col md={{ span: 2, offset: 0 }}> <Button variant="outline-warning" onClick={()=>{DeleteRecord(year,month)}}>Delete Record</Button></Col>
                             </Row>   
                         </Col>
                    
                 </Row>    
             </Container>
-            </Form>
-            </Container>
-
-            
         </div>
     )
 }
