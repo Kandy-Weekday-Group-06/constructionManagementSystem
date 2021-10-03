@@ -184,13 +184,7 @@ function AttendanceManagerPannel() {
                                 </Button>
                             </Row>                   
                         </Link>
-                        <Link to='/adminPannel/attendanceManager/MonthlyReport'  className="nav-link" >
-                            <Row className="justify-content-md-center">
-                                <Button className="attendanceManager__mainButton" variant="outline-warning" onClick={()=>{checkInitializationForall()}}>
-                                    Monthly Report
-                                </Button>
-                            </Row>                   
-                        </Link>
+                        
                        
                         
                         

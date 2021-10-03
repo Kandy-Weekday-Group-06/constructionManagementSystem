@@ -214,11 +214,7 @@ function AttendanceHeader() {
                                     Delete Old Attendace
                                 </NavDropdown.Item>                
                             </Link>
-                            <Link to='/adminPannel/attendanceManager/MonthlyReport'  className="nav-link" >
-                                <NavDropdown.Item href="#action/3.1" onClick={()=>{checkInitializationForall()}}>
-                                    Monthly Report
-                                </NavDropdown.Item>                
-                            </Link>
+                            
                         </NavDropdown>
                     </li>
 
