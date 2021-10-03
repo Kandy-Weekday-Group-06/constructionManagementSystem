@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Table, Button } from "react-bootstrap";
+import { Table, Button,Form } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,7 +18,7 @@ function Report(props) {
     const [subcontractors, setSubcontractors] = useState([]);
 
     const [viewingReport, setViewingReport] = useState(props);
-
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
 
@@ -42,11 +42,22 @@ function Report(props) {
         <div>
            <div class="container">   
              <br/>
-             <h3 style={{color: '#ffb84d',}}>Payment Details</h3>
+             <h3 style={{color: '#ffb84d',}}>Transaction Reports</h3>
              <br/>
+             <center>
+             <Form.Group controlId="formBasicSearchBar">
+              <Form.Control
+                type="text"
+                placeholder="Search....."
+                onChange={(event) => {
+                setSearchTerm(event.target.value);
+                 }}
+              />
+             </Form.Group>
+            </center>
              <br/>
-             <h3 style={{backgroundColor: '#404040',color: '#ffb84d',padding: "7px"}}>
-               </h3>
+            <div className="container" style={{backgroundColor : 'white', width:800}}>
+              <br/>
              <Table striped bordered hover>
                 <thead>
                   <tr class="p-3 mb-2 bg-warning text-dark"> 
@@ -56,7 +67,19 @@ function Report(props) {
                   </tr>
                </thead>
                <tbody>
-               {subcontractors.map((subcontractor)=>(
+               {subcontractors
+                   .filter((subcontractor) => {
+                     if (searchTerm == "") {
+                        return subcontractor;
+                     }else if (
+                        subcontractor.data.comName
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())
+                     ) {
+                      return subcontractor;
+                    }
+                    })
+                  .map((subcontractor)=>(
                   
                   <tr>
                       <td>{subcontractor.data.comName}</td>
@@ -66,7 +89,7 @@ function Report(props) {
                         <Link to='/adminPannel/SubcontractManager/ViewReport'>
                         <Button  variant="warning"
                                 onClick={() => {viewReport(subcontractor.data.comName)}}>
-                          Payment Details Report
+                          View
                         </Button>
                         </Link>
                    </tr>
@@ -77,6 +100,7 @@ function Report(props) {
                <br/>
                <br/>
                </Table>
+               </div>
           </div>
         </div>
    )
