@@ -13,34 +13,40 @@ function AddClient() {
   const [address, setAddress] = useState("");
 
   const db = firebase.firestore();
-  
+
   function sendData(e) {
     e.preventDefault();
-    alert("Done!");
-    const newClient = {
-      clientName,
-      representativeName,
-      phone,
-      email,
-      address,
-    };
-    console.log(newClient);
+    if (
+      window.confirm(
+        "Are you sure you want to add a client with these details?"
+      )
+    ) {
+      alert("Done!");
+      const newClient = {
+        clientName,
+        representativeName,
+        phone,
+        email,
+        address,
+      };
+      console.log(newClient);
 
-    db.collection("clients")
-      .doc()
-      .set(newClient)
-      .then(() => {
-        console.log("Document successfully written!");
-      })
-      .catch((error) => {
-        console.error("Error writing document: ", error);
-      });
+      db.collection("clients")
+        .doc()
+        .set(newClient)
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
 
-    setClientName("");
-    setRepresentativeName("");
-    setPhone("");
-    setEmail("");
-    setAddress("");
+      setClientName("");
+      setRepresentativeName("");
+      setPhone("");
+      setEmail("");
+      setAddress("");
+    }
   }
 
   return (
