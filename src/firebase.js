@@ -3,13 +3,13 @@ import "firebase/firestore";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBEe1bI1Fv0cv6rEG-pe38lI3aSVQdpfWM",
-    authDomain: "constructionmanagementsy-6e63e.firebaseapp.com",
-    projectId: "constructionmanagementsy-6e63e",
-    storageBucket: "constructionmanagementsy-6e63e.appspot.com",
-    messagingSenderId: "160740400053",
-    appId: "1:160740400053:web:2efae09ba2600d231e97fc",
-    measurementId: "G-6LQ10SW02P"
+  apiKey: "AIzaSyBDgaDgzXATCAqeOwsorZ9aM_-B7zLdKBs",
+   authDomain: "constructionmanagementsy-892e6.firebaseapp.com",
+    projectId: "constructionmanagementsy-892e6", 
+    storageBucket: "constructionmanagementsy-892e6.appspot.com",
+     messagingSenderId: "275012817234", 
+     appId: "1:275012817234:web:46e4a6c99ce3a6cf052a8b", 
+     measurementId: "G-K91VJ7WGJ6"
   };
 
   firebase.initializeApp(firebaseConfig);

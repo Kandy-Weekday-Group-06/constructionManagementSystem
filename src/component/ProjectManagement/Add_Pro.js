@@ -68,7 +68,7 @@ function loader(){
   }
   db.collection("Con_Project").add({
     Title: newProject.title,
-    Budget: newProject.budget,
+    Budget: parseFloat(newProject.budget),
     Address:newProject.address,
     Client:newProject.clientDet,
     Start:newProject.startDate,
