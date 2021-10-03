@@ -15,77 +15,93 @@ function Employee(props) {
     async function CalculateSalary(e){
 
         e.preventDefault();
-        console.log("year>>",year,"month>>",month);
-        //taking all the employee details to the 'employee' array
-        db.collection("employees").onSnapshot((querySnapshot)=>{
-            const array = querySnapshot.docs.map((doc)=>({
-            
-                    data : doc.data(),
-                    key : doc.id,
-            }));
-
-            //run the for loop for each employee
-            for(let i=0;i<array.length;i++){
-
-                //filtering the number of worked days of the employee
-                db.collection("attendance").where("employeeID","==",array[i].key).where("year","==",year).where("month","==",month).where("dayStatus","==","worked").onSnapshot(async (querySnapshot)=>{
-                    const array1=querySnapshot.docs.map((doc)=>({
-                    
-                            data : doc.data(),
-                            key : doc.id
-                    }));
-                    
-                    //taking the length of the 'array1'
-                    let total=array1.length;
-                    console.log("total of ",array[i].key," is ",total);
-
-                    
-                    //filtering the basic salary of the designation of the employee
-                    await db.collection("Designation").where("designation","==", array[i].data.designation).onSnapshot((querySnapshot)=>{
-                        const array2 = querySnapshot.docs.map((doc)=>{
-                                
-                                //key : doc.id
-                                let work_days=total;
-                                let basic_salary=doc.data().basicSalary;
-                                let amount= total*doc.data().basicSalary; 
-                                console.log("amount",amount);
-                                let ETF_amount=0;
-                                let employee_name=array[i].data.employeeName;
-
-                                //only for the contracted employees, ETF amount is calculated
-                                if(doc.data().status=="contracted"){
-                                    ETF_amount=amount*5/100;
-                                    console.log("ETF calculated for ",employee_name);
-                                }
-
-                                const SalaryRecord = {
-                                    year,
-                                    month,
-                                    employee_name,
-                                    work_days,
-                                    basic_salary,
-                                    amount,
-                                    ETF_amount,
-                                    
-                                }
         
-                                //sending the record to the database
-                                db.collection("Salary").add(SalaryRecord).then(()=>{
-                                    console.log("record added for>>",array[i].key)
-                                }).catch((err)=>{
-                                    alert(err.message);
-                                });
-                                
-                                
-                                });  
-
-                    }) 
-    
-                })    
-            }
+        //if the month and year is not entered, function not gonna execute.
+        if(month=="" || year==""){
+            alert("enter year and month");
+        }
+        else{
+            
+            //taking all the employee details to the 'employee' array
+            db.collection("employees").onSnapshot((querySnapshot)=>{
+                const array = querySnapshot.docs.map((doc)=>({
                 
-        });
-        alert("Salary Calculated");
+                        data : doc.data(),
+                        key : doc.id,
+                }));
+
+                //run the for loop for each employee
+                for(let i=0;i<array.length;i++){
+
+                    //filtering the number of worked days of the employee
+                    db.collection("attendance").where("employeeID","==",array[i].key).where("year","==",year).where("month","==",month).where("dayStatus","==","worked").onSnapshot(async (querySnapshot)=>{
+                        const array1=querySnapshot.docs.map((doc)=>({
+                        
+                                data : doc.data(),
+                                key : doc.id
+                        }));
+                        
+                        //if the attendance record is empty, reload the page. the function is not going to execute further.
+                        if(array1.length==0){
+                            alert("No attendance records available for selected month");
+
+                            window.location.replace("/adminPannel/EmployeeManager/employeeSalary");
+                        }
+                        
+                        //taking the length of the 'array1'
+                        let total=array1.length;
+                        console.log("total of ",array[i].key," is ",total);
+
+                        
+                        //filtering the basic salary of the designation of the employee
+                        await db.collection("Designation").where("designation","==", array[i].data.designation).onSnapshot((querySnapshot)=>{
+                            const array2 = querySnapshot.docs.map((doc)=>{
+                                    
+                                    //key : doc.id
+                                    let work_days=total;
+                                    let basic_salary=doc.data().basicSalary;
+                                    let amount= total*doc.data().basicSalary; 
+                                    console.log("amount",amount);
+                                    let ETF_amount=0;
+                                    let employee_name=array[i].data.employeeName;
+
+                                    //only for the contracted employees, ETF amount is calculated
+                                    if(doc.data().status=="contracted"){
+                                        ETF_amount=amount*5/100;
+                                        console.log("ETF calculated for ",employee_name);
+                                    }
+
+                                    const SalaryRecord = {
+                                        year,
+                                        month,
+                                        employee_name,
+                                        work_days,
+                                        basic_salary,
+                                        amount,
+                                        ETF_amount,
+                                        
+                                    }
+            
+                                    //sending the record to the database
+                                    db.collection("Salary").add(SalaryRecord).then(()=>{
+                                        console.log("record added for>>",array[i].key)
+                                    }).catch((err)=>{
+                                        alert(err.message);
+                                    });
+                                    
+                                    
+                                    });  
+
+                        }) 
+        
+                    })    
+                }
+                    
+            },alert("Salary Calculated"))
+            }
+        
+        
+        
     } 
     
     
