@@ -9,7 +9,7 @@ import DesignationManager from "./component/DesignationManager/DesignationManage
 import ClientManager from "./component/ClientManager/ClientManager";
 import SupplierManager from "./component/SupplierManager/SupplierManager";
 import SubcontractManager from "./component/SubcontractManager/SubcontractManager";
-import EmployeeManager from "./component/EmployeeManager/EmployeeManager";
+import EmployeeManager from "./component/EmployeeManager/employeeManager";
 
 //Headers-----------Import
 

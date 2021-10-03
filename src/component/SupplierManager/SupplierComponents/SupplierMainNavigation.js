@@ -12,7 +12,7 @@ export default function SupplierMainNavigation() {
             <br/> <br/>
             <Link to = "/adminPannel/supplierManager/viewOrders"><Button variant = "outline-warning" size= "sm"  className= "SupplierMainNavBtn">View Upcoming Orders</Button></Link>
             <br/> <br/>
-            <Link to = "" className = "SupplierMainNavLinks"><Button variant = "outline-warning" size= "sm"  className= "SupplierMainNavBtn">View Report</Button></Link>                                    
+            <Link to = "/adminPannel/supplierManager/orderReport" className = "SupplierMainNavLinks"><Button variant = "outline-warning" size= "sm"  className= "SupplierMainNavBtn">View Report</Button></Link>                                    
             <br/><br/>
         </div>
     )

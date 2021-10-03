@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
 import { Grid, } from '@material-ui/core';
-import image2 from '../EmployeeManager/image/r.jpg';
+import image2 from './image/r.jpg';
 
 
 const useStyles = makeStyles((theme) => ({

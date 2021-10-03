@@ -19,10 +19,12 @@ export default function SupplierAddForm() {
     const [contactNoError,setContactNoError] = useState("");
     const [emailError,setEmailError] = useState("");
 
+    const [comapnyNameValid,setCompanyNameValid] = useState(false);
+
     function sendSupplierData(e){
         e.preventDefault();
 
-        if(isSupplierDataValid()){
+        if(isSupplierDataValid() && isCompanyValid()){
            
             //send data to collection called SupplierData
             db.collection("Supplier").doc().set({
@@ -50,6 +52,7 @@ export default function SupplierAddForm() {
             setCertificateError('');
             setContactNoError('');
             setEmailError('');
+            setCompanyNameValid(false);
         }
     }
 
@@ -82,19 +85,44 @@ export default function SupplierAddForm() {
 
     }
 
+    //check company name valid
+    function isCompanyValid(){
+
+        db.collection("Supplier").where("company","==",company).where("supplierCategory","==",supplierCategory).get().then(querySnapshot=>{
+        
+        // console.log(querySnapshot.empty);
+        if(querySnapshot.empty)
+            setCompanyNameValid(true);
+       
+        }).catch(err=>{
+            console.log(err.message);
+        })
+      
+        if(comapnyNameValid === true)
+            return true;
+        else{
+            setCompanyError("Company name is already exists within this category");
+            setCertificateError("");
+            setContactNoError("");
+            setEmailError("");
+            return false;
+        }    
+   
+    }
+
 
 
     return (
 
         <div className = "container">
         
-            <Form className ="container" onSubmit = {e=>{sendSupplierData(e)}}>
+            <Form className ="supplierAddForm" onSubmit = {e=>{sendSupplierData(e)}}>
 
                 <Row className = "addSupplierHeaderBackground">
                     <h3 className = "addSupplierH3"> Add New Supplier</h3>
                 </Row>
                 
-                <br/><br/>
+                <br/>
 
                 <Form.Group className="mb-3" controlId="formGroupText">
                     <Form.Label className= "supplierAddFormLabel">Supplier Category</Form.Label>
