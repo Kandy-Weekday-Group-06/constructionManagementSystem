@@ -140,8 +140,8 @@ function AddEmployee() {
 					        <Form.Control  
                         aria-label="Default select example" 
                         size="xxl"
-                        type="text"
-                        pattern="^[A-Za-z \s*]+$"
+                        as="textarea"
+                        rows={1}
                         required
                         placeholder="Ex : 5/A, Ampitiya" 
                         value={address} 
@@ -187,7 +187,10 @@ function AddEmployee() {
                         //type="text"
                         //pattern="^[[0-9]{10}"
                         //required
-                        placeholder="Ex : 15000"
+                        type="number" 
+                        step="0.01"
+                        min = "0.00"
+                        placeholder="Ex : 15000.00"
                         value={etf} 
                         onChange={e => setEtf(e.target.value)}>
 					        </Form.Control>

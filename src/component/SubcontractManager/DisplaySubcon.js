@@ -92,14 +92,14 @@ function DisplaySubcontractor(props) {
         <div>
            <div class="container">   
              <br/>
-             <h3 style={{ textalign: 'center'}}>Details of Subcontractors</h3>
+             <h3 class="text-warning">Details of Subcontractors</h3>
              <br/>
              <br/>
              <h3 style={{backgroundColor: '#404040',color: '#ffb84d',padding: "7px"}}>
                Carpenters</h3>
              <Table striped bordered hover>
                 <thead>
-                  <tr style={{backgroundColor: '#ffb84d'}}> 
+                  <tr class="p-3 mb-2 bg-warning text-dark"> 
                    <th>Company Name</th>    
                    <th>Email</th>
                    <th>Phone Number</th>
@@ -143,7 +143,7 @@ function DisplaySubcontractor(props) {
                Painters</h3>
                <Table striped bordered hover>
                 <thead>
-                  <tr style={{backgroundColor: '#ffb84d'}}> 
+                  <tr class="p-3 mb-2 bg-warning text-dark"> 
                    <th>Company Name</th>    
                    <th>Email</th>
                    <th>Phone Number</th>
@@ -186,7 +186,7 @@ function DisplaySubcontractor(props) {
                Electricians</h3>
                <Table striped bordered hover>
                 <thead>
-                  <tr style={{backgroundColor: '#ffb84d'}}> 
+                  <tr class="p-3 mb-2 bg-warning text-dark"> 
                    <th>Company Name</th>    
                    <th>Email</th>
                    <th>Phone Number</th>
@@ -228,7 +228,7 @@ function DisplaySubcontractor(props) {
                Tilers</h3>
                <Table striped bordered hover>
                 <thead>
-                  <tr style={{backgroundColor: '#ffb84d'}}> 
+                  <tr class="p-3 mb-2 bg-warning text-dark"> 
                    <th>Company Name</th>    
                    <th>Email</th>
                    <th>Phone Number</th>
@@ -272,7 +272,7 @@ function DisplaySubcontractor(props) {
                Plumbers</h3>
                <Table striped bordered hover>
                 <thead>
-                  <tr style={{backgroundColor: '#ffb84d'}}> 
+                  <tr class="p-3 mb-2 bg-warning text-dark"> 
                    <th>Company Name</th>    
                    <th>Email</th>
                    <th>Phone Number</th>
@@ -287,7 +287,8 @@ function DisplaySubcontractor(props) {
                       <td>{subcontractor.data.email}</td>
                       <td>{subcontractor.data.phone}</td>
                       <td>{subcontractor.data.joinDate}</td>
-                      <td>Project name</td>
+                     
+                     
                        
                         <Button
                             style={{backgroundColor: '#005c99'}}

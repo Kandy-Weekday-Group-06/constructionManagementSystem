@@ -6,12 +6,10 @@ import AddPayment from "./AddPayment";
 import React, { useState } from "react";
 import DisplayPayments from "./DisplayPayments";
 import EditPayment from "./EditPayment";
-import ViewClient from "./ViewClient";
 
 function ClientManager() {
   const [editingClient, setEditingClient] = useState("");
   const [editingPayment, setEditingPayment] = useState("");
-  const [viewingClient, setViewingClient] = useState("");
 
   function editClientHandler(CliID) {
     setEditingClient(CliID);
@@ -19,10 +17,6 @@ function ClientManager() {
 
   function editPaymentHandler(PayID) {
     setEditingPayment(PayID);
-  }
-
-  function viewClientHandler(CliName) {
-    setViewingClient(CliName);
   }
 
   return (
@@ -34,10 +28,7 @@ function ClientManager() {
             exact
             component={(DisplayClients, DisplayPayments)}
           >
-            <DisplayClients
-              editClientHandler={editClientHandler}
-              viewClientHandler={viewClientHandler}
-            />
+            <DisplayClients editClientHandler={editClientHandler} />
             <DisplayPayments editPaymentHandler={editPaymentHandler} />
           </Route>
 
@@ -47,10 +38,6 @@ function ClientManager() {
 
           <Route path="/adminPannel/ClientManager/EditClient">
             <EditClient id={editingClient} />
-          </Route>
-
-          <Route path="/adminPannel/ClientManager/ViewClient">
-            <ViewClient name={viewingClient} />
           </Route>
 
           <Route path="/adminPannel/ClientManager/AddPayment">

@@ -2,8 +2,6 @@ import React,{useState,useEffect} from "react";
 import firebase from "../../firebase";
 import { Card, Button,Row,Col,Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import date from "diff-dates"; 
-import dateformat from "dateformat";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 

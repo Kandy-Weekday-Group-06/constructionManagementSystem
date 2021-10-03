@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
         color:'#424242'
         //3c44b1
     },
+    
     pageTitle:{
         paddingLeft:theme.spacing(5),
         marginTop:theme.spacing(2),
@@ -46,8 +47,8 @@ export default function PageHeader(props) {
                         component="div">
                         {title}</Typography>
                     <Typography
-                        variant="subtitle2"
-                        component="div">
+                        variant="h5"
+                        component="div"><br/>
                         {subTitle}</Typography>
                 </div>
             </div>
