@@ -114,6 +114,7 @@ function AddSubcontractor() {
         
        <br/>
        <br/>
+       <div className="container" style={{backgroundColor : 'white'}}>
        <Container>
         <Row>
           <Col>
@@ -182,7 +183,7 @@ function AddSubcontractor() {
                </Form.Group>
                </Col>
               </Row>
-              <Button variant="primary" type="submit" style={{width:  510 ,backgroundColor: '#ffb84d',color: '#404040'}}>
+              <Button variant="warning" type="submit" style={{width:  609 ,color: '#404040'}}>
                   Submit
                </Button>
                <br/>
@@ -194,13 +195,14 @@ function AddSubcontractor() {
          </Col> 
          <Col>
             <div>
-              <br/>
-              <br/>
+             
+            
                 <Image src={addsubconpic} fluid className= "addsubconpic" thumbnail style={{border:"none"}}/>
             </div>
          </Col>
        </Row>
       </Container>
+      </div>
      </div>
      </div>
      <br/>

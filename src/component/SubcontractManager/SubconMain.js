@@ -1,10 +1,9 @@
 import React from 'react';
-import {Button,Container,Row,Col,Image} from 'react-bootstrap';
+import {Button,Table,Row,Col,Image,Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
-import addsubconMainpic from "../SubcontractManager/Images/single.PNG";
-import teamsubconMainpic from "../SubcontractManager/Images/team.PNG";
-import reportsubconMainpic from "../SubcontractManager/Images/19197292.jpg";
+
+import addsubconpic from "../SubcontractManager/Images/4775.jpg"
 
 function SubconMain() {
 
@@ -13,64 +12,58 @@ function SubconMain() {
 
     <div style={{backgroundColor : ' #f5f6fa'}}>
         
-         <br/>
-         <br/>
-         <br/>
+        
        <div className="container">
        <br/>
+       <br/>  
+       <br/> <br/> <br/>
+       <br/>
+        <div style={{color: '#ffb84d'}}> </div>
          <br/>
-       <div className="container" style={{backgroundColor : 'white'}}>
-            
-        <Container>
+       <div className="container" style={{backgroundColor : 'white',width: 900,height: 400}}>
+       <br/>   <br/>
+      
+              
+       <Container>
         <Row>
-          <br/>
-          <br/>
-          <br/>
-       
-        </Row>
-         <Row>
-         <Col></Col>
-         <Col></Col>
-         <Col></Col>
-         
-          <Col xs={6} md={3}>
-              <Image src={addsubconMainpic} fluid className= "addsubconMainpic" thumbnail roundedCircle style={{width: 200,height: 200}}/> 
-              <Link to='/adminPannel/SubcontractManager/addSubcon'  className="link1" >
+          <Col >
+          <div className="container">
+          <div className="container">  
+          <center> <h3 class="text-warning">Subcontractors </h3> </center>
+     
+             <br/>
+          <Link to='/adminPannel/SubcontractManager/addSubcon'  className="link1" >
               <>
-              <Button variant="outline-dark">Add New Subcontractor</Button>{' '}
+              <Button style={{width: 300}}variant="outline-warning">Add New Subcontractor</Button>{' '}
               </>
               </Link>
-         </Col>
-        <Col></Col>
-      
-         <Col xs={6} md={4}>
-             <Image src={teamsubconMainpic} fluid className= "addsubconMainpic" thumbnail roundedCircle style={{width: 200,height: 200}}/> 
+              <br/>
+              <br/>
              <Link to='/adminPannel/SubcontractManager/displaySubcontractors'  className="link1" >
              <>
-              <br/>
-              <Button variant="outline-dark">Subcontractor's Details</Button>{' '}
+              <Button style={{width: 300}} variant="outline-warning">Subcontractor's Details</Button>{' '}
             </>
             </Link>
-         </Col>
-
-         <Col xs={6} md={4}>
-             <Image src={reportsubconMainpic} fluid className= "addsubconMainpic" thumbnail roundedCircle style={{width: 200,height: 200}}/> 
-             <>
-              <Button variant="outline-dark">Subcontractor's Payments Report</Button>{' '}
-            </>
-         </Col>        
-      </Row>
-       <br/>
-       <br/>
-       <Row>
+            <br/>
+            <br/>
+              <Link to='/adminPannel/SubcontractManager/report'  className="link1" >
+              <>
+              <Button style={{width: 300}} variant="outline-warning">Payments Report</Button>{' '}
+              </>
+              </Link>
+             </div> 
+             </div>
+          </Col>
+          <Col>
+          <Image src={addsubconpic} fluid className= "addsubconpic" thumbnail style={{border:"none"}}/>
+          </Col>
+          
        </Row>
-      </Container>
+  
+       </Container>       
+       
       </div>
-      </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+     </div>
     </div>
 
 

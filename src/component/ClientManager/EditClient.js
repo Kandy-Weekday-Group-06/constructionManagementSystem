@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./clientmanager.css";
 
 function EditClient(props) {
   const [clientName, setClientName] = useState("");
@@ -127,20 +128,23 @@ function EditClient(props) {
             }}
           />
         </Form.Group>
-
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Individual's/ Organization's Physical Address</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="example: Shawnee, Oklahoma, USA."
-            required
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value);
-            }}
-          />
-        </Form.Group>
+        <div class="form-group w-50">
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>
+              Individual's/ Organization's Physical Address
+            </Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="example: Shawnee, Oklahoma, USA."
+              required
+              value={address}
+              onChange={(e) => {
+                setAddress(e.target.value);
+              }}
+            />
+          </Form.Group>
+        </div>
         <Button variant="warning" type="submit">
           Submit
         </Button>

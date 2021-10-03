@@ -51,14 +51,14 @@ function EditDesignation(props) {
             <Container>
                 <Row>
                     <Col>
-                        <Form style={{margin:"80px 50px 50px 100px",}}>
+                        <Form style={{margin:"80px 50px 50px 100px",}} onSubmit={UpdateDesignation}>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label className="text-warning" style={{fontSize:"18px",}}>Designation</Form.Label>
-                                <Form.Control value={designation} onChange={(e)=>{setDesignation(e.target.value)}} type="text" />
+                                <Form.Control value={designation} onChange={(e)=>{setDesignation(e.target.value)}} type="text"  required/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label className="text-warning" style={{fontSize:"18px",}}>Basic Salary</Form.Label>
-                                <Form.Control value={basicSalary} onChange={(e)=>{setBasicSalary(e.target.value)}} type="text"  />
+                                <Form.Control value={basicSalary} onChange={(e)=>{setBasicSalary(e.target.value)}} type="number" required pattern="[0-9]"/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label className="text-warning" style={{fontSize:"18px",}}>Status</Form.Label>
@@ -69,9 +69,8 @@ function EditDesignation(props) {
                             </Form.Group>
                             <br/>
                             
-                            <Link to='./AdminPannel/DesignationManager'>
-                                <Button variant="outline-warning" onClick={UpdateDesignation}  type="submit"> Update</Button>
-                            </Link>
+                            <Button variant="outline-warning"  type="submit"> Update</Button>
+                            
                            
                         </Form>
                     </Col>

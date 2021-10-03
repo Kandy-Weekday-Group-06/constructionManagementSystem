@@ -15,6 +15,7 @@ function SalaryReport(props) {
     const[tot_etf,settotetf]=useState("");
     const[tot_amount_to_pay,settot_amount_to_pay]=useState("");
     const [loading, setLoading] = useState(false);
+    const[searchTerm,setSearchTerm]=useState("");
 
 
     useEffect(()=>{
@@ -71,12 +72,25 @@ function SalaryReport(props) {
         
 
 
-    },[db,loading]);
+    },[db]);
    
 
 
  return (
         <div>
+            <Container>
+                <center>
+                    <Form.Group controlId="formBasicSearchBar">
+                    <Form.Control
+                        type="text"
+                        placeholder="Search by employee's name..."
+                        onChange={(event) => {
+                        setSearchTerm(event.target.value);
+                        }}
+                    />
+                    </Form.Group>
+                </center>
+            </Container>
             <Container style={{margin:"100px 100px 20px 480px",}}>
                 <h2 className="text-warning" style={{ fontWeight:"18px"}}>Salary Report for Year {year} Month {month}</h2>
             </Container>
@@ -94,7 +108,17 @@ function SalaryReport(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {record.map((doc)=>(
+                        {record.filter((record)=>{
+                            if (searchTerm == "") {
+                                return record;
+                              } else if (
+                                record.data.employee_name
+                                  .toLowerCase()
+                                  .includes(searchTerm.toLowerCase())
+                              ) {
+                                return record;
+                              }
+                        }).map((doc)=>(
                             <tr>
                                 <td style={{ textAlign: "left", verticalAlign: "middle" }}>{doc.data.employee_name}</td>
                                 <td style={{ textAlign: "center", verticalAlign: "middle" }}>{doc.data.basic_salary}</td>

@@ -7,15 +7,25 @@
 }
 
 .addSupplierHeaderBackground{
-    background-color: #f0ad4e;
+    background-color: whitesmoke;
     
 }
 
 .addSupplierH3{
     padding: 20px;
+    color:#ffc107;
 }
 .supplierAddFormErroMsg{
     color:red;
     font-size: 12px;
     font-weight: bolder;
+}
+
+.supplierAddForm{
+    margin-left: 8%;
+    margin-right: 30%;
+    display: block;
+    border:1px #ffc107 dotted;
+    padding: 20px;
+    
 }

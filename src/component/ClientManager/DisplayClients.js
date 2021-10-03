@@ -9,7 +9,7 @@ function DisplayClients(props) {
   const [clients, setClients] = useState([]);
   const db = firebase.firestore();
   const [editingClient, setEditingClient] = useState(props);
-  const [viewingClient, setViewingClient] = useState(props);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -40,13 +40,8 @@ function DisplayClients(props) {
     editingClient.editClientHandler(id);
   }
 
-  function viewClient(name) {
-    //alert("view cli", id);
-    viewingClient.viewClientHandler(name);
-  }
-
   return (
-    <div>
+    <div style={{ paddingRight: "20px", paddingLeft: "20px" }}>
       <br />
       <center>
         <Form.Group controlId="formBasicSearchBar">
@@ -119,21 +114,9 @@ function DisplayClients(props) {
                 </td>
                 <td style={{ textAlign: "center" }}>
                   <ButtonGroup>
-                    <Link to="/adminPannel/ClientManager/ViewClient">
-                      <Button
-                        style={{ borderRadius: "5px 0 0 5px" }}
-                        variant="info"
-                        onClick={() => {
-                          viewClient(client.data.clientName);
-                        }}
-                      >
-                        Report
-                      </Button>
-                    </Link>
-
                     <Link to="/adminPannel/ClientManager/EditClient">
                       <Button
-                        style={{ borderRadius: "0" }}
+                        style={{ borderRadius: "5px 0 0 5px" }}
                         variant="warning"
                         onClick={() => {
                           editClient(client.ID);

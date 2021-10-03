@@ -1,10 +1,10 @@
-import { TextField, Form, makeStyles,Paper } from "@material-ui/core";
+import { TextField, makeStyles,Paper } from "@material-ui/core";
 import React, { useState, useEffect } from 'react'
 import { Grid } from '@material-ui/core';
 import firebase from "firebase";
 import PageHeader from "./PageHeader";
 import PeopleOutlineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
-import { Button,Row,Col,Container } from "react-bootstrap";
+import { Button,Row,Col,Container,Form } from "react-bootstrap";
 import Button1 from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 
@@ -35,8 +35,10 @@ function EditEmployee(props) {
     const [startdate, setStartDate] = useState("");
     const [etf, setEtf] = useState("");
     const [empType, setEmpType] = useState("");
+    const [type , setType] = useState([]);
 
     const db = firebase.firestore();
+    const db4 = firebase.firestore();
 
     const [employeeID, setEmployeeId] = useState(props.id);
 
@@ -83,6 +85,14 @@ function EditEmployee(props) {
         db.collection("employees").doc(employeeID).update(updatedEmployee);
       }
 
+
+      useEffect(() => {
+        db4.collection("Designation").onSnapshot(snapshot=>{
+            const arr =snapshot.docs.map(doc =>doc.data());
+            setType(arr);
+        })
+    }, [db4])
+
     return (
 
     <>
@@ -92,127 +102,115 @@ function EditEmployee(props) {
         icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
     />
     <div>
-      <Paper  elevation={3} className = {classes.pageContent}>
-        <form onSubmit={editdata} className ={classes.root}>
-            <Grid container>
-                <Grid item xs={6}>
-                    <TextField
-                        
-                        label ="Full Name"
-                        name = "employeeName"
-                        type="text"
+    <Container fluid="sm" >
+          <Row>
+            <Col md={{ span: 5, offset: 3 }}>
+              <Form onSubmit={editdata}>
+				  
+					    <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Employee Name</Form.Label>  
+					        <Form.Control  
+                        aria-label="Default select example" 
+                        size="xxl"
+                        type="text" 
                         pattern="^[A-Za-z \s*]+$"
                         required
-                        value={employeeName}
-                        onChange={(e) => {
-                          setEmployeeName(e.target.value);
-                        }}
-                    />
+                        placeholder="Ex : K.M.L.Perera"
+                        value={employeeName} 
+                        onChange={e => setEmployeeName(e.target.value)}>
+					        </Form.Control>
+              </Form.Group>
 
-                    <TextField
-                        
-                        label ="Address"
-                        name = "address"
-                        type="text"
-                        pattern="^[A-Za-z \s*]+$"
+					    <Form.Group className="mb-3" controlId="formBasicTitle">
+                <Form.Label>Address</Form.Label>  
+					        <Form.Control  
+                        aria-label="Default select example" 
+                        size="xxl"
+                        as="textarea"
+                        rows={1}
                         required
-                        value={address}
-                        onChange={(e) => {
-                          setAddress(e.target.value);
-                        }}
-                    />
+                        placeholder="Ex : 5/A, Ampitiya" 
+                        value={address} 
+                        onChange={e => setAddress(e.target.value)}>
+					        </Form.Control>
+              </Form.Group>
 
-                    
-                    <TextField
-                        
-                        label ="Phone"
-                        name = "phoneNumber"
+              <Form.Group className="mb-3" controlId="formBasicTitle">
+                <Form.Label>Phone Number</Form.Label>  
+					        <Form.Control  
+                        aria-label="Default select example" 
+                        size="xxl"
                         type="text"
-                        pattern="[0-9]{10}"
+                        pattern="^[[0-9]{10}"
                         required
-                        value={phoneNumber}
-                        onChange={(e) => {
-                          setPhoneNumber(e.target.value);
-                        }}
-                    />
+                        placeholder="Ex : 0712645893" 
+                        value={phoneNumber} 
+                        onChange={e => setPhoneNumber(e.target.value)}>
+					        </Form.Control>
+              </Form.Group>
 
-
-                    <TextField
-                        
-                        label ="ETF Amount"
-                        name = "etf"
-                        type="text"
-                        pattern="^[A-Za-z \s*]+$"
-                        value={etf}
-                        onChange={(e) => {
-                        setEtf(e.target.value);
-                        }}
-                    />
-
-                </Grid>
-                <Grid item xs={6}>
-
-                <TextField
-                        
-                        label ="Designation"
-                        name = "designation"
-                        type="text"
-                        //pattern="^[A-Za-z \s*]+$"
-                        value={designation}
-                        onChange={(e) => {
-                          setDesignation(e.target.value);
-                        }}
-                />
-
-                  <TextField
-                        
-                        label ="Type"
-                        name = "empType"
-                        type="text"
-                        //pattern="^[A-Za-z \s*]+$"
+              <Form.Group className="mb-3" controlId="formBasicTitle">
+                <Form.Label>Designation</Form.Label>  
+					        <Form.Control as  = "select" 
+                        aria-label="Default select example" 
+                        size="xxl"
+                        width = "20%"
                         required
-                        value={empType}
-                        onChange={(e) => {
-                        setEmpType(e.target.value);
-                        }}
-                    />
+                        placeholder="Select" 
+                        value={designation} 
+                        onChange={e => setDesignation(e.target.value)}>
+						            {type.map(des=>(
+							          <option  >{des.designation}</option>
+						            ))}
+					        </Form.Control>
+              </Form.Group>
 
-                    <TextField
-                        
-                        //label ="Start Date"
-                        name = "startdate"
-                        type="date"
+					    <Form.Group className="mb-3" controlId="formBasicTitle">
+                <Form.Label>ETF Amount</Form.Label>  
+					        <Form.Control  
+                        aria-label="Default select example" 
+                        size="xxl"
+                        //type="text"
+                        //pattern="^[[0-9]{0}"
+                        //required
+                        type="number"
+                        step="0.01"
+                        min = "0.00"
+                        placeholder="Ex : 15000.00"
+                        value={etf} 
+                        onChange={e => setEtf(e.target.value)}>
+					        </Form.Control>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicTitle">
+                <Form.Label>Type</Form.Label>  
+					        <Form.Control as  = "select" 
+                        aria-label="Default select example" 
+                        size="xxl"
+                        width = "20%"
                         required
-                        disabled
-                        //pattern="^[A-Za-z \s*]+$"
-                        value={startdate}
-                        onChange={(e) => {
-                        setStartDate(e.target.value);
-                        }}
-                    />
+                        placeholder="Select" 
+                        value={empType} 
+                        onChange={e => setEmpType(e.target.value)}>
+						            {type.map(ty=>(
+							          <option  >{ty.status}</option>
+						            ))}
+					        </Form.Control>
+              </Form.Group>
+              
 
-                  <Link to ='/adminPannel/EmployeeManager/DisplayEmployee'>
-                    <Button  type="submit"
-                      styles={{
-                        borderRadius: 15,
-                        /*padding: "10px 20px",*/
-                        backgroundColor: "#424242",
-                        width: "200px",
-                        margin : "0px 0px 30px 300px",
-                        color : "#ffffff",
-                        }}
-                        variant="warning"
-                      
-                    >
-                        submit
-                    </Button>
-                  </Link>
+              <Button variant="warning" type="submit"
+                  styles = {{
+                    margin : "0px 0px 10px 0px",
+                  }}>
+                  Edit Employee
+              </Button>
+              <br/>
 
-
-                </Grid>
-            </Grid>
-        </form>
-        </Paper>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
     </div>
     </>
 

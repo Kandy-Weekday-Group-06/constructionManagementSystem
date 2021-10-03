@@ -15,9 +15,10 @@ import SalaryReport from './salaryReport';
 import Employee from './employeeSalary';
 import DisplayMonthlyAttendance from '../AttendanceManager/DisplayMonthlyAttendance'
 import EditAttendance from '../AttendanceManager/editAttendance';
+import EmployeeReport from './EmployeeReport';
+import BarChart from './BarChart';
 
-    
-    
+
 
 export default function EmployeeManager() {
 
@@ -72,7 +73,7 @@ export default function EmployeeManager() {
                         <Employee setDetailsMain={setDetailsMain}/>
                     </Route>
                     <Route path='/adminPannel/EmployeeManager/salaryReport' component={SalaryReport}>
-                        <SalaryReport year={year} month={month}  />
+                        <SalaryReport year={year} month={month}/>
                     </Route>
 
                     <Route exact path='/adminPannel/EmployeeManager/EmpHome'  component={EmpHome}>
@@ -109,6 +110,14 @@ export default function EmployeeManager() {
                     </Route>
                     <Route path='/adminPannel/attendanceManager/EditAttendance' component={EditAttendance}>
                         <EditAttendance employeeID={editingAttendanceEmpID} editingAttendanceDate={editingAttendanceDate}/>
+                    </Route>
+
+                    <Route exact path = '/adminPannel/EmployeeManager/EmployeeReport' component = {EmployeeReport}>
+                        <EmployeeReport></EmployeeReport>
+                    </Route>
+
+                    <Route exact path = '/adminPannel/EmployeeManager/BarChart' component = {BarChart}>
+                        <BarChart></BarChart>
                     </Route>
 
                 </Switch>
