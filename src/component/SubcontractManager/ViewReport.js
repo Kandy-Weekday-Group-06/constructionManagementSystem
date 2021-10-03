@@ -59,7 +59,7 @@ function ViewReport(props) {
       <div >
       <div className="container" style={{backgroundColor : 'white'}}>
       <br/>
-      <h4> Company Name :  {comName} </h4>
+      <center> <h4> {comName} </h4> </center>
      
       <br/>
       
@@ -86,6 +86,7 @@ function ViewReport(props) {
             ))}
         </tbody>
       </Table>
+      <br/>
       </div>
      </div>
     </div>

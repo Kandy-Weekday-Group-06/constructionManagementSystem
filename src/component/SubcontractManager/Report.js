@@ -42,7 +42,7 @@ function Report(props) {
         <div>
            <div class="container">   
              <br/>
-             <h3 style={{color: '#ffb84d',}}>Payment Details</h3>
+             <h3 style={{color: '#ffb84d',}}>Transaction Reports</h3>
              <br/>
              <center>
              <Form.Group controlId="formBasicSearchBar">
@@ -56,7 +56,8 @@ function Report(props) {
              </Form.Group>
             </center>
              <br/>
-            <div className="container" style={{backgroundColor : 'white'}}>
+            <div className="container" style={{backgroundColor : 'white', width:800}}>
+              <br/>
              <Table striped bordered hover>
                 <thead>
                   <tr class="p-3 mb-2 bg-warning text-dark"> 
@@ -88,7 +89,7 @@ function Report(props) {
                         <Link to='/adminPannel/SubcontractManager/ViewReport'>
                         <Button  variant="warning"
                                 onClick={() => {viewReport(subcontractor.data.comName)}}>
-                          Payment Details Report
+                          View
                         </Button>
                         </Link>
                    </tr>

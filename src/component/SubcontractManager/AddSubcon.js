@@ -114,6 +114,7 @@ function AddSubcontractor() {
         
        <br/>
        <br/>
+       <div className="container" style={{backgroundColor : 'white'}}>
        <Container>
         <Row>
           <Col>
@@ -201,6 +202,7 @@ function AddSubcontractor() {
          </Col>
        </Row>
       </Container>
+      </div>
      </div>
      </div>
      <br/>
