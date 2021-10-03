@@ -12,8 +12,10 @@ function Employee(props) {
     const [year,setYear] = useState("");
     const [month, setMonth]=useState("");
 
-    async function CalculateSalary(){
+    async function CalculateSalary(e){
 
+        e.preventDefault();
+        console.log("year>>",year,"month>>",month);
         //taking all the employee details to the 'employee' array
         db.collection("employees").onSnapshot((querySnapshot)=>{
             const array = querySnapshot.docs.map((doc)=>({
@@ -100,6 +102,8 @@ function Employee(props) {
     }
 
     function DeleteRecord(year,month){
+
+        console.log(year,month);
         var array = db.collection("Salary").where("year","==",year).where("month","==",month);
         array.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -117,7 +121,15 @@ function Employee(props) {
                         <Col>
                             <Row style={{margin:"0px 10px 0px 10px"}}>
                                 <Col md={{ span: 2, offset: 2 }}> <Form.Label  md={{ span: 2, offset: 5 }} className="text-warning" style={{fontSize:"18px"}}>Year</Form.Label> </Col>
-                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setYear(e.target.value)}} type="text" placeholder="Enter year" required pattern="[0-9]{4}"/></Col>
+                                <Col md={{ span: 2, offset: 0 }}> <Form.Control as="select" md={{ span: 2, offset: 0 }} value={year} onChange={(e)=>{setYear(e.target.value)}}>
+                                    <option value="">select year</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                </Form.Control></Col>
                             </Row>   
                         </Col>
 
@@ -126,7 +138,21 @@ function Employee(props) {
                         <Col>
                             <Row style={{margin:"0px 10px 0px 10px"}}>
                                 <Col md={{ span: 2, offset: 2 }}> <Form.Label md={{ span: 2, offset: 2 }} className="text-warning" style={{fontSize:"18px"}}>Month</Form.Label></Col>
-                                <Col md={{ span: 2, offset: 0 }}> <Form.Control md={{ span: 2, offset: 0 }} onChange={(e)=>{setMonth(e.target.value)}} type="text" placeholder="Enter month" required pattern="[0-9]{2}"/></Col>
+                                <Col md={{ span: 2, offset: 0 }}> <Form.Control as="select" md={{ span: 2, offset: 0 }} value={month} onChange={(e)=>{setMonth(e.target.value)}}>
+                                    <option value="">select month</option>
+                                    <option value="01">Jan</option>
+                                    <option value="02">Feb</option>
+                                    <option value="03">Mar</option>
+                                    <option value="04">Apr</option>
+                                    <option value="05">May</option>
+                                    <option value="06">Jun</option>
+                                    <option value="07">Jul</option>
+                                    <option value="08">Aug</option>
+                                    <option value="09">Sep</option>
+                                    <option value="10">Oct</option>
+                                    <option value="11">Nov</option>
+                                    <option value="12">Dec</option>
+                                </Form.Control></Col>
                             </Row>   
                         </Col>
 
@@ -139,8 +165,8 @@ function Employee(props) {
                    
                         <Col>
                             <Row>
-                                <Col md={{ span: 2, offset: 2 }}> <Button variant="outline-warning" type="submit" onClick={CalculateSalary}>Calculate Salary</Button></Col>
-                                <Col md={{ span: 4, offset: 0 }}>  <Link to='/adminPannel/EmployeeManager/salaryReport'><Button variant="outline-warning" onClick={()=>{SendDetails(year,month)}} type="submit">Generate Salary Report</Button></Link></Col>
+                                <Col md={{ span: 2, offset: 2 }}> <Button variant="outline-warning" onClick={CalculateSalary}>Calculate Salary</Button></Col>
+                                <Col md={{ span: 4, offset: 0 }}>  <Link to='/adminPannel/EmployeeManager/salaryReport'><Button variant="outline-warning" onClick={()=>{SendDetails(year,month)}} >Generate Salary Report</Button></Link></Col>
                                 <Col md={{ span: 2, offset: 0 }}> <Button variant="outline-warning" onClick={()=>{DeleteRecord(year,month)}}>Delete Record</Button></Col>
                             </Row>   
                         </Col>
