@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./component/Home/Home";
 import Header from "./component/Header/Header";
-import AdminPannel from "./component/AdminPannel/AdminPannel";
+import AdminPannel from "./component/AdminPannel/AdminPannel1";
 import AttendanceManager from "./component/AttendanceManager/AttendanceManager";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProjectManager from "./component/ProjectManagement/ProjectUI";
