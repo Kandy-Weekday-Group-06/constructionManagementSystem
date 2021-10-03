@@ -305,6 +305,8 @@ function calSalary(amt){
 
   
 
+
+
 function getEmpSalary(name){
   let employee="";
   let currentsal=0;
