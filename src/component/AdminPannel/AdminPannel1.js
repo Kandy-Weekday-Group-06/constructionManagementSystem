@@ -21,19 +21,19 @@ export default function AdminPannel1() {
         
         <Container className = "shadow-lg p-3 mb-5 bg-white rounded">
             <div className = "admin_Container">
-                <Link to = "" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">CLIENT MANAGER</Button></Link>
+                <Link to = "/adminPannel/ClientManager" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">CLIENT MANAGER</Button></Link>
                 <br/><br/>
-                <Link to = "" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">PROJECT MANAGER</Button></Link>
+                <Link to = "/adminPannel/ProjectManagement" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">PROJECT MANAGER</Button></Link>
                 <br/> <br/>
-                <Link to = "" className ="AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">EMPLOYEE MANAGER</Button></Link>
+                <Link to = "/adminPannel/EmployeeManager/EmpHome" className ="AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">EMPLOYEE MANAGER</Button></Link>
                 <br/> <br/>
-                <Link to = "" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">ATTENDANCE MANAGER</Button></Link>                                    
+                <Link to = "/adminPannel/attendanceManager/attendanceManagePanel" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">ATTENDANCE MANAGER</Button></Link>                                    
                 <br/><br/>
-                <Link to = "" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">DESIGNATION MANAGER</Button></Link>                                    
+                <Link to = "/adminPannel/DesignationManager" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">DESIGNATION MANAGER</Button></Link>                                    
                 <br/><br/>
-                <Link to = "" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">SUBCONTRACT MANAGER</Button></Link>                                    
+                <Link to = "/adminPannel/SubcontractManager/SubconMain" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">SUBCONTRACT MANAGER</Button></Link>                                    
                 <br/><br/>
-                <Link to = "" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">SUPPLIER MANAGER</Button></Link>                                    
+                <Link to = "/adminPannel/supplierManager" className = "AdminPannelNavLinks"><Button variant = "outline-warning" size= "sm"  className= "AdminPannelNavBtn">SUPPLIER MANAGER</Button></Link>                                    
                 <br/><br/>
             </div>
         </Container>
