@@ -182,42 +182,44 @@ function EditAttendance(props) {
                     <Col sm lg="3" className="justify-content-center py-2"><h6 className="text-center" >Position: {position}</h6></Col>
                     
             </Row>
-            <Row className="justify-content-center border ">
+            <Row className="justify-content-center ">
                 <Form className="w-75 justify-content-center mb-5"  onSubmit={editdata}>
                     
                     <Row className="d-flex justify-content-center align-items-center mt-3 w-100">
                         
                         <Col sm lg="3" className="d-flex justify-content-center align-items-center">
-                        <Form.Group className="mb-1" controlId="formBasicEmail"><Form.Label><h6 className="" >Date :</h6></Form.Label><Form.Control className="maxwid" max={maxDate} type="date" value={date} onChange={(e)=>{setDate(e.target.value);}} />
+                        <Form.Group className="mb-1" controlId="formBasicEmail">
+                            <Form.Label><h6 className="" >Date :</h6></Form.Label>
+                            <Form.Control className="maxwid" max={maxDate} type="date" value={date} onChange={(e)=>{setDate(e.target.value);}} />
                         </Form.Group></Col>
                          
                     </Row>    
                     <Row className="justify-content-center mt-5 w-100">
-                        <Col sm lg="3" className="minwid">
+                        <Col sm lg="4" className="d-flex justify-content-center">
                             <Form.Group className="mb-1" controlId="formBasicEmail">
                                 <Form.Label>Arrive At</Form.Label>
-                                <Form.Control type="time" className="minwid" value={arriveAt} onChange={(e)=>{setArriveAt(e.target.value);error1HandleClose();error2HandleClose();}}/>
+                                <Form.Control type="time"  className="maxwid" value={arriveAt} onChange={(e)=>{setArriveAt(e.target.value);error1HandleClose();error2HandleClose();}}/>
                                 
                             </Form.Group>
                         </Col>
-                        <Col sm lg="3" className="minwid">
+                        <Col sm lg="4" className="d-flex justify-content-center">
                             <Form.Group className="mb-1" controlId="formBasicEmail">
                                 <Form.Label>Left At</Form.Label>
-                                <Form.Control type="time" className="minwid" value={leftAt} onChange={(e)=>{setleftAt(e.target.value);error1HandleClose();error2HandleClose();}}/>
+                                <Form.Control type="time" className="maxwid"  value={leftAt} onChange={(e)=>{setleftAt(e.target.value);error1HandleClose();error2HandleClose();}}/>
                                 
                                 
                             </Form.Group>
                             
-                            <br />
+                           
                         
                         </Col>
                     
                     </Row> 
                     <Row className="justify-content-center mt-1 w-100">
-                        <Col sm lg="3" className="minwid">
+                        <Col sm lg="4" className="d-flex justify-content-center ">
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Day type</Form.Label>
-                                <Form.Control className="minwid" as="select" value={dayType} onChange={(e)=>{setDaytype(e.target.value);}}>
+                                <Form.Control  as="select" className="maxwid" value={dayType} onChange={(e)=>{setDaytype(e.target.value);}}>
                                     
                                     <option value="initialized">Initialized</option>
                                     <option value="worked">Worked</option>
@@ -229,10 +231,10 @@ function EditAttendance(props) {
                                 </Form.Control>
                             </Form.Group>    
                         </Col>
-                        <Col sm lg="3" className="minwid">
+                        <Col sm lg="4" className="d-flex justify-content-center">
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Project</Form.Label>
-                                <Form.Control className="minwid" as="select" value={ProjectTitle} onChange={(e)=>{SetProjectTitle(e.target.value);}}>
+                                <Form.Control  as="select" className="maxwid" value={ProjectTitle} onChange={(e)=>{SetProjectTitle(e.target.value);}}>
                                     <option value="">select a project Title</option>
                                     {ProjectTitles.map(Title=>(
                                         <option value={Title}>{Title}</option>

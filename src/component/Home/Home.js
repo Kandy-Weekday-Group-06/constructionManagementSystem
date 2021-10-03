@@ -241,25 +241,26 @@ function Home() {
                     <div className="col-md-4">
                     <span className="fa-stack fa-4x">
                         <i className="fa fa-circle fa-stack-2x text-warning"></i>
-                        <i className="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                        <i className="fa fa-flag fa-stack-1x fa-inverse"></i>
                     </span>
-                    <h4 className="my-3">E-Commerce</h4>
+                    <h4 className="my-3">Island Wide Constructions</h4>
                     <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </div>
                     <div className="col-md-4">
                     <span className="fa-stack fa-4x">
                         <i className="fa fa-circle fa-stack-2x text-warning"></i>
-                        <i className="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                        <i className="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+                        
                     </span>
-                    <h4 className="my-3">Responsive Design</h4>
+                    <h4 className="my-3">Service Of Qualified Engineers</h4>
                     <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </div>
                     <div className="col-md-4">
                     <span className="fa-stack fa-4x">
                         <i className="fa fa-circle fa-stack-2x text-warning"></i>
-                        <i className="fa fa-lock fa-stack-1x fa-inverse"></i>
+                        <i className="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
                     </span>
-                    <h4 className="my-3">Web Security</h4>
+                    <h4 className="my-3">Flexible Payment Schedules</h4>
                     <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </div>
                 </div>
@@ -280,8 +281,8 @@ function Home() {
                     <div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
                     <div className="timeline-panel">
                         <div className="timeline-heading">
-                        <h4>2009-2011</h4>
-                        <h4 className="subheading">Our Humble Beginnings</h4>
+                        <h4>1995-2021</h4>
+                        <h4 className="subheading">25 Years of Trustness</h4>
                         </div>
                         <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
                     </div>
@@ -290,7 +291,7 @@ function Home() {
                     <div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
                     <div className="timeline-panel">
                         <div className="timeline-heading">
-                        <h4>March 2011</h4>
+                        <h4>March 1995</h4>
                         <h4 className="subheading">An Agency is Born</h4>
                         </div>
                         <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
@@ -300,8 +301,8 @@ function Home() {
                     <div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
                     <div className="timeline-panel">
                         <div className="timeline-heading">
-                        <h4>December 2015</h4>
-                        <h4 className="subheading">Transition to Full Service</h4>
+                        <h4>December 2005</h4>
+                        <h4 className="subheading">First Government Project</h4>
                         </div>
                         <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
                     </div>
@@ -310,8 +311,8 @@ function Home() {
                     <div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
                     <div className="timeline-panel">
                         <div className="timeline-heading">
-                        <h4>July 2020</h4>
-                        <h4 className="subheading">Phase Two Expansion</h4>
+                        <h4>July 2006</h4>
+                        <h4 className="subheading">Started Island wide Constructions</h4>
                         </div>
                         <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
                     </div>
@@ -341,8 +342,8 @@ function Home() {
                     <div className="col-lg-4">
                     <div className="team-member">
                         <img className="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                        <h4>Parveen Anand</h4>
-                        <p className="text-muted">Lead Designer</p>
+                        <h4>Mr.K.S.Samarathunge</h4>
+                        <p className="text-muted">Proude company owner</p>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-twitter"></i></a>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-facebook-f"></i></a>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-linkedin-in"></i></a>
@@ -351,7 +352,7 @@ function Home() {
                     <div className="col-lg-4">
                     <div className="team-member">
                         <img className="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
-                        <h4>Diana Petersen</h4>
+                        <h4>Ms.N.P.Gunarathne</h4>
                         <p className="text-muted">Lead Marketer</p>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-twitter"></i></a>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-facebook-f"></i></a>
@@ -361,8 +362,8 @@ function Home() {
                     <div className="col-lg-4">
                     <div className="team-member">
                         <img className="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
-                        <h4>Larry Parker</h4>
-                        <p className="text-muted">Lead Developer</p>
+                        <h4>Mr.Sampath De Silva</h4>
+                        <p className="text-muted">Lead Manager</p>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-twitter"></i></a>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-facebook-f"></i></a>
                         <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-linkedin-in"></i></a>
@@ -374,25 +375,7 @@ function Home() {
                 </div>
                 </div>
             </section>
-            {/*<!-- Clients-->*/}
-            <div className="py-5">
-                <div className="container">
-                <div className="row align-items-center">
-                    <div className="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/microsoft.svg" alt="..." /></a>
-                    </div>
-                    <div className="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/google.svg" alt="..." /></a>
-                    </div>
-                    <div className="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/facebook.svg" alt="..." /></a>
-                    </div>
-                    <div className="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg" alt="..." /></a>
-                    </div>
-                </div>
-                </div>
-            </div>
+            
             {/*<!-- Contact-->*/}
             <section className="page-section" id="contact">
                 <div className="container">

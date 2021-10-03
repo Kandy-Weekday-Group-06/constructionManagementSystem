@@ -16,10 +16,10 @@ function Portfolio() {
                         <div className="portfolio-hover">
                             <div className="portfolio-hover-content"><i className="fa fa-plus fa-3x"></i></div>
                         </div>
-                        <img className="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
+                        <img className="img-fluid" width="500px" height="500px"  src="assets/img/portfolio/1.jpg" alt="..." />
                         </a>
                         <div className="portfolio-caption">
-                        <div className="portfolio-caption-heading">Threads</div>
+                        <div className="portfolio-caption-heading">Classic Houses</div>
                         <div className="portfolio-caption-subheading text-muted">Illustration</div>
                         </div>
                     </div>
@@ -31,11 +31,11 @@ function Portfolio() {
                         <div className="portfolio-hover">
                             <div className="portfolio-hover-content"><i className="fa fa-plus fa-3x"></i></div>
                         </div>
-                        <img className="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
+                        <img className="img-fluid" width="500px" height="500px" src="assets/img/portfolio/2.jpg" alt="..." />
                         </a>
                         <div className="portfolio-caption">
-                        <div className="portfolio-caption-heading">Explore</div>
-                        <div className="portfolio-caption-subheading text-muted">Graphic Design</div>
+                        <div className="portfolio-caption-heading">Mordern Houses</div>
+                        <div className="portfolio-caption-subheading text-muted">exclusive finishing</div>
                         </div>
                     </div>
                     </div>
@@ -46,11 +46,11 @@ function Portfolio() {
                         <div className="portfolio-hover">
                             <div className="portfolio-hover-content"><i className="fa fa-plus fa-3x"></i></div>
                         </div>
-                        <img className="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
+                        <img className="img-fluid" width="500px" height="500px"  src="assets/img/portfolio/3.jpg" alt="..." />
                         </a>
                         <div className="portfolio-caption">
-                        <div className="portfolio-caption-heading">Finish</div>
-                        <div className="portfolio-caption-subheading text-muted">Identity</div>
+                        <div className="portfolio-caption-heading">Factories</div>
+                        <div className="portfolio-caption-subheading text-muted">decent finishing</div>
                         </div>
                     </div>
                     </div>
@@ -61,11 +61,11 @@ function Portfolio() {
                         <div className="portfolio-hover">
                             <div className="portfolio-hover-content"><i className="fa fa-plus fa-3x"></i></div>
                         </div>
-                        <img className="img-fluid" src="assets/img/portfolio/4.jpg" alt="..." />
+                        <img className="img-fluid" width="500px" height="500px"  src="assets/img/portfolio/4.jpg" alt="..." />
                         </a>
                         <div className="portfolio-caption">
-                        <div className="portfolio-caption-heading">Lines</div>
-                        <div className="portfolio-caption-subheading text-muted">Branding</div>
+                        <div className="portfolio-caption-heading">Hospitles</div>
+                        <div className="portfolio-caption-subheading text-muted">with all functions need</div>
                         </div>
                     </div>
                     </div>
@@ -76,11 +76,11 @@ function Portfolio() {
                         <div className="portfolio-hover">
                             <div className="portfolio-hover-content"><i className="fa fa-plus fa-3x"></i></div>
                         </div>
-                        <img className="img-fluid" src="assets/img/portfolio/5.jpg" alt="..." />
+                        <img className="img-fluid" width="500px" height="500px"  src="assets/img/portfolio/5.jpg" alt="..." />
                         </a>
                         <div className="portfolio-caption">
-                        <div className="portfolio-caption-heading">Southwest</div>
-                        <div className="portfolio-caption-subheading text-muted">Website Design</div>
+                        <div className="portfolio-caption-heading">shopping malls</div>
+                        <div className="portfolio-caption-subheading text-muted">latest designs</div>
                         </div>
                     </div>
                     </div>
@@ -91,11 +91,11 @@ function Portfolio() {
                         <div className="portfolio-hover">
                             <div className="portfolio-hover-content"><i className="fa fa-plus fa-3x"></i></div>
                         </div>
-                        <img className="img-fluid" src="assets/img/portfolio/6.jpg" alt="..." />
+                        <img className="img-fluid" width="500px" height="500px"  src="assets/img/portfolio/6.jpg" alt="..." />
                         </a>
                         <div className="portfolio-caption">
-                        <div className="portfolio-caption-heading">Window</div>
-                        <div className="portfolio-caption-subheading text-muted">Photography</div>
+                        <div className="portfolio-caption-heading">shopping malls</div>
+                        <div className="portfolio-caption-subheading text-muted">reguler type as well</div>
                         </div>
                     </div>
                     </div>

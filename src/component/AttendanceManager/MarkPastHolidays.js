@@ -31,9 +31,11 @@ function MarkPastHolidays() {
     const [leftAt, setLeftAt] = useState("null");
     const [month, setMonth] = useState("09");
     const [year, setYear] = useState("2021");
+    const [password, setPassword] = useState("");
     const [ProjectTitle, setProjectTitle] = useState("");
     const [show, setShow] = useState(false);
-    const [open1, setOpen1] = React.useState(false);
+    const [open1, setOpen1] = useState(false);
+    const [open2, setOpen2] = useState(false);
 
     const error1HandleClick = () => {
         setOpen1(true);
@@ -46,8 +48,19 @@ function MarkPastHolidays() {
         setOpen1(false);
     };
 
+    const error2HandleClick = () => {
+        setOpen2(true);
+    };
+    const error2HandleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen2(false);
+    };
+
     const handleClose = () => setShow(false);
-    const handleShow = (e) =>{ e.preventDefault();
+    const handleShow = () =>{
     setShow(true);}
 
     function makeTwodigitNumber(number){
@@ -60,9 +73,11 @@ function MarkPastHolidays() {
 
     function markAsAHolliDay(){
         setShow(false);
-        
-        const datee = HollidayDate;
-        const myArr = datee.split("-");
+        setPassword("");
+        const x = HollidayDate;
+        const myArr = x.split("-");
+        const monthh=myArr[1];
+        const yearr = myArr[0];
             setMonth(myArr[1]);
             setYear(myArr[0]);
         employees.forEach(async (item,index)=>{
@@ -70,12 +85,12 @@ function MarkPastHolidays() {
                     .doc()
                     .set({
                         arriveAt,
-                        "date":datee,
+                        "date":HollidayDate,
                         "employeeID":item,
                         dayStatus:"holliday",
                         leftAt,
-                        month,
-                        year,
+                        "month":monthh,
+                        "year":yearr,
                         ProjectTitle
 
                     })
@@ -151,7 +166,7 @@ function MarkPastHolidays() {
       
       
            
-     }, [db]);
+     }, []);
 
 
 
@@ -161,12 +176,39 @@ function MarkPastHolidays() {
         
         
     }
+    function passwordValidation(e){
+        e.preventDefault();
+        const func = async ()=>{
+            var id= localStorage.getItem("token");
+            if(localStorage.getItem("token")==null){
+                console.log("not logged in")
+            }else{
+    
+                const cityRef = db.collection('AdminAccounts').doc(id);
+                const doc = await cityRef.get();
+                if (!doc.exists) {
+                console.log('No such document!');
+                } else {
+                console.log('Document data from password check: ', doc.data());
+                    if(doc.data().password==password){
+                        handleShow();
+                    }else{
+                        error2HandleClick();
+                    }
+                
+                }
+            }
+           
+            
+        }
+        func();
+    }
       
 
       
-      console.log("EmployeeID List>>>>>>",employees);
+      
       function deleteClient() {
-        var jobskill_query = db.collection('attendance').where('date','==',"2021-08-05");
+        var jobskill_query = db.collection('attendance').where('date','==',"2021-10-01");
             jobskill_query.get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 doc.ref.delete();
@@ -201,7 +243,7 @@ function MarkPastHolidays() {
             <Container className="width500px mt-5 bg-white p-5 rounded"  >
                 <Row className="d-flex justify-content-center ">
                     <div className="w-100 align-middle mh-100 d-flex justify-content-center">
-                    <Form className="w-75 justify-content-center mb-5"  onSubmit={handleShow} >
+                    <Form className="w-75 justify-content-center mb-5"  onSubmit={passwordValidation} >
                     
                         <Row className="d-flex justify-content-center align-items-center mt-3 w-100">
                             
@@ -221,7 +263,7 @@ function MarkPastHolidays() {
                                 <Form.Label>
                                     <h6 className="" >Admin Password :</h6>
                                 </Form.Label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                <input type="password" class="form-control" value={password} onChange={(e)=>{setPassword(e.target.value);}} placeholder="Password" required/>
                             </Form.Group>
                             
                         </Row>
@@ -259,6 +301,11 @@ function MarkPastHolidays() {
             <Snackbar open={open1} autoHideDuration={2200} onClose={error1HandleClose}>
                 <Alert onClose={error1HandleClose} severity="success">
                     Updated Successfully!
+                </Alert>
+            </Snackbar>
+            <Snackbar open={open2} autoHideDuration={2200} onClose={error2HandleClose}>
+                <Alert onClose={error2HandleClose} severity="error">
+                    Invalid Password!
                 </Alert>
             </Snackbar>
         </div>

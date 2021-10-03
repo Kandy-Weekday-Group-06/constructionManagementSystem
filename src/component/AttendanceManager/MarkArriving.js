@@ -28,13 +28,13 @@ function Alert(props) {
 function MarkArriving(props) {
     const db = firebase.firestore();
     const [arrivingTime, setArrivingTime] = useState("");
-    const [arrivingDate, setArrivingDate] = useState("2021-10-02");
+    const [arrivingDate, setArrivingDate] = useState("2021-10-03");
     const [employees, setEmployees] = useState([]);
     const [editingAttendance, setEditingAttendance] = useState(props);
     const [ProjectTitles, SetProjectTitles] = useState([]);
     const [ProjectTitle, SetProjectTitle] = useState("");
-    const [searchVal, setSearchVal] = useState("");
     const [updater,setUpdater] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
     
 
     const classes = useStyles();
@@ -72,33 +72,7 @@ function MarkArriving(props) {
         })
         return formattedNumber;
     }
-    /*$(document).ready(function(){
-        $("#searchQueryInput").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          $("#myTable Row").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
-        });
-      });*/
-
-      //for search but did not worked
-      function myFunction(e) {
-        
-        setSearchVal(e.target.value);
-        var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById("searchQueryInput");
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("myTable");
-        li = ul.getElementsByTagName("Row");
-        for (i = 0; i < li.length; i++) {
-            txtValue =li[i].textContent || li[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-    }
+    
     
 
 
@@ -288,7 +262,7 @@ function MarkArriving(props) {
                                 disabled={false}
                                  
                                 className="">
-                                    Report
+                                    Live Report
                     </Button>
                     </Link>
                 </Col>
@@ -311,7 +285,10 @@ function MarkArriving(props) {
             
             <Row className="justify-content-center mt-3" >
                 <div className="searchBar" styles="width:100px">
-                    <input id="searchQueryInput" maxwidth="100px" type="text" name="searchQueryInput" placeholder="Search" value={searchVal} onChange={(e)=>{myFunction(e);}} />
+                    <input id="searchQueryInput" maxwidth="100px" type="text" name="searchQueryInput" placeholder="Search"
+                    value={searchTerm} onChange={(event) => {
+                        setSearchTerm(event.target.value);
+                      }} />
                     <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                         <Search/>
                         
@@ -320,7 +297,20 @@ function MarkArriving(props) {
             </Row>
            
             <div id="myTable">
-            {employees.map((employee) => (
+            {employees
+            .filter((employee) => {
+                if (searchTerm == "") {
+                  return employee;
+                } else if (
+                  employee.name
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) || employee.position
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+                ) {
+                  return employee;
+                }
+              }).map((employee) => (
             <Row className="justify-content-center mt-2">
                 <div className="arrivingSearchResults pl-5 py-3 shadow-sm">
                     <Row>

@@ -26,13 +26,14 @@ function Alert(props) {
 function MarkLeaving(props) {
     const db = firebase.firestore();
     const [arrivingTime, setArrivingTime] = useState("");
-    const [arrivingDate, setArrivingDate] = useState("2021-10-02");
+    const [arrivingDate, setArrivingDate] = useState("2021-10-03");
     const [employees, setEmployees] = useState([]);
     const [editingAttendance, setEditingAttendance] = useState(props);
     const [ProjectTitles, SetProjectTitles] = useState([]);
     const [ProjectTitle, SetProjectTitle] = useState("");
     const [searchVal, setSearchVal] = useState("");
     const [updater,setUpdater] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -102,7 +103,7 @@ function MarkLeaving(props) {
                     var arrayy2=[];
                     db.collection('attendance')
                     .where('employeeID', '==', arr[i].ID)
-                    .where('date','==',date)
+                    .where('date','==',arrivingDate)
                     .get()
                     .then((querySnapshot)=>{
                         arrayy = querySnapshot.docs.map((docc)=>(
@@ -243,16 +244,30 @@ function MarkLeaving(props) {
             
             <Row className="justify-content-center mt-3" >
                 <div className="searchBar" styles="width:100px">
-                    <input id="searchQueryInput" maxwidth="100px" type="text" name="searchQueryInput" placeholder="Search" value="" />
+                    <input id="searchQueryInput" maxwidth="100px" type="text"
+                     name="searchQueryInput" placeholder="Search" value={searchTerm} onChange={(event) => {
+                        setSearchTerm(event.target.value);
+                      }} />
                     <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                         <Search/>
                         
                     </button>
                 </div>
             </Row>
-           
-            
-            {employees.map((employee) => (
+            {employees
+            .filter((employee) => {
+              if (searchTerm == "") {
+                return employee;
+              } else if (
+                employee.name
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase()) || employee.position
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              ) {
+                return employee;
+              }
+            }).map((employee) => (
             <Row className="justify-content-center mt-2 ">
                 <div className="arrivingSearchResults border pl-5 py-3">
                     <Row>

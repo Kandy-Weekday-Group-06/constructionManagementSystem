@@ -24,7 +24,9 @@ function DeleteOldData() {
     const [maxDate,setMaxDate] = useState("");
     const [show, setShow] = useState(false);
     const [open1, setOpen1] = React.useState(false);
+    const [open2, setOpen2] = useState(false);
     const db = firebase.firestore();
+    const [password, setPassword] = useState("");
 
     const error1HandleClick = () => {
         setOpen1(true);
@@ -37,9 +39,19 @@ function DeleteOldData() {
         setOpen1(false);
     };
 
+    const error2HandleClick = () => {
+        setOpen2(true);
+    };
+    const error2HandleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen2(false);
+    };
+
     const handleClose = () => setShow(false);
-    const handleShow = (e) =>{ e.preventDefault();
-    setShow(true);}
+    const handleShow = (e) =>{setShow(true);}
 
     useEffect(() => {
         function makeDate(){
@@ -67,6 +79,7 @@ function DeleteOldData() {
 
      function deletedata() {
         setShow(false);
+        setPassword("")
         var jobskill_query = db.collection('attendance').where('date','<',selectedDate);
             jobskill_query.get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -75,6 +88,34 @@ function DeleteOldData() {
             });
             error1HandleClick();
       }
+
+      function passwordValidation(e){
+        e.preventDefault();
+        const func = async ()=>{
+            var id= localStorage.getItem("token");
+            if(localStorage.getItem("token")==null){
+                console.log("not logged in")
+            }else{
+    
+                const cityRef = db.collection('AdminAccounts').doc(id);
+                const doc = await cityRef.get();
+                if (!doc.exists) {
+                console.log('No such document!');
+                } else {
+                console.log('Document data from password check: ', doc.data());
+                    if(doc.data().password==password){
+                        handleShow();
+                    }else{
+                        error2HandleClick();
+                    }
+                
+                }
+            }
+           
+            
+        }
+        func();
+    }
 
     
     return (
@@ -87,7 +128,7 @@ function DeleteOldData() {
             <Container className="width500px mt-5 bg-white p-5 rounded"  >
                 <Row className="d-flex justify-content-center ">
                     <div className="w-100 align-middle mh-100 d-flex justify-content-center ">
-                    <Form className="w-75 justify-content-center mb-5"  onSubmit={handleShow} >
+                    <Form className="w-75 justify-content-center mb-5"  onSubmit={passwordValidation} >
                     
 
                         <Row className="d-flex justify-content-center align-items-center mt-3 w-100 text-danger">
@@ -123,7 +164,7 @@ function DeleteOldData() {
                                 <Form.Label>
                                     <h6 className="" >Admin Password :</h6>
                                 </Form.Label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                <input type="password" class="form-control" value={password} onChange={(e)=>{setPassword(e.target.value);}} placeholder="Password"/>
                             </Form.Group>
                             
                         </Row>
@@ -161,6 +202,11 @@ function DeleteOldData() {
             <Snackbar open={open1} autoHideDuration={2200} onClose={error1HandleClose}>
                 <Alert onClose={error1HandleClose} severity="success">
                     Deleted Successfully!
+                </Alert>
+            </Snackbar>
+            <Snackbar open={open2} autoHideDuration={2200} onClose={error2HandleClose}>
+                <Alert onClose={error2HandleClose} severity="error">
+                    Invalid Password!
                 </Alert>
             </Snackbar>
         </div>

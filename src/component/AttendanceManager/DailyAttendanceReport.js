@@ -8,7 +8,7 @@ function DailyAttendanceReport() {
     const [employeesInProject, setEmployeesInProject] = useState([]);
     const [employeedesig,setEmployeedesig] = useState({})
     const [designations,setDesignations] = useState([]);
-    const [datee,setDatee] = useState("2021-10-02");
+    const [datee,setDatee] = useState("2021-10-03");
     const [project,setproject] = useState("Kandy_Mall");
     const [workingEmployees, setWorkingEmployees] = useState([]);
     const [initializedEmployees, setinitializedEmployees] = useState([]);
@@ -79,6 +79,21 @@ function DailyAttendanceReport() {
 
 
         async function fetchdata2(){
+
+            var today = new Date();
+            function makeTwodigitNumber(number){
+                let formattedNumber = number.toLocaleString('en-US', {
+                  minimumIntegerDigits: 2,
+                  useGrouping: false
+                })
+                return formattedNumber;
+            }
+    
+            var date = today.getFullYear()+'-'+makeTwodigitNumber((today.getMonth()+1))+'-'+makeTwodigitNumber(today.getDate());
+            console.log(date)
+            setDatee(date);
+
+
             const employeesDesignationObj ={};
             const designationsObj ={};
             const designationsForLeavesObj ={};
@@ -189,7 +204,7 @@ function DailyAttendanceReport() {
               return request
         } 
 
-       //fetchdata2();
+       fetchdata2();
         
 
 

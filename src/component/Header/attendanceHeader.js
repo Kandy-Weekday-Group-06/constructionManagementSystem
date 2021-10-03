@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import '../../assets/css/home/bootstrap.min.css';
 import '../../assets/css/home/agency.min.css';
-import {  Link } from "react-router-dom";
+import {  Link,useHistory } from "react-router-dom";
 import { NavDropdown} from 'react-bootstrap';
 
 import firebase from "../../firebase";
@@ -18,6 +18,10 @@ function AttendanceHeader() {
     const [month, setMonth] = useState("08");
     const [year, setYear] = useState("2021");
     const [ProjectTitle, setProjectTitle] = useState("");
+    const [auth,setAuth] = useState(false);
+    const [user,setUser] = useState({name:""});
+    let history = useHistory();
+
 
     function makeTwodigitNumber(number){
         let formattedNumber = number.toLocaleString('en-US', {
@@ -94,6 +98,33 @@ function AttendanceHeader() {
         }
         makeDate();
 
+
+        const func = async ()=>{
+            var id= localStorage.getItem("token");
+            if(localStorage.getItem("token")==null){
+                console.log("not logged in")
+            }else{
+    
+                const cityRef = db.collection('AdminAccounts').doc(id);
+                const doc = await cityRef.get();
+                if (!doc.exists) {
+                console.log('No such document!');
+                setAuth(false);
+                history.push('/');
+                } else {
+                console.log('Document data:', doc.data());
+                setUser({name:doc.data().userName});
+                setAuth(true);
+                }
+            }
+           
+            
+        }
+        func();
+
+
+
+
         console.log("started one");
         async function fetchdata(){
             console.log("running");
@@ -118,6 +149,11 @@ function AttendanceHeader() {
       
            
      }, [db]);
+
+     function logout(){
+        localStorage.setItem("token", null);
+        history.push('/');
+    }
       
 
       
@@ -131,17 +167,6 @@ function AttendanceHeader() {
             });
       }
       //deleteClient();
-
-
-
-
-
-
-
-
-
-
-
 
     return (
         <div>
@@ -196,6 +221,23 @@ function AttendanceHeader() {
                             </Link>
                         </NavDropdown>
                     </li>
+
+                    <li className={(auth)? `nav-item` :`home__hide_adminPannel` } >
+                    <NavDropdown
+                            id="nav-dropdown-dark-example"
+                            title={user.name}
+                            menuVariant="dark"
+                            >
+                       
+                                <NavDropdown.Item href="#action/3.1" onClick={logout}>
+                                    Logout
+                                </NavDropdown.Item>
+                            
+
+                            
+                        </NavDropdown></li>
+
+
                     </ul>
                 </div>
                 </div>
