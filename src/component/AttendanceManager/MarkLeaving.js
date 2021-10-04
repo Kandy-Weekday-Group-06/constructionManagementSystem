@@ -26,7 +26,7 @@ function Alert(props) {
 function MarkLeaving(props) {
     const db = firebase.firestore();
     const [arrivingTime, setArrivingTime] = useState("");
-    const [arrivingDate, setArrivingDate] = useState("2021-10-03");
+    const [arrivingDate, setArrivingDate] = useState("2021-10-04");
     const [employees, setEmployees] = useState([]);
     const [editingAttendance, setEditingAttendance] = useState(props);
     const [ProjectTitles, SetProjectTitles] = useState([]);

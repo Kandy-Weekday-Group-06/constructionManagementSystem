@@ -88,7 +88,7 @@ function Home() {
         setinvalidUserMsg(false);
         setUpdater(false);
         db.collection("AdminAccounts")
-        .where('password', '==', password).where('userName','==',username).get()
+        .where('password', '==',password).where('userName','==',username).get()
         .then((querySnapshot) => {
             console.log(querySnapshot.docs,"pass:", password,"usernamr :",username);
             querySnapshot.docs.forEach((doc) => {

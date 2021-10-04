@@ -45,6 +45,7 @@ export default function EmployeeManager() {
 
     function editEmployeeHandler(EmpID) {
         setEditEmployee(EmpID);
+        console.log(EmpID);
     }
 
     function viewEmployeeHandler(EmpName) {

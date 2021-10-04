@@ -9,8 +9,8 @@ import { Card } from "react-bootstrap";
 
 function DisplayMonthlyAttendance(props) {
     const db = firebase.firestore();
-    const [month,setMonth] = useState("09");
-    const [year,setYear] = useState("2021");
+    const [month,setMonth] = useState("");
+    const [year,setYear] = useState("");
     const [employeeID,setEmployeeID] = useState(props.employeeID);
     const [employee,setEmployee] = useState({});
     const [attendanceList, setAttendanceList] = useState([]);
@@ -242,7 +242,7 @@ function DisplayMonthlyAttendance(props) {
                     <Col xs lg="3" className="d-flex align-items-center py-2"><h6 className="text-leftt w-100 DisplayMonthlyAttendance__align-me-v-center" >
 
                         MM:<Form.Control as="select" size="sm" className="DisplayMonthlyAttendance__mon-year-width mx-1" value={month} onChange={(e)=>{setMonth(e.target.value);setUpdater(true)}}>
-                                
+                                <option value="">month</option>
                                 <option value="01">Jan</option>
                                 <option value="02">Feb</option>
                                 <option value="03">Mar</option>
@@ -258,7 +258,7 @@ function DisplayMonthlyAttendance(props) {
                         </Form.Control>/    
                         YY:<Form.Control size="sm" as="select" className="DisplayMonthlyAttendance__mon-year-width mx-1" value={year} onChange={(e)=>{setYear(e.target.value);}}>
                                 
-                                
+                                <option value="">year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
                                          

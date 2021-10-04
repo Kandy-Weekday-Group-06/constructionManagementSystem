@@ -8,7 +8,7 @@ function DailyAttendanceReport() {
     const [employeesInProject, setEmployeesInProject] = useState([]);
     const [employeedesig,setEmployeedesig] = useState({})
     const [designations,setDesignations] = useState([]);
-    const [datee,setDatee] = useState("2021-10-03");
+    const [datee,setDatee] = useState("2021-10-04");
     const [project,setproject] = useState("Kandy_Mall");
     const [workingEmployees, setWorkingEmployees] = useState([]);
     const [initializedEmployees, setinitializedEmployees] = useState([]);
@@ -277,7 +277,7 @@ function DailyAttendanceReport() {
 
                         },
                         {
-                            label: 'havent arrived yet',
+                            label: 'total employees that haven\'t arrived yet',
                             data: initializedEmployees,
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
                             borderColor: 'rgba(255, 99, 132, 1)',
