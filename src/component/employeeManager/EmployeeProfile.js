@@ -69,11 +69,11 @@ function employeeattendanceClicked(ID){
       <Container style = {{
         marginLeft :"290px",
       }}>
-        <Row xs={2} md={4} lg={6}>
+        {/* <Row xs={2} md={4} lg={6}>
           <Col >Employee ID</Col>
           <Col >:</Col>
           <Col >{EmployeeID}</Col>
-        </Row>
+        </Row>*/}
 
         <Row xs={2} md={4} lg={6} >
           <Col >Address</Col>

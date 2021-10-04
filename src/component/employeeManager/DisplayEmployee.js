@@ -88,7 +88,7 @@ function DisplayEmployee(props) {
     <Grid container>
       <Grid item xs={6}>
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="filled-basic" label="Search by Employee Name" variant="filled" 
+        <TextField id="filled-basic" label="Search by Employee Name" variant="standard" 
                   onChange={(event) => {
                     setSearchTerm(event.target.value);
                   }}
@@ -114,9 +114,9 @@ function DisplayEmployee(props) {
                                                 borderRadius: 15,
                                                 /*padding: "10px 20px",*/
                                                 backgroundColor: "#ffcc00",
-                                                width: "200px",
+                                                width: "250px",
                                                 height : "50px",
-                                                margin : "0px 0px 0px 300px",
+                                                margin : "0px 0px 0px 60px",
                                                 color : "#ffffff",
                                                 fontWeight : "bold",
                                                 }}
