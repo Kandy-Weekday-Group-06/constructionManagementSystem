@@ -63,8 +63,9 @@ function EditDesignation(props) {
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label className="text-warning" style={{fontSize:"18px",}}>Status</Form.Label>
                                 <Form.Control as="select" value={status} onChange={(e)=>{setStatus(e.target.value)}}>
-                                    <option>contracted</option>
-                                    <option>non-contracted</option>
+                                    <option value="">select status</option>
+                                    <option value="contracted">contracted</option>
+                                    <option value="non-contracted">non-contracted</option>
                                 </Form.Control>
                             </Form.Group>
                             <br/>

@@ -57,31 +57,41 @@ function DisplayPayments(props) {
 
   return (
     <div style={{ paddingRight: "20px", paddingLeft: "20px" }}>
-      <Form.Control
-        style={{ width: "400px" }}
-        as="select"
-        onChange={(event) => {
-          setClientSearch(event.target.value);
-        }}
-      >
-        <option value="">Report for client: </option>
-        {clientNames.map((clientName) => (
-          <option value={clientName}>{clientName}</option>
-        ))}
-      </Form.Control>
-      <br />
-      <Form.Control
-        style={{ width: "400px" }}
-        as="select"
-        onChange={(event) => {
-          setProjectSearch(event.target.value);
-        }}
-      >
-        <option value="">Report for client's project: </option>
-        {projectNames.map((projectName) => (
-          <option value={projectName}>{projectName}</option>
-        ))}
-      </Form.Control>
+      <center>
+        <br />
+        <h3 style={{ color: "#f0ad4e" }}>
+          <b>
+            <u>Payment Report</u>
+          </b>
+        </h3>
+        <br />
+        <Form.Control
+          style={{ width: "250px" }}
+          as="select"
+          onChange={(event) => {
+            setClientSearch(event.target.value);
+          }}
+        >
+          <option value="">Client?</option>
+          {clientNames.map((clientName) => (
+            <option value={clientName}>{clientName}</option>
+          ))}
+        </Form.Control>
+
+        <br />
+        <Form.Control
+          style={{ width: "250px" }}
+          as="select"
+          onChange={(event) => {
+            setProjectSearch(event.target.value);
+          }}
+        >
+          <option value="">Project?</option>
+          {projectNames.map((projectName) => (
+            <option value={projectName}>{projectName}</option>
+          ))}
+        </Form.Control>
+      </center>
       <br />
       <Link to="/adminPannel/ClientManager/AddPayment">
         <Button style={{ borderRadius: "10px 10px 0 0" }} variant="primary">

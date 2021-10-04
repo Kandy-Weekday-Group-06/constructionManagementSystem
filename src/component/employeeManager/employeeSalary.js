@@ -126,7 +126,7 @@ function Employee(props) {
             doc.ref.delete();
         });
         });
-        alert("Records deleted for year",year," month ",month);
+        alert("Records deleted");
     }
 
     return (
