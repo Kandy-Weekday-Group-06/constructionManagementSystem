@@ -54,19 +54,22 @@ function EditPayment(props) {
 
   function editdata(e) {
     e.preventDefault();
+    if (
+      window.confirm("Are you sure you want to edit this payment's details?")
+    ) {
+      alert("Payment details have been successfully edited!");
 
-    alert("editdone");
+      const updatedPayment = {
+        clientName,
+        projectName,
+        date,
+        amount: parseFloat(amount),
+      };
 
-    const updatedPayment = {
-      clientName,
-      projectName,
-      date,
-      amount: parseFloat(amount),
-    };
+      console.log(updatedPayment);
 
-    console.log(updatedPayment);
-
-    db.collection("payments").doc(paymentId).update(updatedPayment);
+      db.collection("payments").doc(paymentId).update(updatedPayment);
+    }
   }
 
   return (

@@ -38,17 +38,21 @@ function EditClient(props) {
 
   function editdata(e) {
     e.preventDefault();
-    alert("editdone");
-    const updatedClient = {
-      clientName,
-      representativeName,
-      phone,
-      email,
-      address,
-    };
-    console.log(updatedClient);
+    if (
+      window.confirm("Are you sure you want to edit this client's details?")
+    ) {
+      alert("Client details have been successfully edited.");
+      const updatedClient = {
+        clientName,
+        representativeName,
+        phone,
+        email,
+        address,
+      };
+      console.log(updatedClient);
 
-    db.collection("clients").doc(clientId).update(updatedClient);
+      db.collection("clients").doc(clientId).update(updatedClient);
+    }
   }
 
   return (

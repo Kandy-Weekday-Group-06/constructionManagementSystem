@@ -31,32 +31,37 @@ function AddPayment() {
 
   function sendData(e) {
     e.preventDefault();
+    if (
+      window.confirm(
+        "Are you sure you want to add a payment with these details?"
+      )
+    ) {
+      alert("Payment has been successfully added!");
 
-    alert("Done!");
+      const newPayment = {
+        clientName,
+        projectName,
+        date,
+        amount: parseFloat(amount),
+      };
 
-    const newPayment = {
-      clientName,
-      projectName,
-      date,
-      amount: parseFloat(amount),
-    };
+      console.log(newPayment);
 
-    console.log(newPayment);
+      db.collection("payments")
+        .doc()
+        .set(newPayment)
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
 
-    db.collection("payments")
-      .doc()
-      .set(newPayment)
-      .then(() => {
-        console.log("Document successfully written!");
-      })
-      .catch((error) => {
-        console.error("Error writing document: ", error);
-      });
-
-    setClientName("");
-    setProjectName("");
-    setDate("");
-    setAmount("");
+      setClientName("");
+      setProjectName("");
+      setDate("");
+      setAmount("");
+    }
   }
 
   return (
